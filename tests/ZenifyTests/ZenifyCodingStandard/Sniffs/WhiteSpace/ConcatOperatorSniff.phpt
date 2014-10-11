@@ -18,13 +18,13 @@ class ConcatOperatorSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource('/Wrong/WhiteSpace/ConcatOperator.php'));
+		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/ConcatOperator.wrong.php'));
 	}
 
 
 	public function testCorrect()
 	{
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource('/Correct/WhiteSpace/ConcatOperator.php'));
+		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/ConcatOperator.correct.php'));
 	}
 
 }

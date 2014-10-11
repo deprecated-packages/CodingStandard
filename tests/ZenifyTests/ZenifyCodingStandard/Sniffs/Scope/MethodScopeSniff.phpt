@@ -18,15 +18,15 @@ class MethodScopeSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource('/Wrong/Scope/MethodScope.php'));
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource('/Wrong/Scope/MethodScope2.php'));
+		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/MethodScope.wrong.php'));
+		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/MethodScope.wrong2.php'));
 	}
 
 
 	public function testCorrect()
 	{
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource('/Correct/Scope/MethodScope.php'));
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource('/Correct/Scope/MethodScope2.php'));
+		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/MethodScope.correct.php'));
+		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/MethodScope.correct2.php'));
 	}
 
 }

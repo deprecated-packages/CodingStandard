@@ -30,7 +30,7 @@ class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public $commentMustInclude = array(
 		T_IS_EQUAL => 'intentionally ==',
-		T_IS_NOT_EQUAL => 'intentionally =='
+		T_IS_NOT_EQUAL => 'intentionally !='
 	);
 
 

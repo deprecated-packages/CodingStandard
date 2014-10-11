@@ -18,14 +18,14 @@ class PropertiesMethodsMutualSpacingSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource('/Wrong/WhiteSpace/PropertiesMethodsMutualSpacing.php'));
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource('/Wrong/WhiteSpace/PropertiesMethodsMutualSpacing2.php'));
+		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/PropertiesMethodsMutualSpacing.wrong.php'));
+		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/PropertiesMethodsMutualSpacing.wrong2.php'));
 	}
 
 
 	public function testCorrect()
 	{
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource('/Correct/WhiteSpace/PropertiesMethodsMutualSpacing.php'));
+		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/PropertiesMethodsMutualSpacing.correct.php'));
 	}
 
 }

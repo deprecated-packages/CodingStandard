@@ -18,14 +18,14 @@ class IfElseSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource('/Wrong/WhiteSpace/IfElse.php'));
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource('/Wrong/WhiteSpace/IfElse2.php'));
+		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/IfElse.wrong.php'));
+		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/IfElse.wrong2.php'));
 	}
 
 
 	public function testCorrect()
 	{
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource('/Correct/WhiteSpace/IfElse.php'));
+		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/IfElse.correct.php'));
 	}
 
 }

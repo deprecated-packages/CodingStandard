@@ -8,13 +8,14 @@
 namespace ZenifyCodingStandard\Sniffs\Commenting;
 
 use PHP_CodeSniffer_File;
+use PHP_CodeSniffer_Sniff;
 
 
 /**
  * Rules:
- * - Block (multi line) comment is should be used instead of one liner.
+ * - Block (multi line) comments should be used instead of one liner.
  */
-class BlockPropertyCommentSniff implements \PHP_CodeSniffer_Sniff
+class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**

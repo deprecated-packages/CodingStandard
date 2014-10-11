@@ -23,7 +23,7 @@ class TestCase extends Tester\TestCase
 	 */
 	protected function runPhpCshForSource($source)
 	{
-		$cliCommand = PHPCS_BIN . ' ' . PROJECT_DIR . $source . ' ' . ' --standard=' . SRC_DIR . '/ZenifyCodingStandard/ruleset.xml';
+		$cliCommand = PHPCS_BIN . ' ' . $source . ' ' . ' --standard=' . SRC_DIR . '/ZenifyCodingStandard/ruleset.xml';
 		passthru($cliCommand, $result);
 		return $result;
 	}

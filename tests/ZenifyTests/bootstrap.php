@@ -24,7 +24,6 @@ Tracy\Debugger::$logDirectory = TEMP_DIR;
 
 define('PHPCS_BIN', 'php ' . realpath(__DIR__ . '/../../vendor/bin/phpcs'));
 define('SRC_DIR', realpath(__DIR__ . '/../../src'));
-define('PROJECT_DIR', realpath(__DIR__ . '/Project'));
 
 
 /** @return string */

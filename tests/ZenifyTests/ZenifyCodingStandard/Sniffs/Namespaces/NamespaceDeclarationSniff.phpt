@@ -18,17 +18,17 @@ class NamespaceDeclarationSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource('/Wrong/Namespaces/NamespaceDeclaration.php'));
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource('/Wrong/Namespaces/NamespaceDeclaration2.php'));
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource('/Wrong/Namespaces/NamespaceDeclaration3.php'));
+		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/NamespaceDeclaration.wrong.php'));
+		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/NamespaceDeclaration.wrong2.php'));
+		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/NamespaceDeclaration.wrong3.php'));
 	}
 
 
 	public function testCorrect()
 	{
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource('/Correct/Namespaces/NamespaceDeclaration.php'));
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource('/Correct/Namespaces/NamespaceDeclaration2.php'));
-//		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource('/Correct/Namespaces/NamespaceDeclaration3.php'));
+		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/NamespaceDeclaration.correct.php'));
+		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/NamespaceDeclaration.correct2.php'));
+//		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/NamespaceDeclaration.correct3.php'));
 	}
 
 }

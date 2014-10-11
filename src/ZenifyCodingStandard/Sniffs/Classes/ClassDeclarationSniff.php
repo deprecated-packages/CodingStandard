@@ -13,8 +13,8 @@ use PEAR_Sniffs_Classes_ClassDeclarationSniff;
 
 /**
  * Rules (new to parent class):
- * - Opening brace for the %s should be followed by %s empty line(s) (default: 1)
- * - Closing brace for the % should be preceded by %s empty line(s) (default: 1).
+ * - Opening brace for the %s should be followed by %s empty line(s).
+ * - Closing brace for the % should be preceded by %s empty line(s).
  */
 class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSniff
 {
