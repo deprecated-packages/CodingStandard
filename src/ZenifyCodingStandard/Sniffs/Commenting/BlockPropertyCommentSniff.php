@@ -13,7 +13,7 @@ use PHP_CodeSniffer_Sniff;
 
 /**
  * Rules:
- * - Block (multi line) comments should be used instead of one liner.
+ * - Block comment should be used instead of one liner.
  */
 class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 {
@@ -40,7 +40,7 @@ class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 		if ($this->isSingleLineDoc($file, $position, $closeTagPosition) === FALSE) {
 			return;
 		}
-		$error = 'Block (multi line) comment is should be used instead of one liner';
+		$error = 'Block comment should be used instead of one liner';
 		$file->addError($error, $position);
 	}
 

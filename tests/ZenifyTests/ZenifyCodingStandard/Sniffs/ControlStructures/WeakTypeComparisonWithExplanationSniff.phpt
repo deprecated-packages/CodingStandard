@@ -14,15 +14,28 @@ class WeakTypeComparisonWithExplanationSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/WeakTypeComparisonWithExplanation.wrong.php'));
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/WeakTypeComparisonWithExplanation.wrong2.php'));
+		$result = $this->runPhpCsForFile(__DIR__ . '/WeakTypeComparisonWithExplanation.wrong.php');
+		Assert::count(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'Weak equals comparison must be commented with its purpose',
+			'ZenifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation.Operator.T_IS_EQUAL'
+		);
+
+		$result = $this->runPhpCsForFile(__DIR__ . '/WeakTypeComparisonWithExplanation.wrong2.php');
+		Assert::count(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'Weak equals comparison must be commented with its purpose',
+			'ZenifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation.Operator.T_IS_EQUAL'
+		);
 	}
 
 
 	public function testCorrect()
 	{
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/WeakTypeComparisonWithExplanation.correct.php'));
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/WeakTypeComparisonWithExplanation.correct2.php'));
+		$result = $this->runPhpCsForFile(__DIR__ . '/WeakTypeComparisonWithExplanation.correct.php');
+		Assert::count(0, $result['errors']);
 	}
 
 }

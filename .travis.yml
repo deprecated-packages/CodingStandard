@@ -24,7 +24,7 @@ before_script:
   - composer install --no-interaction --prefer-source --dev
 
 script:
-  - vendor/bin/tester -p $PHP_BIN  tests/ZenifyTests/
+  - vendor/bin/tester -p $PHP_BIN -c=tests/php-unix.ini tests/ZenifyTests/
 
 after_failure:
   - 'for i in $(find ./tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done'

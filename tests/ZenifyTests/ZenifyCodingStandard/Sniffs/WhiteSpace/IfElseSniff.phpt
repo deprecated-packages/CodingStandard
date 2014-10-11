@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @testCase
- */
-
 namespace ZenifyTests\ZenifyCodingStandard\Sniffs\WhiteSpace;
 
 use Tester\Assert;
@@ -18,14 +14,29 @@ class IfElseSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/IfElse.wrong.php'));
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/IfElse.wrong2.php'));
+		$result = $this->runPhpCsForFile(__DIR__ . '/IfElse.wrong.php');
+		Assert::count(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'Else/elseif statement should be preceded by empty line',
+			'ZenifyCodingStandard.Whitespace.IfElse'
+		);
+
+		$result = $this->runPhpCsForFile(__DIR__ . '/IfElse.wrong2.php');
+		Assert::count(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'Else/elseif statement should be preceded by empty line',
+			'ZenifyCodingStandard.Whitespace.IfElse'
+		);
 	}
+
 
 
 	public function testCorrect()
 	{
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/IfElse.correct.php'));
+		$result = $this->runPhpCsForFile(__DIR__ . '/IfElse.correct.php');
+		Assert::count(0, $result['errors']);
 	}
 
 }

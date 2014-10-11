@@ -49,14 +49,14 @@ class MethodScopeSniff extends PHP_CodeSniffer_Standards_AbstractScopeSniff
 			if (($modifier === FALSE) || ($tokens[$modifier]['line'] !== $tokens[$position]['line'])) {
 				$error = 'Function "%s" should have scope modifier.';
 				$data = array($methodName);
-				$file->addError($error, $position, 'Missing', $data);
+				$file->addError($error, $position, '', $data);
 			}
 
 		} else {
 			if ($modifier !== FALSE) {
 				$error = 'Interface function "%s" should not have scope modifier.';
 				$data = array($methodName);
-				$file->addError($error, $position, 'Missing', $data);
+				$file->addError($error, $position, '', $data);
 			}
 		}
 	}

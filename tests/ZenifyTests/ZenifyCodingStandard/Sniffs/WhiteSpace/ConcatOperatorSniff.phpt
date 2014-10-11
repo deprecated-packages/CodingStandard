@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @testCase
- */
-
 namespace ZenifyTests\ZenifyCodingStandard\Sniffs\WhiteSpace;
 
 use Tester\Assert;
@@ -18,13 +14,21 @@ class ConcatOperatorSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/ConcatOperator.wrong.php'));
+		$result = $this->runPhpCsForFile(__DIR__ . '/ConcatOperator.wrong.php');
+		Assert::count(1, $result['errors']);
+
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'Concat operator (.) should be surrounded by spaces.',
+			'ZenifyCodingStandard.Whitespace.ConcatOperator'
+		);
 	}
 
 
 	public function testCorrect()
 	{
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/ConcatOperator.correct.php'));
+		$result = $this->runPhpCsForFile(__DIR__ . '/ConcatOperator.correct.php');
+		Assert::count(0, $result['errors']);
 	}
 
 }

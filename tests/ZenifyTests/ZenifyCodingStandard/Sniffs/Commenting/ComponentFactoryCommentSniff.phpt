@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @testCase
- * @see ZenifyCodingStandard\Sniffs\Commenting\BlockPropertyCommentSniff
- */
-
 namespace ZenifyTests\ZenifyCodingStandard\Sniffs\Classes;
 
 use Tester\Assert;
@@ -19,14 +14,28 @@ class ComponentFactoryCommentSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/ComponentFactoryComment.wrong.php'));
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/ComponentFactoryComment.wrong2.php'));
+		$result = $this->runPhpCsForFile(__DIR__ . '/ComponentFactoryComment.wrong.php');
+		Assert::count(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'CreateComponent* method should have a @return tag',
+			'ZenifyCodingStandard.Commenting.ComponentFactoryComment.MissingReturn'
+		);
+
+		$result = $this->runPhpCsForFile(__DIR__ . '/ComponentFactoryComment.wrong2.php');
+		Assert::count(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'Return tag should contain type',
+			'ZenifyCodingStandard.Commenting.ComponentFactoryComment.MissingReturnType'
+		);
 	}
 
 
 	public function testCorrect()
 	{
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/ComponentFactoryComment.correct.php'));
+		$result = $this->runPhpCsForFile(__DIR__ . '/ComponentFactoryComment.correct.php');
+		Assert::count(0, $result['errors']);
 	}
 
 }

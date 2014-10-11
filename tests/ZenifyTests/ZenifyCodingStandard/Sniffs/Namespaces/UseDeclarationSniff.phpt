@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @testCase
- */
-
-namespace ZenifyTests\ZenifyCodingStandard\Sniffs\WhiteSpace;
+namespace ZenifyTests\ZenifyCodingStandard\Sniffs\Namespaces;
 
 use Tester\Assert;
 use ZenifyTests\TestCase;
@@ -18,16 +14,39 @@ class UseDeclarationSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/UseDeclaration.wrong.php'));
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/UseDeclaration.wrong2.php'));
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/UseDeclaration.wrong3.php'));
+		$result = $this->runPhpCsForFile(__DIR__ . '/UseDeclaration.wrong.php');
+		Assert::count(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'There must be one USE keyword per declaration',
+			'ZenifyCodingStandard.Namespaces.UseDeclaration.MultipleDeclarations'
+		);
+
+		$result = $this->runPhpCsForFile(__DIR__ . '/UseDeclaration.wrong2.php');
+		Assert::count(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'There must be one USE keyword per declaration',
+			'ZenifyCodingStandard.Namespaces.UseDeclaration.MultipleDeclarations'
+		);
+
+		$result = $this->runPhpCsForFile(__DIR__ . '/UseDeclaration.wrong3.php');
+		Assert::count(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'There must be 2 blank line(s) after the last USE statement; 1 found.',
+			'ZenifyCodingStandard.Namespaces.UseDeclaration.SpaceAfterLastUse'
+		);
 	}
 
 
 	public function testCorrect()
 	{
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/UseDeclaration.correct.php'));
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/UseDeclaration.correct2.php'));
+		$result = $this->runPhpCsForFile(__DIR__ . '/UseDeclaration.correct.php');
+		Assert::count(0, $result['errors']);
+
+		$result = $this->runPhpCsForFile(__DIR__ . '/UseDeclaration.correct2.php');
+		Assert::count(0, $result['errors']);
 	}
 
 }

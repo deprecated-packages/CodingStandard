@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @testCase
- */
-
 namespace ZenifyTests\ZenifyCodingStandard\Sniffs\WhiteSpace;
 
 use Tester\Assert;
@@ -18,15 +14,36 @@ class ExclamationMarkSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/ExclamationMark.wrong.php'));
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/ExclamationMark.wrong2.php'));
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/ExclamationMark.wrong3.php'));
+		$result = $this->runPhpCsForFile(__DIR__ . '/ExclamationMark.wrong.php');
+		Assert::count(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'Not operator (!) should be surrounded by spaces.',
+			'ZenifyCodingStandard.Whitespace.ExclamationMark'
+		);
+
+		$result = $this->runPhpCsForFile(__DIR__ . '/ExclamationMark.wrong2.php');
+		Assert::count(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'Not operator (!) should be surrounded by spaces.',
+			'ZenifyCodingStandard.Whitespace.ExclamationMark'
+		);
+
+		$result = $this->runPhpCsForFile(__DIR__ . '/ExclamationMark.wrong3.php');
+		Assert::count(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'Not operator (!) should be surrounded by spaces.',
+			'ZenifyCodingStandard.Whitespace.ExclamationMark'
+		);
 	}
 
 
 	public function testCorrect()
 	{
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/ExclamationMark.correct.php'));
+		$result = $this->runPhpCsForFile(__DIR__ . '/ExclamationMark.correct.php');
+		Assert::count(0, $result['errors']);
 	}
 
 }

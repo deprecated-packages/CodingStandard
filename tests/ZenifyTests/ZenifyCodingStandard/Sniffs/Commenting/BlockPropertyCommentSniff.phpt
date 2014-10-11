@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @testCase
- * @see ZenifyCodingStandard\Sniffs\Commenting\BlockPropertyCommentSniff
- */
-
 namespace ZenifyTests\ZenifyCodingStandard\Sniffs\Classes;
 
 use Tester\Assert;
@@ -19,13 +14,20 @@ class BlockPropertyCommentSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/BlockPropertyComment.wrong.php'));
+		$result = $this->runPhpCsForFile(__DIR__ . '/BlockPropertyComment.wrong.php');
+		Assert::count(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'Block comment should be used instead of one liner',
+			'ZenifyCodingStandard.Commenting.BlockPropertyComment'
+		);
 	}
 
 
 	public function testCorrect()
 	{
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/BlockPropertyComment.correct.php'));
+		$result = $this->runPhpCsForFile(__DIR__ . '/BlockPropertyComment.correct.php');
+		Assert::count(0, $result['errors']);
 	}
 
 }

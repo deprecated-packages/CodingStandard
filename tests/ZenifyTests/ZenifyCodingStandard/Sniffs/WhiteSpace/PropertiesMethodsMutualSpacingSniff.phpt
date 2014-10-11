@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @testCase
- */
-
 namespace ZenifyTests\ZenifyCodingStandard\Sniffs\WhiteSpace;
 
 use Tester\Assert;
@@ -18,14 +14,28 @@ class PropertiesMethodsMutualSpacingSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/PropertiesMethodsMutualSpacing.wrong.php'));
-		Assert::same(self::CLI_ERROR, $this->runPhpCshForSource(__DIR__ . '/PropertiesMethodsMutualSpacing.wrong2.php'));
+		$result = $this->runPhpCsForFile(__DIR__ . '/PropertiesMethodsMutualSpacing.wrong.php');
+		Assert::count(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'Between properties and methods should be 2 empty line(s); 1 found.',
+			'ZenifyCodingStandard.Whitespace.PropertiesMethodsMutualSpacing.'
+		);
+
+		$result = $this->runPhpCsForFile(__DIR__ . '/PropertiesMethodsMutualSpacing.wrong2.php');
+		Assert::count(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'Between properties and methods should be 2 empty line(s); 3 found.',
+			'ZenifyCodingStandard.Whitespace.PropertiesMethodsMutualSpacing.'
+		);
 	}
 
 
 	public function testCorrect()
 	{
-		Assert::same(self::CLI_SUCCESS, $this->runPhpCshForSource(__DIR__ . '/PropertiesMethodsMutualSpacing.correct.php'));
+		$result = $this->runPhpCsForFile(__DIR__ . '/PropertiesMethodsMutualSpacing.correct.php');
+		Assert::count(0, $result['errors']);
 	}
 
 }

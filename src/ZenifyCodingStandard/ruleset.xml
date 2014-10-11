@@ -3,38 +3,38 @@
     <description>The Zenify coding standard.</description>
 
     <!-- Classes -->
-    <rule ref="./Sniffs/Classes/ClassDeclarationSniff.php" />
+    <rule ref="ZenifyCodingStandard.Classes.ClassDeclaration" />
 
     <!-- Commenting -->
-    <rule ref="./Sniffs/Commenting/BlockPropertyCommentSniff.php" />
-    <rule ref="./Sniffs/Commenting/ComponentFactoryCommentSniff.php" />
+    <rule ref="ZenifyCodingStandard.Commenting.BlockPropertyComment" />
+    <rule ref="ZenifyCodingStandard.Commenting.ComponentFactoryComment" />
 
     <!-- Control Structures -->
-    <rule ref="./Sniffs/ControlStructures/SwitchDeclarationSniff.php" />
-    <rule ref="./Sniffs/ControlStructures/ControlSignatureSniff.php" />
-    <rule ref="./Sniffs/ControlStructures/WeakTypesComparisonsWithExplanationSniff.php" />
+    <rule ref="ZenifyCodingStandard.ControlStructures.SwitchDeclaration" />
+    <rule ref="ZenifyCodingStandard.ControlStructures.ControlSignature" />
+    <rule ref="ZenifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation" />
 
     <!-- Namespace -->
-    <rule ref="./Sniffs/Namespaces/NamespaceDeclarationSniff.php" />
-    <rule ref="./Sniffs/Namespaces/UseDeclarationSniff.php">
+    <rule ref="ZenifyCodingStandard.Namespaces.NamespaceDeclaration" />
+    <rule ref="ZenifyCodingStandard.Namespaces.UseDeclaration">
         <properties>
             <property name="blankLinesAfterUseStatement" value="2" />
         </properties>
     </rule>
 
     <!-- Scope -->
-    <rule ref="./Sniffs/Scope/MethodScopeSniff.php" />
+    <rule ref="ZenifyCodingStandard.Scope.MethodScope" />
 
     <!--Whitespace -->
-    <rule ref="./Sniffs/Whitespace/ConcatOperatorSniff.php" />
-    <rule ref="./Sniffs/Whitespace/ExclamationMarkSniff.php" />
-    <rule ref="./Sniffs/Whitespace/IfElseSniff.php" />
-    <rule ref="./Sniffs/Whitespace/InBetweenMethodSpacingSniff.php">
+    <rule ref="ZenifyCodingStandard.Whitespace.ConcatOperator" />
+    <rule ref="ZenifyCodingStandard.Whitespace.ExclamationMark" />
+    <rule ref="ZenifyCodingStandard.Whitespace.IfElse" />
+    <rule ref="ZenifyCodingStandard.Whitespace.InBetweenMethodSpacing">
         <properties>
             <property name="blankLinesBetweenMethods" value="2" />
         </properties>
     </rule>
-    <rule ref="./Sniffs/Whitespace/PropertiesMethodsMutualSpacingSniff.php">
+    <rule ref="ZenifyCodingStandard.Whitespace.PropertiesMethodsMutualSpacing">
         <properties>
             <property name="blankLinesBetweenPropertiesAndMethods" value="2" />
         </properties>

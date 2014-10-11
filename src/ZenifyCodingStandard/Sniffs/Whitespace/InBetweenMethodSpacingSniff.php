@@ -58,6 +58,9 @@ class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_FunctionSpacin
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
+		// Fix type
+		$this->blankLinesBetweenMethods = (int) $this->blankLinesBetweenMethods;
+
 		$this->file = $file;
 		$this->position = $position;
 		$this->tokens = $file->getTokens();
