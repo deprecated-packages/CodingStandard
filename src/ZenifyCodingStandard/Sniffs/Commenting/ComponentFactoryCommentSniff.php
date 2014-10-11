@@ -42,15 +42,14 @@ class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 
 		$tokens = $file->getTokens();
 		$commentEnd = $this->getCommentEnd($file, $position);
+
 		if ( ! $this->hasMethodComment($tokens, $commentEnd)) {
 			$file->addError('CreateComponent* method should have a doc comment', $position, 'Missing');
 			return;
 		}
 
-		if (isset($tokens[$commentEnd]['comment_opener'])) {
-			$commentStart = $tokens[$commentEnd]['comment_opener'];
-			$this->processReturnTag($file, $commentStart);
-		}
+		$commentStart = $tokens[$commentEnd]['comment_opener'];
+		$this->processReturnTag($file, $commentStart);
 	}
 
 
@@ -114,9 +113,6 @@ class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 	private function hasMethodComment(array $tokens, $position)
 	{
 		if ($tokens[$position]['code'] === T_DOC_COMMENT_CLOSE_TAG) {
-			return TRUE;
-		}
-		if ($tokens[$position]['code'] !== T_COMMENT) {
 			return TRUE;
 		}
 		return FALSE;

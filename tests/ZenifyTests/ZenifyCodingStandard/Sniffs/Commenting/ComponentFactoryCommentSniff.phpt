@@ -18,8 +18,8 @@ class ComponentFactoryCommentSniffTest extends TestCase
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
-			'CreateComponent* method should have a @return tag',
-			'ZenifyCodingStandard.Commenting.ComponentFactoryComment.MissingReturn'
+			'CreateComponent* method should have a doc comment',
+			'ZenifyCodingStandard.Commenting.ComponentFactoryComment.Missing'
 		);
 
 		$result = $this->runPhpCsForFile(__DIR__ . '/ComponentFactoryComment.wrong2.php');
@@ -28,6 +28,14 @@ class ComponentFactoryCommentSniffTest extends TestCase
 			$result['errors'][0],
 			'Return tag should contain type',
 			'ZenifyCodingStandard.Commenting.ComponentFactoryComment.MissingReturnType'
+		);
+
+		$result = $this->runPhpCsForFile(__DIR__ . '/ComponentFactoryComment.wrong3.php');
+		Assert::count(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'CreateComponent* method should have a @return tag',
+			'ZenifyCodingStandard.Commenting.ComponentFactoryComment.MissingReturn'
 		);
 	}
 
