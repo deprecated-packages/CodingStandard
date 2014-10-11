@@ -8,6 +8,7 @@
 namespace ZenifyCodingStandard\Sniffs\Commenting;
 
 use PHP_CodeSniffer_File;
+use PHP_CodeSniffer_Sniff;
 
 
 /**
@@ -16,7 +17,7 @@ use PHP_CodeSniffer_File;
  * - CreateComponent* method should have a return tag.
  * - Return tag should contain type.
  */
-class ComponentFactoryCommentSniff implements \PHP_CodeSniffer_Sniff
+class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**
@@ -46,8 +47,10 @@ class ComponentFactoryCommentSniff implements \PHP_CodeSniffer_Sniff
 			return;
 		}
 
-		$commentStart = $tokens[$commentEnd]['comment_opener'];
-		$this->processReturnTag($file, $commentStart);
+		if (isset($tokens[$commentEnd]['comment_opener'])) {
+			$commentStart = $tokens[$commentEnd]['comment_opener'];
+			$this->processReturnTag($file, $commentStart);
+		}
 	}
 
 
