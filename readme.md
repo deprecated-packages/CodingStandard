@@ -24,6 +24,12 @@ $ vendor/bin/phpcs src --standard=vendor/zenify/coding-standard/src/ZenifyCoding
 ```
 
 
+## Other PGS-2 related cs
+
+- [Mikulas/code-sniffs](https://github.com/Mikulas/code-sniffs)
+- [juzna/nette-coding-standard](https://github.com/juzna/nette-coding-standard)
+
+
 ## How to: own rules 
 
 In case you want to create your own rules, here are some sources to start with:
