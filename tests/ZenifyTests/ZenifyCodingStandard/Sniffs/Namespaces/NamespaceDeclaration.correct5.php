@@ -1,13 +1,19 @@
 <?php
 
 /**
- * Some license
+ * This file is part of Zenify
+ * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
  */
 
-namespace SomeNamespace;
+namespace Zenify\FlashMessageComponent;
 
 
-class SomeClass
+interface ControlFactory
 {
+
+	/**
+	 * @return Control
+	 */
+	function create();
 
 }

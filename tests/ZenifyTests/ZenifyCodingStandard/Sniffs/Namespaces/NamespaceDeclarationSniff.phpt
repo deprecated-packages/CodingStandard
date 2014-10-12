@@ -12,7 +12,7 @@ require_once __DIR__ . '/../../../bootstrap.php';
 class NamespaceDeclarationSniffTest extends TestCase
 {
 
-	public function _testWrong()
+	public function testWrong()
 	{
 		$result = $this->runPhpCsForFile(__DIR__ . '/NamespaceDeclaration.wrong.php');
 		Assert::count(1, $result['errors']);
