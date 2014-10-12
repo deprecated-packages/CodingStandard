@@ -34,6 +34,7 @@ class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
 		$closeTagPosition = $file->findNext(T_DOC_COMMENT_CLOSE_TAG, $position + 1);
+
 		if ($this->isPropertyOrMethodComment($file, $closeTagPosition) === FALSE) {
 			return;
 		}
@@ -55,14 +56,14 @@ class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 		$nextPropertyOrMethodPosition = $file->findNext(array(T_VARIABLE, T_FUNCTION), $position + 1);
 		$tokens = $file->getTokens();
 
-		if ($tokens[$nextPropertyOrMethodPosition]['code'] !== T_FUNCTION) {
+		if ($nextPropertyOrMethodPosition && $tokens[$nextPropertyOrMethodPosition]['code'] !== T_FUNCTION) {
 			if ($this->isVariableOrPropertyUse($file, $nextPropertyOrMethodPosition) === TRUE) {
 				return FALSE;
 			}
-		}
 
-		if ($tokens[$position]['line'] + 1 === $tokens[$nextPropertyOrMethodPosition]['line']) {
-			return TRUE;
+			if ($tokens[$position]['line'] + 1 === $tokens[$nextPropertyOrMethodPosition]['line']) {
+				return TRUE;
+			}
 		}
 
 		return FALSE;
@@ -95,10 +96,12 @@ class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 	private function isVariableOrPropertyUse(PHP_CodeSniffer_File $file, $position)
 	{
 		$previous = $file->findPrevious(T_OPEN_CURLY_BRACKET, $position);
-		$previous = $file->findPrevious(T_OPEN_CURLY_BRACKET, $previous - 1);
-		$tokens = $file->getTokens();
-		if ($tokens[$previous]['code'] === T_OPEN_CURLY_BRACKET) { // used in method
-			return TRUE;
+		if ($previous) {
+			$previous = $file->findPrevious(T_OPEN_CURLY_BRACKET, $previous - 1);
+			$tokens = $file->getTokens();
+			if ($tokens[$previous]['code'] === T_OPEN_CURLY_BRACKET) { // used in method
+				return TRUE;
+			}
 		}
 		return FALSE;
 	}

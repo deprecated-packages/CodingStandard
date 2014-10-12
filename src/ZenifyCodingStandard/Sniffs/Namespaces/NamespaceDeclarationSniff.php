@@ -44,6 +44,9 @@ class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
+		// Fix type
+		$this->emptyLinesAfterNamespace = (int) $this->emptyLinesAfterNamespace;
+		$this->emptyLinesAfterNamespaceFollowedByUseStatement = (int) $this->emptyLinesAfterNamespaceFollowedByUseStatement;
 
 		$linesToNextUse = $this->getLinesToNextUse($file, $position);
 		$linesToNextClass = $this->getLinesToNextClass($file, $position);
