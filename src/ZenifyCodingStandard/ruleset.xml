@@ -99,11 +99,6 @@
     <rule ref="Generic.Functions.FunctionCallArgumentSpacing" />
     <rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman" />
     <rule ref="PEAR.Functions.ValidDefaultValue" />
-    <rule ref="PEAR.Functions.FunctionCallSignature">
-        <properties>
-            <property name="indent" value="1" />
-        </properties>
-    </rule>
     <rule ref="Squiz.Functions.FunctionDeclaration" />
     <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing">
         <properties>
