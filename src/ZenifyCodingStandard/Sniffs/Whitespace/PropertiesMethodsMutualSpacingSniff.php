@@ -134,6 +134,12 @@ class PropertiesMethodsMutualSpacingSniff implements PHP_CodeSniffer_Sniff
 				return $tokens[$arrayPosition]['parenthesis_closer'];
 			}
 		}
+
+		$openShortArrayPosition = $file->findNext(T_OPEN_SHORT_ARRAY, $position);
+		if ($tokens[$openShortArrayPosition]['line'] === $tokens[$position]['line']) {
+			return $tokens[$openShortArrayPosition]['bracket_closer'];
+		}
+
 		return $position;
 	}
 

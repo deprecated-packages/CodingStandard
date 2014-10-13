@@ -39,6 +39,9 @@ class PropertiesMethodsMutualSpacingSniffTest extends TestCase
 
 		$result = $this->runPhpCsForFile(__DIR__ . '/PropertiesMethodsMutualSpacing.correct2.php');
 		Assert::count(0, $result['errors']);
+
+		$result = $this->runPhpCsForFile(__DIR__ . '/PropertiesMethodsMutualSpacing.correct3.php');
+		Assert::count(0, $result['errors']);
 	}
 
 }
