@@ -14,7 +14,7 @@ use PEAR_Sniffs_Classes_ClassDeclarationSniff;
 /**
  * Rules (new to parent class):
  * - Opening brace for the %s should be followed by %s empty line(s).
- * - Closing brace for the % should be preceded by %s empty line(s).
+ * - Closing brace for the %s should be preceded by %s empty line(s).
  */
 class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSniff
 {
@@ -80,7 +80,7 @@ class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSniff
 		$emptyLines = $this->getEmptyLinesBeforeClosingBrace($file, $closeBracePosition);
 
 		if ($emptyLines !== $this->emptyLinesBeforeClosingBrace) {
-			$error = 'Closing brace for the % should be preceded by %s empty line(s); %s found.';
+			$error = 'Closing brace for the %s should be preceded by %s empty line(s); %s found.';
 			$data = array(
 				$tokens[$position]['content'],
 				$this->emptyLinesBeforeClosingBrace,
