@@ -14,7 +14,8 @@ Oppose to the most default rules you can change all numerical parameters.
 Install via composer:
 
 ```sh
-$ composer require zenify/coding-standard
+$ composer require squizlabs/php_codesniffer:~2.0RC
+$ composer require lekarna/coding-standard
 ```
 
 And run Php_CodeSniffer:
