@@ -9,13 +9,13 @@ class SomeClass
 }
 
 
-class SomeExceptions extends \Exception
+class SomeException extends \Exception
 {
 
 }
 
 
-class SomeOtherExceptions extends \Exception
+class SomeOtherException extends \Exception
 {
 
 }
