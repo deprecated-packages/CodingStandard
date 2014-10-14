@@ -4,6 +4,7 @@
 
     <!-- Classes -->
     <rule ref="ZenifyCodingStandard.Classes.ClassDeclaration" />
+    <rule ref="ZenifyCodingStandard.Classes.OneClassPerFileApartExceptions" />
 
     <!-- Commenting -->
     <rule ref="ZenifyCodingStandard.Commenting.BlockPropertyComment" />
@@ -34,6 +35,11 @@
             <property name="blankLinesBetweenMethods" value="2" />
         </properties>
     </rule>
+    <rule ref="ZenifyCodingStandard.Whitespace.InBetweenExceptionSpacing">
+        <properties>
+            <property name="blankLinesBetweenExceptions" value="2" />
+        </properties>
+    </rule>
     <rule ref="ZenifyCodingStandard.Whitespace.PropertiesMethodsMutualSpacing">
         <properties>
             <property name="blankLinesBetweenPropertiesAndMethods" value="2" />
@@ -60,35 +66,28 @@
         <severity>3</severity>
     </rule>
     <rule ref="Generic.Files.OneInterfacePerFile" />
+    <rule ref="Generic.Files.OneTraitPerFile" />
     <rule ref="PSR1.Files.SideEffects" />
     <rule ref="PSR2.Files.EndFileNewline" />
     <rule ref="Zend.Files.ClosingTag" />
 
     <!-- Classes -->
     <rule ref="Generic.Classes.DuplicateClassName" />
-    <rule ref="Squiz.Classes.ClassDeclaration.SpaceAfterName">
-        <severity>0</severity>
-    </rule>
-    <rule ref="Squiz.Classes.ClassDeclaration.EndFileAfterCloseBrace">
-        <severity>0</severity>
-    </rule>
+    <rule ref="PSR2.Classes.PropertyDeclaration" />
     <rule ref="Squiz.Classes.ValidClassName" />
     <rule ref="Squiz.Classes.LowercaseClassKeywords" />
-    <rule ref="PSR1.Classes.ClassDeclaration" />
-    <rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses" />
-    <rule ref="PSR2.Classes.PropertyDeclaration" />
 
     <!-- ControlStructures -->
     <rule ref="Generic.ControlStructures.InlineControlStructure" />
-    <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration" />
-    <rule ref="Squiz.ControlStructures.ForLoopDeclaration" />
-    <rule ref="Squiz.ControlStructures.LowercaseDeclaration" />
     <rule ref="PEAR.ControlStructures.MultiLineCondition">
         <properties>
             <property name="indent" value="1" />
         </properties>
     </rule>
     <rule ref="PSR2.ControlStructures.ElseIfDeclaration" />
+    <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration" />
+    <rule ref="Squiz.ControlStructures.ForLoopDeclaration" />
+    <rule ref="Squiz.ControlStructures.LowercaseDeclaration" />
 
     <!-- Formatting -->
     <rule ref="Generic.Formatting.DisallowMultipleStatements" />

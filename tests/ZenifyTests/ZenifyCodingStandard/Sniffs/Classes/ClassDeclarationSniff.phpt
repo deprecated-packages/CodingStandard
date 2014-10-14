@@ -26,7 +26,7 @@ class ClassDeclarationSniffTest extends TestCase
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
-			'Closing brace for the classhould be preceded by 1 empty line(s); 0 found.',
+			'Closing brace for the class should be preceded by 1 empty line(s); 0 found.',
 			'ZenifyCodingStandard.Classes.ClassDeclaration.CloseBracePrecededByEmptyLines'
 		);
 
@@ -39,7 +39,7 @@ class ClassDeclarationSniffTest extends TestCase
 		);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][1],
-			'Closing brace for the classhould be preceded by 1 empty line(s); 2 found.',
+			'Closing brace for the class should be preceded by 1 empty line(s); 2 found.',
 			'ZenifyCodingStandard.Classes.ClassDeclaration.CloseBracePrecededByEmptyLines'
 		);
 	}
