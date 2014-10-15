@@ -15,7 +15,7 @@ Install via composer:
 
 ```sh
 $ composer require squizlabs/php_codesniffer:~2.0RC
-$ composer require lekarna/coding-standard
+$ composer require zenify/coding-standard
 ```
 
 And run Php_CodeSniffer:

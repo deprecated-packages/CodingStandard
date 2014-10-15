@@ -29,6 +29,11 @@ class TestCase extends Tester\TestCase
 		$cliCommand = PHPCS_BIN . ' ' . $source . ' --standard=' . SRC_DIR . '/ZenifyCodingStandard/ruleset.xml --report=json';
 		exec($cliCommand, $output);
 		$data = json_decode(implode($output));
+
+		if (empty($data)) {
+			throw new \Exception('Cli "' . $cliCommand . '" failed');
+		}
+
 		$result = array(
 			'errors' => $this->getAllErrors($data)
 		);
