@@ -30,7 +30,7 @@
     <!--Whitespace -->
     <rule ref="ZenifyCodingStandard.Whitespace.ConcatOperator" />
     <rule ref="ZenifyCodingStandard.Whitespace.ExclamationMark" />
-    <rule ref="ZenifyCodingStandard.Whitespace.IfElse" />
+    <rule ref="ZenifyCodingStandard.Whitespace.IfElseTryCatchFinally" />
     <rule ref="ZenifyCodingStandard.Whitespace.InBetweenMethodSpacing">
         <properties>
             <property name="blankLinesBetweenMethods" value="2" />

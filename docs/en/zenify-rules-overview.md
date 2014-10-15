@@ -421,9 +421,9 @@ if (!$s) {
 ```
 
 
-### 6.3 IfElseSniff
+### 6.3 IfElseTryCatchFinallySniff
 
-- Else/elseif statement should be preceded by empty line
+- Else/elseif/catch/finally statement should be preceded by 1 empty line
 
 *Correct*
 
@@ -439,9 +439,11 @@ if ($i === 1) {
 *Wrong*
 
 ```php
-if (1 === 2) {
+try (1 === 2) {
 	return 3;
-} elseif (2 === 3) {
+} catch (2 === 3) {
+	return 4;
+} finally (2 === 3) {
 	return 4;
 }
 ```
