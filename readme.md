@@ -8,6 +8,8 @@ Set of rules for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 
 Oppose to the most default rules you can change all numerical parameters.
 
+**Check [rules overview](docs/en/zenify-rules-overview.md) for examples.**
+
 
 ## Usage
 

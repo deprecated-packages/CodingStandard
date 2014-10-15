@@ -12,12 +12,8 @@ use PHP_CodeSniffer_File;
 
 
 /**
- * Comparison “strong typed” operators (=== and !==) are preferred
- * before “weak typed” ones (== and !=). If weak typed comparison operator is used,
- * the intention must be documented with a comment.
- *
  * Rules:
- * - Weak equals comparison must be commented with its purpose
+ * - Weak equals comparison should be commented with its purpose
  *
  * @author Jan Dolecek <juzna.cz@gmail.com>
  * @author Tomas Votruba <tomas.vot@gmail.com>
@@ -67,7 +63,7 @@ class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_Sniff
 		} while ($tokens[$currentPosition]['content'] !== PHP_EOL);
 
 		if ( ! $hasComment) {
-			$error = 'Weak equals comparison must be commented with its purpose';
+			$error = 'Weak equals comparison should be commented with its purpose';
 			$file->addError($error, $position, 'Operator.' . token_name($operatorCode));
 		}
 	}

@@ -18,7 +18,7 @@ class WeakTypeComparisonWithExplanationSniffTest extends TestCase
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
-			'Weak equals comparison must be commented with its purpose',
+			'Weak equals comparison should be commented with its purpose',
 			'ZenifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation.Operator.T_IS_EQUAL'
 		);
 
@@ -26,7 +26,7 @@ class WeakTypeComparisonWithExplanationSniffTest extends TestCase
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
-			'Weak equals comparison must be commented with its purpose',
+			'Weak equals comparison should be commented with its purpose',
 			'ZenifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation.Operator.T_IS_EQUAL'
 		);
 	}
