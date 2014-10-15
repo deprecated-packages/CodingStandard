@@ -28,9 +28,6 @@ class NewClassSniffTest extends TestCase
 	{
 		$result = $this->runPhpCsForFile(__DIR__ . '/NewClass.correct.php');
 		Assert::count(0, $result['errors']);
-
-		$result = $this->runPhpCsForFile(__DIR__ . '/NewClass.correct2.php');
-		Assert::count(0, $result['errors']);
 	}
 
 }

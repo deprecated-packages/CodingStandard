@@ -48,19 +48,21 @@ class NewClassSniff extends Squiz_Sniffs_ControlStructures_ControlSignatureSniff
 	private function hasEmptyParentheses(PHP_CodeSniffer_File $file, $position)
 	{
 		$tokens = $file->getTokens();
-
-		$line = $tokens[$position]['line'];
 		$nextPosition = $position;
 
-		$prev = NULL;
+		$i = 0;
+		// find end of class instantiation (;) or first (
 		do {
-			$nextPosition++;
-			if ($prev === '(' && $tokens[$nextPosition]['content'] === ')') {
+			$nextPosition = $file->findNext(T_STRING, $nextPosition + $i, NULL, TRUE);
+			$i++;
+
+		} while ($tokens[$nextPosition]['content'] !== ';' && $tokens[$nextPosition]['content'] !== '(');
+
+		if ($tokens[$nextPosition]['content'] === '(') {
+			if ($tokens[$nextPosition + 1]['content'] === ')') {
 				return TRUE;
 			}
-			$prev = $tokens[$nextPosition]['content'];
-
-		} while ($tokens[$nextPosition]['line'] === $line && $tokens[$nextPosition]['content'] !== $file->eolChar);
+		}
 
 		return FALSE;
 	}

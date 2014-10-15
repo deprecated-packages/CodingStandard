@@ -48,7 +48,6 @@
 
     <!-- Functions -->
     <rule ref="Generic.Functions.FunctionCallArgumentSpacing" />
-    <rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman" />
     <rule ref="PEAR.Functions.ValidDefaultValue" />
     <rule ref="Squiz.Functions.FunctionDeclaration" />
     <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing">
