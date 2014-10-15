@@ -50,11 +50,9 @@ class NewClassSniff extends Squiz_Sniffs_ControlStructures_ControlSignatureSniff
 		$tokens = $file->getTokens();
 		$nextPosition = $position;
 
-		$i = 0;
 		// find end of class instantiation (;) or first (
 		do {
-			$nextPosition = $file->findNext(T_STRING, $nextPosition + $i, NULL, TRUE);
-			$i++;
+			$nextPosition++;
 
 		} while ($tokens[$nextPosition]['content'] !== ';' && $tokens[$nextPosition]['content'] !== '(');
 
