@@ -19,3 +19,12 @@ class SomeOtherException extends \Exception
 {
 
 }
+
+
+/**
+ * This exception is thrown ...
+ */
+class ReasonableException extends \Exception
+{
+
+}
