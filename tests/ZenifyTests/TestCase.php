@@ -42,9 +42,9 @@ class TestCase extends Tester\TestCase
 
 
 	/**
-	 * @param \StdClass $message
-	 * @param string $message
-	 * @param string $source
+	 * @param StdClass $error
+	 * @param $expectedMessage
+	 * @param $expectedSource
 	 */
 	protected function validateErrorMessageAndSource(\StdClass $error, $expectedMessage, $expectedSource)
 	{
