@@ -21,14 +21,6 @@ use PHP_CodeSniffer_File;
 class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_Sniff
 {
 
-//	/**
-//	 * @var array
-//	 */
-//	public $commentMustInclude = array(
-//		T_IS_EQUAL => 'intentionally ==',
-//		T_IS_NOT_EQUAL => 'intentionally !='
-//	);
-
 	/**
 	 * @var array
 	 */
@@ -54,7 +46,6 @@ class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_Sniff
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
 		$tokens = $file->getTokens();
-		$operatorCode = $tokens[$position]['code'];
 
 		// Read tokens until EOL
 		$hasComment = FALSE;
@@ -71,7 +62,6 @@ class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_Sniff
 		} while ($tokens[$currentPosition]['content'] !== PHP_EOL);
 
 		if ( ! $hasComment) {
-//			var_dump($operatorCode['name']);
 			$error = '"%s" should be used instead of "%s", or commented with its purpose';
 			$data = array(
 				$this->getStrongTypeToWeakType($tokens[$position]['code']),
