@@ -13,7 +13,7 @@ use PHP_CodeSniffer_File;
 
 /**
  * Rules:
- * - Weak equals comparison should be commented with its purpose
+ * - Strong comparison should be used instead of weak one, or commented with its purpose.
  *
  * @author Jan Dolecek <juzna.cz@gmail.com>
  * @author Tomas Votruba <tomas.vot@gmail.com>
@@ -21,12 +21,20 @@ use PHP_CodeSniffer_File;
 class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_Sniff
 {
 
+//	/**
+//	 * @var array
+//	 */
+//	public $commentMustInclude = array(
+//		T_IS_EQUAL => 'intentionally ==',
+//		T_IS_NOT_EQUAL => 'intentionally !='
+//	);
+
 	/**
 	 * @var array
 	 */
-	public $commentMustInclude = array(
-		T_IS_EQUAL => 'intentionally ==',
-		T_IS_NOT_EQUAL => 'intentionally !='
+	private $weakToStrong = array(
+		T_IS_EQUAL => '===',
+		T_IS_NOT_EQUAL => '!=='
 	);
 
 
@@ -54,7 +62,7 @@ class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_Sniff
 		do {
 			$content = $tokens[$currentPosition]['content'];
 			if ($tokens[$currentPosition]['code'] === T_COMMENT) {
-				if (strpos($content, $this->commentMustInclude[$operatorCode]) !== FALSE) {
+				if (strpos($content, '//') !== FALSE) {
 					$hasComment = TRUE;
 				}
 			}
@@ -63,9 +71,27 @@ class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_Sniff
 		} while ($tokens[$currentPosition]['content'] !== PHP_EOL);
 
 		if ( ! $hasComment) {
-			$error = 'Weak equals comparison should be commented with its purpose';
-			$file->addError($error, $position, 'Operator.' . token_name($operatorCode));
+//			var_dump($operatorCode['name']);
+			$error = '"%s" should be used instead of "%s", or commented with its purpose';
+			$data = array(
+				$this->getStrongTypeToWeakType($tokens[$position]['code']),
+				$tokens[$position]['content']
+			);
+			$file->addError($error, $position, '', $data);
 		}
+	}
+
+
+	/**
+	 * @param $code
+	 * @return string|bool
+	 */
+	private function getStrongTypeToWeakType($code)
+	{
+		if (isset($this->weakToStrong[$code])) {
+			return $this->weakToStrong[$code];
+		}
+		return FALSE;
 	}
 
 }

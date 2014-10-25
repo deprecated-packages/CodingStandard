@@ -15,19 +15,16 @@ class WeakTypeComparisonWithExplanationSniffTest extends TestCase
 	public function testWrong()
 	{
 		$result = $this->runPhpCsForFile(__DIR__ . '/WeakTypeComparisonWithExplanation.wrong.php');
-		Assert::count(1, $result['errors']);
+		Assert::count(2, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
-			'Weak equals comparison should be commented with its purpose',
-			'ZenifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation.Operator.T_IS_EQUAL'
+			'"===" should be used instead of "==", or commented with its purpose',
+			'ZenifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation'
 		);
-
-		$result = $this->runPhpCsForFile(__DIR__ . '/WeakTypeComparisonWithExplanation.wrong2.php');
-		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
-			$result['errors'][0],
-			'Weak equals comparison should be commented with its purpose',
-			'ZenifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation.Operator.T_IS_EQUAL'
+			$result['errors'][1],
+			'"!==" should be used instead of "!=", or commented with its purpose',
+			'ZenifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation'
 		);
 	}
 
