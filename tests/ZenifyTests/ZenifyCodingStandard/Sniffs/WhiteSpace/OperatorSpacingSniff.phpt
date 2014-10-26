@@ -19,17 +19,17 @@ class OperatorSpacingSniffTest extends TestCase
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
 			'Operator "&&" should be surrounded by spaces or on new line.',
-			'ZenifyCodingStandard.Whitespace.OperatorSpacing'
+			'ZenifyCodingStandard.WhiteSpace.OperatorSpacing'
 		);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][1],
 			'Operator "||" should be surrounded by spaces or on new line.',
-			'ZenifyCodingStandard.Whitespace.OperatorSpacing'
+			'ZenifyCodingStandard.WhiteSpace.OperatorSpacing'
 		);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][2],
 			'Operator "+" should be surrounded by spaces or on new line.',
-			'ZenifyCodingStandard.Whitespace.OperatorSpacing'
+			'ZenifyCodingStandard.WhiteSpace.OperatorSpacing'
 		);
 	}
 

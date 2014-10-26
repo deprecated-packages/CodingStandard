@@ -20,7 +20,7 @@ class ConcatOperatorSniffTest extends TestCase
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
 			'Concat operator (.) should be surrounded by spaces.',
-			'ZenifyCodingStandard.Whitespace.ConcatOperator'
+			'ZenifyCodingStandard.WhiteSpace.ConcatOperator'
 		);
 	}
 

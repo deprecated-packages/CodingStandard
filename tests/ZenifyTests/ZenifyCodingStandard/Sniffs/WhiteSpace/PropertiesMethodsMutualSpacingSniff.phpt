@@ -19,7 +19,7 @@ class PropertiesMethodsMutualSpacingSniffTest extends TestCase
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
 			'Between properties and methods should be 2 empty line(s); 1 found.',
-			'ZenifyCodingStandard.Whitespace.PropertiesMethodsMutualSpacing.'
+			'ZenifyCodingStandard.WhiteSpace.PropertiesMethodsMutualSpacing.'
 		);
 
 		$result = $this->runPhpCsForFile(__DIR__ . '/PropertiesMethodsMutualSpacing.wrong2.php');
@@ -27,7 +27,7 @@ class PropertiesMethodsMutualSpacingSniffTest extends TestCase
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
 			'Between properties and methods should be 2 empty line(s); 3 found.',
-			'ZenifyCodingStandard.Whitespace.PropertiesMethodsMutualSpacing.'
+			'ZenifyCodingStandard.WhiteSpace.PropertiesMethodsMutualSpacing.'
 		);
 	}
 

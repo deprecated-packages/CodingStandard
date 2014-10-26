@@ -19,7 +19,7 @@ class InBetweenMethodSpacingSniffTest extends TestCase
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
 			'Method should have 2 empty line(s) after itself, 3 found.',
-			'ZenifyCodingStandard.Whitespace.InBetweenMethodSpacing.' // todo: why the dot?
+			'ZenifyCodingStandard.WhiteSpace.InBetweenMethodSpacing'
 		);
 
 		$result = $this->runPhpCsForFile(__DIR__ . '/InBetweenMethodSpacing.wrong2.php');
@@ -27,7 +27,7 @@ class InBetweenMethodSpacingSniffTest extends TestCase
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
 			'Method should have 2 empty line(s) after itself, 1 found.',
-			'ZenifyCodingStandard.Whitespace.InBetweenMethodSpacing.'
+			'ZenifyCodingStandard.WhiteSpace.InBetweenMethodSpacing'
 		);
 	}
 

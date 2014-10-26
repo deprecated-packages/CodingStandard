@@ -19,12 +19,12 @@ class InBetweenExceptionSpacingSniffTest extends TestCase
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
 			'Classes/exceptions should have 2 empty line(s) between themselves; 1 found',
-			'ZenifyCodingStandard.Whitespace.InBetweenExceptionSpacing'
+			'ZenifyCodingStandard.WhiteSpace.InBetweenExceptionSpacing'
 		);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][1],
 			'Classes/exceptions should have 2 empty line(s) between themselves; 3 found',
-			'ZenifyCodingStandard.Whitespace.InBetweenExceptionSpacing'
+			'ZenifyCodingStandard.WhiteSpace.InBetweenExceptionSpacing'
 		);
 	}
 

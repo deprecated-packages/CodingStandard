@@ -73,7 +73,7 @@ class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_FunctionSpacin
 			} else {
 				$error = 'Method should have %s empty line(s) after itself, %s found.';
 				$data = array($this->blankLinesBetweenMethods, $blankLinesCountAfterFunction);
-				$this->file->addError($error, $position, NULL, $data);
+				$this->file->addError($error, $position, '', $data);
 			}
 		}
 	}

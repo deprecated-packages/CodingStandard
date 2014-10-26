@@ -19,7 +19,7 @@ class ExclamationMarkSniffTest extends TestCase
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
 			'Not operator (!) should be surrounded by spaces.',
-			'ZenifyCodingStandard.Whitespace.ExclamationMark'
+			'ZenifyCodingStandard.WhiteSpace.ExclamationMark'
 		);
 
 		$result = $this->runPhpCsForFile(__DIR__ . '/ExclamationMark.wrong2.php');
@@ -27,7 +27,7 @@ class ExclamationMarkSniffTest extends TestCase
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
 			'Not operator (!) should be surrounded by spaces.',
-			'ZenifyCodingStandard.Whitespace.ExclamationMark'
+			'ZenifyCodingStandard.WhiteSpace.ExclamationMark'
 		);
 
 		$result = $this->runPhpCsForFile(__DIR__ . '/ExclamationMark.wrong3.php');
@@ -35,7 +35,7 @@ class ExclamationMarkSniffTest extends TestCase
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
 			'Not operator (!) should be surrounded by spaces.',
-			'ZenifyCodingStandard.Whitespace.ExclamationMark'
+			'ZenifyCodingStandard.WhiteSpace.ExclamationMark'
 		);
 	}
 
