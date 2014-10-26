@@ -41,6 +41,7 @@
             <property name="blankLinesBetweenExceptions" value="2" />
         </properties>
     </rule>
+    <rule ref="ZenifyCodingStandard.Whitespace.OperatorSpacing" />
     <rule ref="ZenifyCodingStandard.Whitespace.PropertiesMethodsMutualSpacing">
         <properties>
             <property name="blankLinesBetweenPropertiesAndMethods" value="2" />

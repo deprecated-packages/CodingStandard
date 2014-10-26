@@ -36,7 +36,7 @@ class ExclamationMarkSniff implements \PHP_CodeSniffer_Sniff
 		if ($tokens[$position - 1]['code'] !== T_WHITESPACE || $tokens[$position + 1]['code'] !== T_WHITESPACE) {
 			$error = 'Not operator (!) should be surrounded by spaces.';
 			$file->addError($error, $position);
-		};
+		}
 	}
 
 }
