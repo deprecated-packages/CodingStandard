@@ -206,7 +206,7 @@ case 1:
 
 ### 3.4 WeakTypeComparisonWithExplanationSniff
 
-- Weak equals comparison should be commented with its purpose
+- Strong comparison should be used instead of weak one, or commented with its purpose
 
 *Correct*
 
@@ -568,4 +568,28 @@ class SomeClass
 	}
 
 }
+```
+
+
+### 6.7 OperatorSpacingSniff
+
+- Operator should be surrounded by spaces or on new line
+- Exceptions: Function's defaults, ?:, +=, &$var and similar
+
+*Correct*
+
+```php
+$result = 5 && 3 || 2;
+
+$output = $tooLonLine
+	+ $anotherLongLine;
+```
+
+*Wrong*
+
+```php
+$result = 5 &&3|| 2;
+
+$car = 'wheels' +
+	'engine';
 ```
