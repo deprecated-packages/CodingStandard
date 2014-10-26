@@ -13,7 +13,6 @@ use PHP_CodeSniffer_Tokens;
 
 /**
  * Rules:
- *
  * - Operator should be surrounded by spaces or on new line.
  */
 class OperatorSpacingSniff implements PHP_CodeSniffer_Sniff
@@ -43,7 +42,7 @@ class OperatorSpacingSniff implements PHP_CodeSniffer_Sniff
 		$isSpaceBefore = ($tokens[$position - 1]['code'] === T_WHITESPACE);
 		$isSpaceAfter = ($tokens[$position + 1]['code'] === T_WHITESPACE);
 		$isNewlineAfter = ($tokens[$position]['line'] !== $tokens[$position + 2]['line']);
-		if (! $isSpaceBefore || ! $isSpaceAfter  || $isNewlineAfter) {
+		if ( ! $isSpaceBefore || ! $isSpaceAfter || $isNewlineAfter) {
 			$error = 'Operator "%s" should be surrounded by spaces or on new line.';
 			$data = array(
 				$tokens[$position]['content']
