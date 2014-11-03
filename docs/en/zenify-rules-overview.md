@@ -204,7 +204,33 @@ case 1:
 ```
 
 
-### 3.4 WeakTypeComparisonWithExplanationSniff
+### 3.4 YodaConditionSniff
+
+- Yoda condition should not be used; switch expression order
+
+*Correct*
+
+```php
+if ($i === TRUE) {
+	return;
+}
+
+$go = $decide === TRUE ?: FALSE;
+```
+
+
+*Wrong*
+
+```php
+if (TRUE === $i) {
+	return;
+}
+
+$go = TRUE === $decide ?: FALSE;
+```
+
+
+### 3.5 WeakTypeComparisonWithExplanationSniff
 
 - Strong comparison should be used instead of weak one, or commented with its purpose
 
