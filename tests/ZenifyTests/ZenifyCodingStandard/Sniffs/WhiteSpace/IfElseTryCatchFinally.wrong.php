@@ -1,8 +1,8 @@
 <?php // lint >= 5.5
 
-if (1 === 2) {
+if ($count === 2) {
 	return 3;
-} elseif (2 === 3) {
+} elseif ($count === 3) {
 	return 4;
 }
 

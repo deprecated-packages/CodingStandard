@@ -1,5 +1,5 @@
 <?php
 
-if(1 === 2) {
+if($pair === 2) {
 	echo 'ok';
 }
