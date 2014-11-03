@@ -25,6 +25,13 @@
         </properties>
     </rule>
 
+    <!-- Naming -->
+    <rule ref="ZenifyCodingStandard.Naming.Bool">
+        <properties>
+            <property name="preferedName" value="bool" />
+        </properties>
+    </rule>
+
     <!-- Scope -->
     <rule ref="ZenifyCodingStandard.Scope.MethodScope" />
 

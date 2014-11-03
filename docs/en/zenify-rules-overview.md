@@ -8,8 +8,9 @@ Rules uses default numeric parameters (some can be changed to match your needs).
 - [2 Commenting](#2-commenting)
 - [3 Control Structures](#3-control-structures) 
 - [4 Namespaces](#4-namespaces) 
-- [5 Scope](#5-scope) 
-- [6 WhiteSpace](#6-whitespace) 
+- [5 Naming](#5-naming) 
+- [6 Scope](#6-scope) 
+- [7 WhiteSpace](#7-whitespace) 
 
 ---
 
@@ -349,10 +350,31 @@ class SomeClass
 ```
 
 
-## 5 Scope
+## 5 Naming
 
 
-### 5.1 MethodScopeSniff
+### 5.1 BoolSniff
+
+
+*Correct*
+
+```php
+/** @var bool */
+public $isCorrect;
+```
+
+*Wrong*
+
+```php
+/** @var boolean */
+public $isCorrect;
+```
+
+
+## 6 Scope
+
+
+### 6.1 MethodScopeSniff
 
 - Function should have scope modifier
 - Interface function should not have scope modifier
@@ -406,10 +428,10 @@ interface SomeInterface
 ```
 
 
-## 6 WhiteSpace
+## 7 WhiteSpace
  
 
-### 6.1 ConcatOperatorSniff
+### 7.1 ConcatOperatorSniff
 
 - ConcatOperator (.) should be surrounded by spaces
 
@@ -426,7 +448,7 @@ $s = 'Ze'.'n';
 ```
 
 
-### 6.2 ExclamationMarkSniff
+### 7.2 ExclamationMarkSniff
 
 - Not operator (!) should be surrounded by spaces
 
@@ -447,7 +469,7 @@ if (!$s) {
 ```
 
 
-### 6.3 IfElseTryCatchFinallySniff
+### 7.3 IfElseTryCatchFinallySniff
 
 - Else/elseif/catch/finally statement should be preceded by 1 empty line
 
@@ -475,7 +497,7 @@ try (1 === 2) {
 ```
 
 
-### 6.4 InBetweenExceptionSpacingSniff
+### 7.4 InBetweenExceptionSpacingSniff
 
 - Class followed by exception or exceptions should have 2 empty lines between themselves
 
@@ -521,7 +543,7 @@ class SomeOtherException extends \Exception
 ```
 
 
-### 6.5 InBetweenMethodSpacingSniff
+### 7.5 InBetweenMethodSpacingSniff
 
 - Method should have 2 empty lines after itself
 
@@ -561,7 +583,7 @@ class SomeClass
 ```
 
 
-### 6.6 PropertiesMethodsMutualSpacingSniff
+### 7.6 PropertiesMethodsMutualSpacingSniff
 
 - Between properties and methods should be 2 empty lines
 
@@ -597,7 +619,7 @@ class SomeClass
 ```
 
 
-### 6.7 OperatorSpacingSniff
+### 7.7 OperatorSpacingSniff
 
 - Operator should be surrounded by spaces or on new line
 - Exceptions: Function's defaults, ?:, +=, &$var and similar
