@@ -14,6 +14,7 @@
     <rule ref="ZenifyCodingStandard.ControlStructures.ControlSignature" />
     <rule ref="ZenifyCodingStandard.ControlStructures.NewClass" />
     <rule ref="ZenifyCodingStandard.ControlStructures.SwitchDeclaration" />
+    <rule ref="ZenifyCodingStandard.ControlStructures.YodaCondition" />
     <rule ref="ZenifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation" />
 
     <!-- Namespace -->
