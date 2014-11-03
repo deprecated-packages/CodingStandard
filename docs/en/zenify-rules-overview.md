@@ -355,6 +355,8 @@ class SomeClass
 
 ### 5.1 BoolSniff
 
+- Bool operator should be spelled "bool"
+
 
 *Correct*
 
