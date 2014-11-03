@@ -86,7 +86,7 @@ class BoolSniff implements PHP_CodeSniffer_Sniff
 	private function isBoolNameInToken(array $token)
 	{
 		foreach (array('bool', 'boolean') as $nameForm) {
-			if (strpos($token['content'], $nameForm) !== FALSE) {
+			if ($this->getFirstWord($token['content']) === $nameForm) {
 				return TRUE;
 			}
 		}

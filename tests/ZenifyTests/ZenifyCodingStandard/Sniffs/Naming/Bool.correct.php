@@ -9,9 +9,15 @@ class Answer
 	 */
 	private $isCorrect = FALSE;
 
+	/**
+	 * @ORM\Column(type="boolean")
+	 * @var bool
+	 */
+	private $status = TRUE;
+
 
 	/**
-	 * @param bool Check if boolean value has changed.
+	 * @param bool $strict Check if boolean value has changed.
 	 * @return bool
 	 */
 	public function hasChanged($strict = FALSE)
