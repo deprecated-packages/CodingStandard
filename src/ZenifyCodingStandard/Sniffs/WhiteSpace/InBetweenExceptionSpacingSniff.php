@@ -67,7 +67,7 @@ class InBetweenExceptionSpacingSniff implements PHP_CodeSniffer_Sniff
 	{
 		$tokens = $file->getTokens();
 		$nextClass = $file->findNext($this->register(), $position + 1);
-		$nextClassComment = $file->findNext(array(T_DOC_COMMENT_OPEN_TAG), $position + 1);
+		$nextClassComment = $file->findNext(array(T_DOC_COMMENT), $position + 1);
 
 		$nextPosition = $this->getMinIfNumbers($nextClass, $nextClassComment);
 		if ($nextPosition) {

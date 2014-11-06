@@ -26,6 +26,11 @@ class BoolSniff implements PHP_CodeSniffer_Sniff
 	public $preferedName = 'bool';
 
 	/**
+	 * @var int
+	 */
+	private $position;
+
+	/**
 	 * @var array
 	 */
 	private $tokens;
@@ -41,7 +46,7 @@ class BoolSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function register()
 	{
-		return array(T_DOC_COMMENT_OPEN_TAG);
+		return array(T_DOC_COMMENT);
 	}
 
 
@@ -52,69 +57,37 @@ class BoolSniff implements PHP_CodeSniffer_Sniff
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
 		$this->file = $file;
+		$this->position = $position;
 		$this->tokens = $file->getTokens();
 
-		for (; ! $this->isCommentCloseTagOnPosition($position); $position++) {
-			$token = $this->tokens[$position];
-			if ($this->isBoolNameInToken($token)) {
-				if ( ! $this->isCorrectFormInToken($token)) {
-					$content = explode(' ', $token['content']);
-					$content = $content[0];
-					$data = array($this->preferedName, $content);
-					$file->addError(self::MESSAGE_ERROR, $position, '', $data);
-				}
+		$commentPart = $this->tokens[$position]['content'];
+		if ($this->isBoolNameCommentPart($commentPart)) {
+			$commentPart = trim($commentPart);
+			$content = explode(' ', $commentPart);
+			$booleanName = $content[2];
+
+			if ($booleanName !== $this->preferedName) {
+				$data = array($this->preferedName, $booleanName);
+				$file->addError(self::MESSAGE_ERROR, $position, '', $data);
 			}
 		}
 	}
 
 
 	/**
-	 * @param int $position
+	 * @param string $commentPart
 	 * @return bool
 	 */
-	private function isCommentCloseTagOnPosition($position)
+	private function isBoolNameCommentPart($commentPart)
 	{
-		$positionCode = $this->tokens[$position]['code'];
-		$closeTags = array(T_DOC_COMMENT_CLOSE_TAG, T_DOC_COMMENT_CLOSE_TAG);
-		return in_array($positionCode, $closeTags);
-	}
-
-
-	/**
-	 * @return bool
-	 */
-	private function isBoolNameInToken(array $token)
-	{
-		foreach (array('bool', 'boolean') as $nameForm) {
-			if ($this->getFirstWord($token['content']) === $nameForm) {
+		$prefixes = array('@return', '@param', '@var');
+		foreach ($prefixes as $prefix) {
+			$seek = $prefix . ' ' . $this->preferedName;
+			if (strpos($commentPart, $seek) !== FALSE) {
 				return TRUE;
 			}
 		}
 		return FALSE;
-	}
-
-
-	/**
-	 * @return bool
-	 */
-	private function isCorrectFormInToken(array $token)
-	{
-		$content = $this->getFirstWord($token['content']);
-		if ($content === $this->preferedName) {
-			return TRUE;
-		}
-		return FALSE;
-	}
-
-
-	/**
-	 * @param string $content
-	 * @return string
-	 */
-	private function getFirstWord($content)
-	{
-		$list = explode(' ', $content);
-		return $list[0];
 	}
 
 }

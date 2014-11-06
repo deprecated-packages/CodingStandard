@@ -23,7 +23,7 @@ class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function register()
 	{
-		return array(T_DOC_COMMENT_OPEN_TAG);
+		return array(T_DOC_COMMENT);
 	}
 
 
@@ -33,14 +33,14 @@ class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
-		$closeTagPosition = $file->findNext(T_DOC_COMMENT_CLOSE_TAG, $position + 1);
+		$tokens = $file->getTokens();
+		if ($this->isPropertyOrMethodComment($file, $position) === FALSE) {
+			return;
+		}
+		if ($this->isSingleLineDoc($tokens[$position]['content']) === FALSE) {
+			return;
+		}
 
-		if ($this->isPropertyOrMethodComment($file, $closeTagPosition) === FALSE) {
-			return;
-		}
-		if ($this->isSingleLineDoc($file, $position, $closeTagPosition) === FALSE) {
-			return;
-		}
 		$error = 'Block comment should be used instead of one liner';
 		$file->addError($error, $position);
 	}
@@ -71,17 +71,12 @@ class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $openTagPosition
-	 * @param int $closeTagPosition
+	 * @param string $content
 	 * @return bool
 	 */
-	private function isSingleLineDoc(PHP_CodeSniffer_File $file, $openTagPosition, $closeTagPosition)
+	private function isSingleLineDoc($content)
 	{
-		$tokens = $file->getTokens();
-		$lines = $tokens[$closeTagPosition]['line'] - $tokens[$openTagPosition]['line'];
-
-		if ($lines < 2) {
+		if (strpos($content, '/**') === 0 && strpos($content, '*/') !== FALSE) {
 			return TRUE;
 		}
 		return FALSE;

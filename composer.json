@@ -9,7 +9,7 @@
 		}
 	],
 	"require": {
-		"squizlabs/php_codesniffer": "~2.0RC"
+		"squizlabs/php_codesniffer": "~1.5"
 	},
 	"require-dev": {
 		"tracy/tracy": "~2.2",

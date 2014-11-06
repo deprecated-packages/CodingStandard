@@ -48,11 +48,15 @@ class OperatorSpacingSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function register()
 	{
-		return PHP_CodeSniffer_Tokens::$booleanOperators
-			+ PHP_CodeSniffer_Tokens::$comparisonTokens
-			+ PHP_CodeSniffer_Tokens::$operators
-			+ PHP_CodeSniffer_Tokens::$assignmentTokens
-			+ array(T_INLINE_THEN, T_INLINE_ELSE);
+		$tokens = array_merge(
+			PHP_CodeSniffer_Tokens::$booleanOperators,
+			PHP_CodeSniffer_Tokens::$comparisonTokens,
+			PHP_CodeSniffer_Tokens::$operators,
+			PHP_CodeSniffer_Tokens::$assignmentTokens,
+			array(T_INLINE_THEN, T_INLINE_ELSE)
+		);
+
+		return $tokens;
 	}
 
 

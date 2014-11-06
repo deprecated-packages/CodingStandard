@@ -51,7 +51,7 @@ class PropertiesMethodsMutualSpacingSniff implements PHP_CodeSniffer_Sniff
 		}
 
 		$tokens = $file->getTokens();
-		$next = $file->findNext(array(T_DOC_COMMENT_OPEN_TAG, T_FUNCTION), $position);
+		$next = $file->findNext(array(T_DOC_COMMENT, T_FUNCTION), $position);
 
 		$endOfProperty = $this->getEndOfProperty($file, $position);
 		$blankLines = $tokens[$next]['line'] - $tokens[$endOfProperty]['line'] - 1;

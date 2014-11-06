@@ -8,6 +8,7 @@
 namespace ZenifyCodingStandard\Sniffs\ControlStructures;
 
 use PHP_CodeSniffer_File;
+use PHP_CodeSniffer_Sniff;
 use Squiz_Sniffs_ControlStructures_ControlSignatureSniff;
 
 
@@ -15,7 +16,7 @@ use Squiz_Sniffs_ControlStructures_ControlSignatureSniff;
  * Rules:
  * - New class statement should not have empty parentheses.
  */
-class NewClassSniff extends Squiz_Sniffs_ControlStructures_ControlSignatureSniff
+class NewClassSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**

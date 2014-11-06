@@ -103,7 +103,7 @@ class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 	private function getLinesToNextClass(PHP_CodeSniffer_File $file, $position)
 	{
 		$tokens = $file->getTokens();
-		$nextClass = $file->findNext(array(T_CLASS, T_INTERFACE, T_TRAIT, T_DOC_COMMENT_OPEN_TAG), $position, NULL, FALSE);
+		$nextClass = $file->findNext(array(T_CLASS, T_INTERFACE, T_TRAIT, T_DOC_COMMENT), $position, NULL, FALSE);
 		if ($tokens[$nextClass]['line'] === 1) {
 			return FALSE;
 

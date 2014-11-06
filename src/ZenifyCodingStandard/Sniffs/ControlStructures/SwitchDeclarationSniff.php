@@ -8,6 +8,7 @@
 namespace ZenifyCodingStandard\Sniffs\ControlStructures;
 
 use PHP_CodeSniffer_File;
+use PHP_CodeSniffer_Tokens;
 use Squiz_Sniffs_ControlStructures_SwitchDeclarationSniff;
 
 
@@ -198,7 +199,10 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 					$i = $tokens[$i]['scope_opener'];
 					continue;
 				}
-				if (isset(\PHP_CodeSniffer_Tokens::$emptyTokens[$tokens[$i]['code']]) === FALSE) {
+
+				$tokenCode = $tokens[$i]['code'];
+				$emptyTokens = PHP_CodeSniffer_Tokens::$emptyTokens;
+				if (in_array($tokenCode, $emptyTokens) === FALSE) {
 					$foundContent = TRUE;
 					break;
 				}

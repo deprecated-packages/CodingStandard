@@ -21,6 +21,17 @@ class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**
+	 * @var int
+	 */
+	private $position;
+
+	/**
+	 * @var PHP_CodeSniffer_File
+	 */
+	private $file;
+
+
+	/**
 	 * @return int[]
 	 */
 	public function register()
@@ -32,89 +43,93 @@ class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * @param PHP_CodeSniffer_File $file
 	 * @param int $position
-	 * @param int $commentStart
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
-		if ( ! $this->isComponentFactoryMethod($file, $position)) {
+		$this->file = $file;
+		$this->position = $position;
+
+		if ( ! $this->isComponentFactoryMethod()) {
 			return;
 		}
 
-		$tokens = $file->getTokens();
-		$commentEnd = $this->getCommentEnd($file, $position);
-
-		if ( ! $this->hasMethodComment($tokens, $commentEnd)) {
-			$file->addError('CreateComponent* method should have a doc comment', $position, 'Missing');
+		$methodComment = $this->getMethodComment();
+		if ( ! $methodComment) {
+			$file->addError('CreateComponent* method should have a doc comment', $position, '');
 			return;
 		}
 
-		$commentStart = $tokens[$commentEnd]['comment_opener'];
-		$this->processReturnTag($file, $commentStart);
+		if ($this->hasCommentReturnTag($methodComment) === FALSE) {
+			$error = 'CreateComponent* method should have a @return tag with type';
+			$file->addError($error, $position, '');
+			return;
+		}
 	}
 
 
 	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
 	 * @return bool
 	 */
-	private function isComponentFactoryMethod(PHP_CodeSniffer_File $file, $position)
+	private function isComponentFactoryMethod()
 	{
-		$functionName = $file->getDeclarationName($position);
+		$functionName = $this->file->getDeclarationName($this->position);
 		return (strpos($functionName, 'createComponent') === 0);
 	}
 
 
 	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @return bool|int
-	 */
-	private function getCommentEnd(PHP_CodeSniffer_File $file, $position)
-	{
-		return $file->findPrevious(T_WHITESPACE, ($position - 3), NULL, TRUE);
-	}
-
-
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param $position
-	 */
-	private function processReturnTag(PHP_CodeSniffer_File $file, $position)
-	{
-		$tokens = $file->getTokens();
-
-		$return = NULL;
-		foreach ($tokens[$position]['comment_tags'] as $tag) {
-			if ($tokens[$tag]['content'] === '@return') {
-				$return = $tag;
-			}
-		}
-
-		if ($return !== NULL) {
-			$content = $tokens[($return + 2)]['content'];
-			if (empty($content) === TRUE || $tokens[($return + 2)]['code'] !== T_DOC_COMMENT_STRING) {
-				$error = 'Return tag should contain type';
-				$file->addError($error, $return, 'MissingReturnType');
-			}
-
-		} else {
-			$error = 'CreateComponent* method should have a @return tag';
-			$file->addError($error, $tokens[$position]['comment_closer'], 'MissingReturn');
-		}
-	}
-
-
-	/**
-	 * @param array $tokens
-	 * @param int $position
 	 * @return bool
 	 */
-	private function hasMethodComment(array $tokens, $position)
+	private function hasCommentReturnTag(array $comment)
 	{
-		if ($tokens[$position]['code'] === T_DOC_COMMENT_CLOSE_TAG) {
-			return TRUE;
+		foreach ($comment as $key => $commentPart) {
+			if (strpos($commentPart, '* @return') !== FALSE) {
+				$commentPart = trim($commentPart);
+				if (strlen($commentPart) > 10) { // min length of return tag with type
+					return TRUE;
+				}
+			}
 		}
+
+		return FALSE;
+	}
+
+
+	/**
+	 * @return bool|array
+	 */
+	private function getMethodComment()
+	{
+		if ($this->hasMethodComment() === FALSE) {
+			return FALSE;
+		}
+
+		$comment = array();
+		$currentPosition = $this->file->findPrevious(T_DOC_COMMENT, $this->position);
+		$tokens = $this->file->getTokens();
+		while ($tokens[$currentPosition]['code'] === T_DOC_COMMENT) {
+			$comment[] = $tokens[$currentPosition]['content'];
+			$currentPosition--;
+		}
+
+		return array_reverse($comment);
+	}
+
+
+	/**
+	 * @return bool
+	 */
+	private function hasMethodComment()
+	{
+		$tokens = $this->file->getTokens();
+		$docPosition = $this->file->findPrevious(T_DOC_COMMENT, $this->position);
+		if ($docPosition) {
+			$lineDiff = $tokens[$this->position]['line'] - $tokens[$docPosition]['line'];
+			if ($lineDiff === 1) {
+				return TRUE;
+			}
+		}
+
 		return FALSE;
 	}
 
