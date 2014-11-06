@@ -23,6 +23,7 @@ And run Php_CodeSniffer:
 
 ```sh
 $ vendor/bin/phpcs src --standard=vendor/zenify/coding-standard/src/ZenifyCodingStandard/ruleset.xml
+$ vendor/bin/phpcs src --standard=vendor/mikulas/code-sniffs/cs/ruleset.xml --sniffs=cs.Debug.DebugFunctionCall,cs.Formatting.UseInAlphabeticalOrder,cs.Formatting.UseWithoutStartingSeparator
 ```
 
 

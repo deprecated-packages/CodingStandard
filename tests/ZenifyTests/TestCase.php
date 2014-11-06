@@ -15,18 +15,33 @@ use Tester\Assert;
 class TestCase extends Tester\TestCase
 {
 
+	const RULESET_ZENIFY = '/ZenifyCodingStandard/ruleset.xml';
+	const RULESET_MIKULAS = '/../vendor/mikulas/code-sniffs/cs/ruleset.xml';
+
+
 	/**
 	 * @param string $source
+	 * @param string $ruleset
+	 * @param string $sniff
 	 * @throws \Exception
 	 * @return int
 	 */
-	protected function runPhpCsForFile($source)
+	protected function runPhpCsForFile($source, $ruleset = self::RULESET_ZENIFY, $sniff = NULL)
 	{
 		if ( ! file_exists($source)) {
 			throw new \Exception("File $source was not found");
 		}
 
-		$cliCommand = PHPCS_BIN . ' ' . $source . ' --standard=' . SRC_DIR . '/ZenifyCodingStandard/ruleset.xml --report=json';
+		$rulesetPath = SRC_DIR . $ruleset;
+		if ( ! file_exists($rulesetPath)) {
+			throw new \Exception("Standard file $rulesetPath was not found");
+		}
+
+		$cliCommand = PHPCS_BIN . ' ' . $source . ' --standard=' . $rulesetPath . ' --report=json';
+		if ($sniff) {
+			$cliCommand .= ' --sniffs=' . $sniff;
+		}
+
 		exec($cliCommand, $output);
 		$data = json_decode(implode($output));
 
