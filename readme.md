@@ -13,10 +13,9 @@ Oppose to the most default rules you can change all numerical parameters.
 
 ## Usage
 
-Install via composer:
+Install the latest version via composer:
 
 ```sh
-$ composer require squizlabs/php_codesniffer:~2.0RC
 $ composer require zenify/coding-standard
 ```
 
