@@ -8,8 +8,8 @@
 namespace ZenifyCodingStandard\Sniffs\Scope;
 
 use PHP_CodeSniffer_File;
-use PHP_CodeSniffer_Tokens;
 use PHP_CodeSniffer_Standards_AbstractScopeSniff;
+use PHP_CodeSniffer_Tokens;
 
 
 /**

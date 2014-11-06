@@ -10,6 +10,11 @@ class Answer
 	private $isCorrect = FALSE;
 
 	/**
+	 * @param bool|int
+	 */
+	private $isMisc = FALSE;
+
+	/**
 	 * @ORM\Column(type="boolean")
 	 * @var bool
 	 */

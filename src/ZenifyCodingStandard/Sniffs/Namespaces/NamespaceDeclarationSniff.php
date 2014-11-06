@@ -51,7 +51,6 @@ class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 		$linesToNextUse = $this->getLinesToNextUse($file, $position);
 		$linesToNextClass = $this->getLinesToNextClass($file, $position);
 
-
 		if ($linesToNextUse) {
 			if ($linesToNextUse !== $this->emptyLinesAfterNamespaceFollowedByUseStatement) {
 				$error = 'There should be %s empty line(s) from namespace to use statement; %s found';
@@ -63,8 +62,6 @@ class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 			}
 
 		} elseif ($linesToNextClass) {
-
-
 			if ($linesToNextClass !== $this->emptyLinesAfterNamespace) {
 				$error = 'There should be %s empty line(s) after the namespace declaration; %s found';
 				$data = array(

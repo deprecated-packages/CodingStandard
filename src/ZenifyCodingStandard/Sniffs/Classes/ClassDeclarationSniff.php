@@ -7,8 +7,8 @@
 
 namespace ZenifyCodingStandard\Sniffs\Classes;
 
-use PHP_CodeSniffer_File;
 use PEAR_Sniffs_Classes_ClassDeclarationSniff;
+use PHP_CodeSniffer_File;
 
 
 /**

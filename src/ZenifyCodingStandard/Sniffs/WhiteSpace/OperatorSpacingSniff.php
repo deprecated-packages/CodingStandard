@@ -119,17 +119,32 @@ class OperatorSpacingSniff implements PHP_CodeSniffer_Sniff
 	 */
 	private function isDefaultValueInFunctionDeclaration()
 	{
-		if ($this->token['code'] === T_EQUAL || $this->token['code'] === T_MINUS) {
-			if (isset($this->token['nested_parenthesis']) === TRUE) {
-				$parenthesis = array_keys($this->token['nested_parenthesis']);
-				$bracket = array_pop($parenthesis);
-				if (isset($this->tokens[$bracket]['parenthesis_owner']) === TRUE) {
-					$function = $this->tokens[$bracket]['parenthesis_owner'];
-					if ($this->tokens[$function]['code'] === T_FUNCTION || $this->tokens[$function]['code'] === T_CLOSURE) {
-						return TRUE;
-					}
+		if ($this->isTokenStartOfDefaultValue()) {
+			$parenthesis = array_keys($this->token['nested_parenthesis']);
+			$bracket = array_pop($parenthesis);
+			if (isset($this->tokens[$bracket]['parenthesis_owner']) === TRUE) {
+				$function = $this->tokens[$bracket]['parenthesis_owner'];
+				if ($this->tokens[$function]['code'] === T_FUNCTION || $this->tokens[$function]['code'] === T_CLOSURE) {
+					return TRUE;
 				}
 			}
+		}
+
+		return FALSE;
+	}
+
+
+	/**
+	 * @return bool
+	 */
+	private function isTokenStartOfDefaultValue()
+	{
+		if ($this->token['code'] !== T_EQUAL && $this->token['code'] !== T_MINUS) {
+			return FALSE;
+		}
+
+		if (isset($this->token['nested_parenthesis'])) {
+			return TRUE;
 		}
 
 		return FALSE;

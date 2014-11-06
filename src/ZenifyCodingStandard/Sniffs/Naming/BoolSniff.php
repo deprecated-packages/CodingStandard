@@ -66,7 +66,7 @@ class BoolSniff implements PHP_CodeSniffer_Sniff
 			$content = explode(' ', $commentPart);
 			$booleanName = $content[2];
 
-			if ($booleanName !== $this->preferedName) {
+			if ($this->hasCorrectForm($booleanName) === FALSE) {
 				$data = array($this->preferedName, $booleanName);
 				$file->addError(self::MESSAGE_ERROR, $position, '', $data);
 			}
@@ -86,6 +86,21 @@ class BoolSniff implements PHP_CodeSniffer_Sniff
 			if (strpos($commentPart, $seek) !== FALSE) {
 				return TRUE;
 			}
+		}
+		return FALSE;
+	}
+
+
+	/**
+	 * @param string $booleanName
+	 * @return bool
+	 */
+	private function hasCorrectForm($booleanName)
+	{
+		if (strpos($booleanName, $this->preferedName) !== FALSE
+			&& strpos($booleanName, 'boolean') === FALSE
+		) {
+			return TRUE;
 		}
 		return FALSE;
 	}

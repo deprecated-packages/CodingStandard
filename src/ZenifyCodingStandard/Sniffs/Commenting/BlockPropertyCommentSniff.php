@@ -61,7 +61,7 @@ class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 				return FALSE;
 			}
 
-			if ($tokens[$position]['line'] + 1 === $tokens[$nextPropertyOrMethodPosition]['line']) {
+			if (($tokens[$position]['line'] + 1) === $tokens[$nextPropertyOrMethodPosition]['line']) {
 				return TRUE;
 			}
 		}
