@@ -149,16 +149,7 @@ protected function createComponentDisplay()
 ## 3 Control Structures
 
 
-### 3.1 ControlSignatureSniff
-
-Same as Squiz_Sniffs_ControlStructures_ControlSignatureSniff, but with comments allowed.
-
-```php
-if (...) { // some comment 
-```
-
-
-### 3.2 NewClassSniff
+### 3.1 NewClassSniff
  
 - New class statement should not have empty parentheses
 
@@ -175,7 +166,7 @@ $someClass = new SomeNamespace\SomeClass($keyHandler);
 $someClass = new SomeNamespace\SomeClass();
 ```
 
-### 3.3 SwitchDeclarationSniff
+### 3.2 SwitchDeclarationSniff
 
 *Correct*
 
@@ -205,7 +196,7 @@ case 1:
 ```
 
 
-### 3.4 YodaConditionSniff
+### 3.3 YodaConditionSniff
 
 - Yoda condition should not be used; switch expression order
 
@@ -231,7 +222,7 @@ $go = TRUE === $decide ?: FALSE;
 ```
 
 
-### 3.5 WeakTypeComparisonWithExplanationSniff
+### 3.4 WeakTypeComparisonWithExplanationSniff
 
 - Strong comparison should be used instead of weak one, or commented with its purpose
 

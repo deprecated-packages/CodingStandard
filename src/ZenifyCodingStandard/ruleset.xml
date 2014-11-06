@@ -18,7 +18,6 @@
 		<severity>3</severity>
 	</rule>
 	<rule ref="Generic.Files.OneInterfacePerFile" />
-	<rule ref="Generic.Files.OneTraitPerFile" />
 	<rule ref="PSR1.Files.SideEffects" />
 	<rule ref="PSR2.Files.EndFileNewline" />
 	<rule ref="Zend.Files.ClosingTag" />
@@ -29,9 +28,15 @@
 	<rule ref="Squiz.Classes.ValidClassName" />
 	<rule ref="Squiz.Classes.LowercaseClassKeywords" />
 
+
 	<!-- ControlStructures -->
+	<rule ref="Squiz.ControlStructures.ControlSignature">
+		<properties>
+			<property name="ignoreComments" value="1" />
+		</properties>
+	</rule>
 	<rule ref="Generic.ControlStructures.InlineControlStructure" />
-	<rule ref="PEAR.ControlStructures.MultiLineCondition">
+	<rule ref="PEAR.ControlStructures.MultiLineCondition" >
 		<properties>
 			<property name="indent" value="1" />
 		</properties>

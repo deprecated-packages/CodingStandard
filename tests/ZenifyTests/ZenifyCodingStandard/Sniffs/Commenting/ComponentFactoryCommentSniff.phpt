@@ -40,11 +40,11 @@ class ComponentFactoryCommentSniffTest extends TestCase
 	}
 
 
-//	public function testCorrect()
-//	{
-//		$result = $this->runPhpCsForFile(__DIR__ . '/ComponentFactoryComment.correct.php');
-//		Assert::count(0, $result['errors']);
-//	}
+	public function testCorrect()
+	{
+		$result = $this->runPhpCsForFile(__DIR__ . '/ComponentFactoryComment.correct.php');
+		Assert::count(0, $result['errors']);
+	}
 
 }
 
