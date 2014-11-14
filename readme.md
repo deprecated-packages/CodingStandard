@@ -26,6 +26,9 @@ $ vendor/bin/phpcs src --standard=vendor/zenify/coding-standard/src/ZenifyCoding
 $ vendor/bin/phpcs src --standard=vendor/mikulas/code-sniffs/cs/ruleset.xml --sniffs=cs.Debug.DebugFunctionCall,cs.Formatting.UseInAlphabeticalOrder,cs.Formatting.UseWithoutStartingSeparator
 ```
 
+### PhpStorm integration
+
+If you use PhpStorm, code sniffer can check your syntax as you write. [How to integrate?](docs/en/integration-to-php-storm.md)
 
 ## Other PGS-2 related cs
 
