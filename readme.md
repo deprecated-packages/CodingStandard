@@ -22,7 +22,7 @@ $ composer require zenify/coding-standard
 And run Php_CodeSniffer:
 
 ```sh
-$ vendor/bin/phpcs src --standard=vendor/zenify/coding-standard/src/ZenifyCodingStandard/ruleset.xml
+$ vendor/bin/phpcs src --standard=vendor/zenify/coding-standard/src/ZenifyCodingStandard/code-sniffer-ruleset.xml
 $ vendor/bin/phpcs src --standard=vendor/mikulas/code-sniffs/cs/ruleset.xml --sniffs=cs.Debug.DebugFunctionCall,cs.Formatting.UseInAlphabeticalOrder,cs.Formatting.UseWithoutStartingSeparator
 ```
 
@@ -48,6 +48,23 @@ In case you want to create your own rules, here are some sources to start with:
 
 Simple package by PhpUnit author Sebastian Bergmann, that detects duplicated code.
 
+To test `src` folder, just run:
+
 ```sh
 $ vendor/bin/phpcpd src
 ```
+
+Or with no options to see documentation
+
+
+### [PHP Mess Detector](https://github.com/phpmd/phpmd)
+
+Rules are nicely [explained here](http://edorian.github.io/php-coding-standard-generator/#phpmd).
+
+To test `src` folder with `text` output, just run. 
+
+```sh
+$ vendor/bin/phpmd src text ruleset=vendor/zenify/coding-standard/src/ZenifyCodingStandard/mess-detector-ruleset.xml  
+```
+
+Or with no options to see documentation.
