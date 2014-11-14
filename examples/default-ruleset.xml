@@ -51,7 +51,7 @@
     <rule ref="ZenifyCodingStandard.Whitespace.OperatorSpacing" />
     <rule ref="ZenifyCodingStandard.Whitespace.PropertiesMethodsMutualSpacing">
         <properties>
-            <property name="blankLinesBetweenPropertiesAndMethods" value="2" />
+            <property name="blankLinesInBetween" value="2" />
         </properties>
     </rule>
 </ruleset>

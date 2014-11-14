@@ -15,7 +15,7 @@ use Tester\Assert;
 class TestCase extends Tester\TestCase
 {
 
-	const RULESET_ZENIFY = '/ZenifyCodingStandard/ruleset.xml';
+	const RULESET_ZENIFY = '/ZenifyCodingStandard/code-sniffer-ruleset.xml';
 	const RULESET_MIKULAS = '/../vendor/mikulas/code-sniffs/cs/ruleset.xml';
 
 
@@ -41,6 +41,8 @@ class TestCase extends Tester\TestCase
 		if ($sniff) {
 			$cliCommand .= ' --sniffs=' . $sniff;
 		}
+
+		var_dump($cliCommand);
 
 		exec($cliCommand, $output);
 		$data = json_decode(implode($output));
