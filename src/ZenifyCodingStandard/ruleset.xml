@@ -18,7 +18,6 @@
 		<severity>3</severity>
 	</rule>
 	<rule ref="Generic.Files.OneInterfacePerFile" />
-	<rule ref="PSR1.Files.SideEffects" />
 	<rule ref="PSR2.Files.EndFileNewline" />
 	<rule ref="Zend.Files.ClosingTag" />
 
