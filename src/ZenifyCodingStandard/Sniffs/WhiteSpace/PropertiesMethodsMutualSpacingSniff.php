@@ -21,7 +21,7 @@ class PropertiesMethodsMutualSpacingSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * @var int
 	 */
-	public $blankLinesBetweenPropertiesAndMethods = 2;
+	public $blankLinesInBetween = 2;
 
 
 	/**
@@ -40,7 +40,7 @@ class PropertiesMethodsMutualSpacingSniff implements PHP_CodeSniffer_Sniff
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
 		// Fix type
-		$this->blankLinesBetweenPropertiesAndMethods = (int) $this->blankLinesBetweenPropertiesAndMethods;
+		$this->blankLinesInBetween = (int) $this->blankLinesInBetween;
 
 		if ($this->isLastProperty($file, $position) === FALSE) {
 			return;
@@ -55,10 +55,10 @@ class PropertiesMethodsMutualSpacingSniff implements PHP_CodeSniffer_Sniff
 
 		$endOfProperty = $this->getEndOfProperty($file, $position);
 		$blankLines = $tokens[$next]['line'] - $tokens[$endOfProperty]['line'] - 1;
-		if ($blankLines !== $this->blankLinesBetweenPropertiesAndMethods) {
+		if ($blankLines !== $this->blankLinesInBetween) {
 			$error = 'Between properties and methods should be %s empty line(s); %s found.';
 			$data = array(
-				$this->blankLinesBetweenPropertiesAndMethods,
+				$this->blankLinesInBetween,
 				$blankLines
 			);
 			$file->addError($error, $position, NULL, $data);

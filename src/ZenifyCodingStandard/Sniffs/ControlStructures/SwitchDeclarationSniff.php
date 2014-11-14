@@ -55,7 +55,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 		$this->tokens = $tokens = $file->getTokens();
 		$this->token = $tokens[$position];
 
-		if ($this->areSwitchStartAndEndKnow() === FALSE) {
+		if ($this->areSwitchStartAndEndKnown() === FALSE) {
 			return;
 		}
 
@@ -81,15 +81,9 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 				$caseCount++;
 			}
 
-			$this->checkIfKeywordIsLowercase($file, $nextCase, $tokens, $type);
 			$this->checkIfKeywordIsIndented($file, $nextCase, $tokens, $type, $caseAlignment);
+			$this->checkSpaceAfterKeyword($nextCase, $type);
 
-			if ($type === 'Case' && ($tokens[($nextCase + 1)]['type'] !== 'T_WHITESPACE'
-				|| $tokens[($nextCase + 1)]['content'] !== ' ')
-			) {
-				$error = 'CASE keyword must be followed by a single space';
-				$file->addError($error, $nextCase, 'SpacingAfterCase');
-			}
 			$opener = $tokens[$nextCase]['scope_opener'];
 
 			$this->ensureNoSpaceBeforeColon($opener, $nextCase, $type);
@@ -108,26 +102,6 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 
 		$this->ensureDefaultIsPresent($foundDefault);
 		$this->ensureClosingBraceAligment($switch);
-	}
-
-
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @param array $tokens
-	 * @param string $type
-	 */
-	private function checkIfKeywordIsLowercase(PHP_CodeSniffer_File $file, $position, $tokens, $type)
-	{
-		if ($tokens[$position]['content'] !== strtolower($tokens[$position]['content'])) {
-			$expected = strtolower($tokens[$position]['content']);
-			$error = strtoupper($type) . ' keyword must be lowercase; expected "%s" but found "%s"';
-			$data = array(
-				$expected,
-				$tokens[$position]['content'],
-			);
-			$file->addError($error, $position, $type . 'NotLower', $data);
-		}
 	}
 
 
@@ -200,7 +174,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 	/**
 	 * @return bool
 	 */
-	private function areSwitchStartAndEndKnow()
+	private function areSwitchStartAndEndKnown()
 	{
 		if ( ! isset($this->tokens[$this->position]['scope_opener'])) {
 			return FALSE;
@@ -360,6 +334,21 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 		if ($this->tokens[($opener - 1)]['type'] === 'T_WHITESPACE') {
 			$error = 'There must be no space before the colon in a ' . strtoupper($type) . ' statement';
 			$this->file->addError($error, $nextCase, 'SpaceBeforeColon' . $type);
+		}
+	}
+
+
+	/**
+	 * @param int $nextCase
+	 * @param string $type
+	 */
+	private function checkSpaceAfterKeyword($nextCase, $type)
+	{
+		if ($type === 'Case' && ($this->tokens[($nextCase + 1)]['type'] !== 'T_WHITESPACE'
+			|| $this->tokens[($nextCase + 1)]['content'] !== ' ')
+		) {
+			$error = 'CASE keyword must be followed by a single space';
+			$this->file->addError($error, $nextCase, 'SpacingAfterCase');
 		}
 	}
 

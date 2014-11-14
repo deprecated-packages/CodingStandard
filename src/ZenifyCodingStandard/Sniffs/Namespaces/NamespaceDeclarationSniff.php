@@ -26,7 +26,7 @@ class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * @var int
 	 */
-	public $emptyLinesAfterNamespaceFollowedByUseStatement = 1;
+	private $emptyLinesBeforeUseStatement;
 
 
 	/**
@@ -46,16 +46,16 @@ class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 	{
 		// Fix type
 		$this->emptyLinesAfterNamespace = (int) $this->emptyLinesAfterNamespace;
-		$this->emptyLinesAfterNamespaceFollowedByUseStatement = (int) $this->emptyLinesAfterNamespaceFollowedByUseStatement;
+		$this->emptyLinesBeforeUseStatement = (int) $this->emptyLinesAfterNamespace - 1;
 
 		$linesToNextUse = $this->getLinesToNextUse($file, $position);
 		$linesToNextClass = $this->getLinesToNextClass($file, $position);
 
 		if ($linesToNextUse) {
-			if ($linesToNextUse !== $this->emptyLinesAfterNamespaceFollowedByUseStatement) {
+			if ($linesToNextUse !== $this->emptyLinesBeforeUseStatement) {
 				$error = 'There should be %s empty line(s) from namespace to use statement; %s found';
 				$data = array(
-					$this->emptyLinesAfterNamespaceFollowedByUseStatement,
+					$this->emptyLinesBeforeUseStatement,
 					$linesToNextUse
 				);
 				$file->addError($error, $position, 'BlankLineAfter', $data);
