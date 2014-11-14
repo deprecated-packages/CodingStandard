@@ -19,8 +19,12 @@ before_script:
   - composer self-update
   - composer install --no-interaction --prefer-source --dev
   - vendor/bin/parallel-lint -e php,phpt --exclude vendor .
+  - vendor/bin/phpcpd src
   - vendor/bin/phpcs src --standard=src/ZenifyCodingStandard/ruleset.xml
   - vendor/bin/phpcs src --standard=vendor/mikulas/code-sniffs/cs/ruleset.xml --sniffs=cs.Debug.DebugFunctionCall,cs.Formatting.UseInAlphabeticalOrder,cs.Formatting.UseWithoutStartingSeparator
+  - vendor/bin/phpcpd tests
+  - vendor/bin/phpcs tests --extensions=phpt --standard=src/ZenifyCodingStandard/ruleset.xml
+  - vendor/bin/phpcs tests --extensions=phpt --standard=vendor/mikulas/code-sniffs/cs/ruleset.xml --sniffs=cs.Debug.DebugFunctionCall,cs.Formatting.UseInAlphabeticalOrder,cs.Formatting.UseWithoutStartingSeparator
 
 script:
   - vendor/bin/tester -c=tests/php-unix.ini tests

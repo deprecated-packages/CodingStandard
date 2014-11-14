@@ -40,3 +40,14 @@ In case you want to create your own rules, here are some sources to start with:
 - [Nice explanatory tutorial](http://blog.mayflower.de/631-Creating-coding-standards-for-PHP_CodeSniffer.html)
 - [Overview of default rules with examples](http://edorian.github.io/php-coding-standard-generator/#phpcs)
 - [Post on Why to add CS as part of your projects](http://edorian.github.io/2013-03-13-Please-ship-your-own-coding-standard-as-part/)
+
+
+## Other commands
+
+### [Copy/Paste Detector](https://github.com/sebastianbergmann/phpcpd)
+
+Simple package by PhpUnit author Sebastian Bergmann, that detects duplicated code.
+
+```sh
+$ vendor/bin/phpcpd src
+```
