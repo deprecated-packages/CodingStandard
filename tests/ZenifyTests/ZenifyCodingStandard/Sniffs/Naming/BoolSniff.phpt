@@ -35,4 +35,4 @@ class BoolSniff extends TestCase
 }
 
 
-run(new BoolSniff);
+(new BoolSniff)->run();

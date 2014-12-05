@@ -38,4 +38,4 @@ class InBetweenExceptionSpacingSniffTest extends TestCase
 }
 
 
-run(new InBetweenExceptionSpacingSniffTest);
+(new InBetweenExceptionSpacingSniffTest)->run();

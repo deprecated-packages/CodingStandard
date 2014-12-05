@@ -41,4 +41,4 @@ class OneClassPerFileApartExceptionsSniffTest extends TestCase
 }
 
 
-run(new OneClassPerFileApartExceptionsSniffTest);
+(new OneClassPerFileApartExceptionsSniffTest)->run();

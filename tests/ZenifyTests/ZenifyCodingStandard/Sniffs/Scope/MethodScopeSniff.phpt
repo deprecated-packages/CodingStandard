@@ -44,4 +44,4 @@ class MethodScopeSniffTest extends TestCase
 }
 
 
-run(new MethodScopeSniffTest);
+(new MethodScopeSniffTest)->run();

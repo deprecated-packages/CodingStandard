@@ -49,4 +49,4 @@ class ComponentFactoryCommentSniffTest extends TestCase
 }
 
 
-run(new ComponentFactoryCommentSniffTest);
+(new ComponentFactoryCommentSniffTest)->run();

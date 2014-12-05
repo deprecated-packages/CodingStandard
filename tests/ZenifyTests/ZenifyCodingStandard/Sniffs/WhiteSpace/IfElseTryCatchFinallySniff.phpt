@@ -47,4 +47,4 @@ class IfElseTryCatchFinallySniffTest extends TestCase
 }
 
 
-run(new IfElseTryCatchFinallySniffTest);
+(new IfElseTryCatchFinallySniffTest)->run();

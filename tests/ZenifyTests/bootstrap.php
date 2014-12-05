@@ -1,10 +1,5 @@
 <?php
 
-/**
- * This file is part of Zenify
- * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
- */
-
 if (@ ! include __DIR__ . '/../../vendor/autoload.php') {
 	echo 'Install Nette Tester using `composer update --dev`';
 	exit(1);
@@ -31,9 +26,4 @@ function createTempDir() {
 	@mkdir($tempDir = __DIR__ . '/../tmp/' . (isset($_SERVER['argv']) ? md5(serialize($_SERVER['argv'])) : getmypid()));
 	Tester\Helpers::purge($tempDir);
 	return realpath($tempDir);
-}
-
-
-function run(Tester\TestCase $testCase) {
-	$testCase->run();
 }

@@ -36,4 +36,4 @@ class BlockPropertyCommentSniffTest extends TestCase
 }
 
 
-run(new BlockPropertyCommentSniffTest);
+(new BlockPropertyCommentSniffTest)->run();

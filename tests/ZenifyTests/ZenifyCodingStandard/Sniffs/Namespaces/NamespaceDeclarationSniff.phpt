@@ -61,4 +61,4 @@ class NamespaceDeclarationSniffTest extends TestCase
 }
 
 
-run(new NamespaceDeclarationSniffTest);
+(new NamespaceDeclarationSniffTest)->run();

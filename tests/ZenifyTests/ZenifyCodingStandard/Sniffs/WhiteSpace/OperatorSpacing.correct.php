@@ -9,6 +9,6 @@ $one += $two;
 
 $true ?: FALSE;
 
-$array = array();
+$array = [];
 
 $one = &$array;

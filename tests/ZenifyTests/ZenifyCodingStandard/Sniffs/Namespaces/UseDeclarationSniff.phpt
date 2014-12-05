@@ -52,4 +52,4 @@ class UseDeclarationSniffTest extends TestCase
 }
 
 
-run(new UseDeclarationSniffTest);
+(new UseDeclarationSniffTest)->run();

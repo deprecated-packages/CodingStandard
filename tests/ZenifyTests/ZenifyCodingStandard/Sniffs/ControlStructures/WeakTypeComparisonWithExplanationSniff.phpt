@@ -38,4 +38,4 @@ class WeakTypeComparisonWithExplanationSniffTest extends TestCase
 }
 
 
-run(new WeakTypeComparisonWithExplanationSniffTest);
+(new WeakTypeComparisonWithExplanationSniffTest)->run();

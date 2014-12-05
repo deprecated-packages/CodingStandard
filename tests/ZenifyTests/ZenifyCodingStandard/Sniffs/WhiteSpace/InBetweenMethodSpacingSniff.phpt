@@ -41,4 +41,4 @@ class InBetweenMethodSpacingSniffTest extends TestCase
 }
 
 
-run(new InBetweenMethodSpacingSniffTest);
+(new InBetweenMethodSpacingSniffTest)->run();

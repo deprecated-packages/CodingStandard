@@ -14,15 +14,12 @@ class UseInAlphabeticalOrderSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		$sniff = 'cs.Formatting.UseInAlphabeticalOrder';
-		$result = $this->runPhpCsForFile(
-			__DIR__ . '/UseInAlphabeticalOrder.wrong.php', self::RULESET_MIKULAS, $sniff
-		);
+		$result = $this->runPhpCsForFile(__DIR__ . '/UseInAlphabeticalOrder.wrong.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
-			'Usings must be in alphabetical order',
-			'cs.Formatting.UseInAlphabeticalOrder.UseInAlphabeticalOrder'
+			'Use statements should be in alphabetical order',
+			'ZenifyCodingStandard.Namespaces.UseInAlphabeticalOrder'
 		);
 	}
 
@@ -36,4 +33,4 @@ class UseInAlphabeticalOrderSniffTest extends TestCase
 }
 
 
-run(new UseInAlphabeticalOrderSniffTest);
+(new UseInAlphabeticalOrderSniffTest)->run();

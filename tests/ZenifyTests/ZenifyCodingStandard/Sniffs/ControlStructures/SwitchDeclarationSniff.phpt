@@ -64,4 +64,4 @@ class SwitchDeclarationSniffTest extends TestCase
 }
 
 
-run(new SwitchDeclarationSniffTest);
+(new SwitchDeclarationSniffTest)->run();

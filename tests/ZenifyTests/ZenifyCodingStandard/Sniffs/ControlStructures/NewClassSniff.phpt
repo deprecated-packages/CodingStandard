@@ -33,4 +33,4 @@ class NewClassSniffTest extends TestCase
 }
 
 
-run(new NewClassSniffTest);
+(new NewClassSniffTest)->run();

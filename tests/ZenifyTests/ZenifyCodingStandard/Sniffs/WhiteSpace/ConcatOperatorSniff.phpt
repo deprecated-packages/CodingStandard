@@ -34,4 +34,4 @@ class ConcatOperatorSniffTest extends TestCase
 }
 
 
-run(new ConcatOperatorSniffTest);
+(new ConcatOperatorSniffTest)->run();

@@ -14,13 +14,12 @@ class DebugFunctionCallSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		$sniff = 'cs.Debug.DebugFunctionCall';
-		$result = $this->runPhpCsForFile(__DIR__ . '/DebugFunctionCall.wrong.php', self::RULESET_MIKULAS, $sniff);
+		$result = $this->runPhpCsForFile(__DIR__ . '/DebugFunctionCall.wrong.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
 			'The use of function dump() is forbidden',
-			'cs.Debug.DebugFunctionCall.Found'
+			'ZenifyCodingStandard.Debug.DebugFunctionCall.Found'
 		);
 	}
 
@@ -34,4 +33,4 @@ class DebugFunctionCallSniffTest extends TestCase
 }
 
 
-run(new DebugFunctionCallSniffTest);
+(new DebugFunctionCallSniffTest)->run();

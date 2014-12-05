@@ -49,4 +49,4 @@ class ExclamationMarkSniffTest extends TestCase
 }
 
 
-run(new ExclamationMarkSniffTest);
+(new ExclamationMarkSniffTest)->run();

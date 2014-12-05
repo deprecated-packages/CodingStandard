@@ -47,4 +47,4 @@ class PropertiesMethodsMutualSpacingSniffTest extends TestCase
 }
 
 
-run(new PropertiesMethodsMutualSpacingSniffTest);
+(new PropertiesMethodsMutualSpacingSniffTest)->run();

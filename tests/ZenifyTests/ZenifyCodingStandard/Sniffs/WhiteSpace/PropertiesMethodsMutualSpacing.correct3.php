@@ -6,11 +6,11 @@ namespace SomeNamespace;
 class SomeClass
 {
 
-	protected $defaults = array(
+	protected $defaults = [
 		'up' => [
 			'sup'
 		],
-	);
+	];
 
 
 	public function run()

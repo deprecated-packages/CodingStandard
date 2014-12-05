@@ -6,9 +6,9 @@ namespace SomeNamespace;
 class SomeClass
 {
 
-	protected $defaults = array(
+	protected $defaults = [
 		'up' => TRUE  # or "FALSE"
-	);
+	];
 
 
 	public function run()

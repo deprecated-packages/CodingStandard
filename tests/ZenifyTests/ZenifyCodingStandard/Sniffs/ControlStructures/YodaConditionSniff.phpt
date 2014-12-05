@@ -35,4 +35,4 @@ class YodaConditionSniffTest extends TestCase
 }
 
 
-run(new YodaConditionSniffTest);
+(new YodaConditionSniffTest)->run();

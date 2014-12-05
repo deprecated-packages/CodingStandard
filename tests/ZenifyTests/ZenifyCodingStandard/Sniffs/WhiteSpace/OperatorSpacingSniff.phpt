@@ -43,4 +43,4 @@ class OperatorSpacingSniffTest extends TestCase
 }
 
 
-run(new OperatorSpacingSniffTest);
+(new OperatorSpacingSniffTest)->run();

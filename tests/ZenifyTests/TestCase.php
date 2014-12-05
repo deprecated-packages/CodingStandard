@@ -16,7 +16,6 @@ class TestCase extends Tester\TestCase
 {
 
 	const RULESET_ZENIFY = '/ZenifyCodingStandard/code-sniffer-ruleset.xml';
-	const RULESET_MIKULAS = '/../vendor/mikulas/code-sniffs/cs/ruleset.xml';
 
 
 	/**
@@ -42,8 +41,6 @@ class TestCase extends Tester\TestCase
 			$cliCommand .= ' --sniffs=' . $sniff;
 		}
 
-		var_dump($cliCommand);
-
 		exec($cliCommand, $output);
 		$data = json_decode(implode($output));
 
@@ -51,9 +48,9 @@ class TestCase extends Tester\TestCase
 			throw new \Exception('Cli "' . $cliCommand . '" failed');
 		}
 
-		$result = array(
+		$result = [
 			'errors' => $this->getAllErrors($data)
-		);
+		];
 		return $result;
 	}
 
@@ -75,7 +72,7 @@ class TestCase extends Tester\TestCase
 	 */
 	private function getAllErrors(StdClass $data)
 	{
-		$errors = array();
+		$errors = [];
 		foreach ($data->files as $file) {
 			foreach ($file->messages as $message) {
 				$errors[] = $message;
