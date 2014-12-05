@@ -53,7 +53,7 @@ class OperatorSpacingSniff implements PHP_CodeSniffer_Sniff
 			PHP_CodeSniffer_Tokens::$comparisonTokens,
 			PHP_CodeSniffer_Tokens::$operators,
 			PHP_CodeSniffer_Tokens::$assignmentTokens,
-			array(T_INLINE_THEN, T_INLINE_ELSE)
+			[T_INLINE_THEN, T_INLINE_ELSE]
 		);
 
 		return $tokens;
@@ -81,9 +81,9 @@ class OperatorSpacingSniff implements PHP_CodeSniffer_Sniff
 
 		if ( ! $isSpaceBefore || ! $isSpaceAfter || $isNewlineAfter) {
 			$error = 'Operator "%s" should be surrounded by spaces or on new line.';
-			$data = array(
+			$data = [
 				$this->tokens[$position]['content']
-			);
+			];
 			$file->addError($error, $position, '', $data);
 		}
 	}
@@ -201,7 +201,7 @@ class OperatorSpacingSniff implements PHP_CodeSniffer_Sniff
 
 			// A list of tokens that indicate that the token is not
 			// part of an arithmetic operation.
-			$invalidTokens = array(
+			$invalidTokens = [
 				T_COMMA => TRUE,
 				T_OPEN_PARENTHESIS => TRUE,
 				T_OPEN_SQUARE_BRACKET => TRUE,
@@ -210,7 +210,7 @@ class OperatorSpacingSniff implements PHP_CodeSniffer_Sniff
 				T_INLINE_THEN => TRUE,
 				T_INLINE_ELSE => TRUE,
 				T_CASE => TRUE
-			);
+			];
 
 			if (isset($invalidTokens[$this->tokens[$prev]['code']]) === TRUE) {
 				// Just trying to use a negative value; eg. myFunction($var, -2).

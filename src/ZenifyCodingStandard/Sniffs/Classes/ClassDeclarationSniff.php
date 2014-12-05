@@ -59,11 +59,11 @@ class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSniff
 
 		if ($emptyLinesCount !== $this->emptyLinesAfterOpeningBrace) {
 			$error = 'Opening brace for the %s should be followed by %s empty line(s); %s found.';
-			$data = array(
+			$data = [
 				$tokens[$position]['content'],
 				$this->emptyLinesAfterOpeningBrace,
 				$emptyLinesCount,
-			);
+			];
 			$file->addError($error, $openingBracePosition, 'OpenBraceFollowedByEmptyLines', $data);
 		}
 	}
@@ -81,11 +81,11 @@ class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSniff
 
 		if ($emptyLines !== $this->emptyLinesBeforeClosingBrace) {
 			$error = 'Closing brace for the %s should be preceded by %s empty line(s); %s found.';
-			$data = array(
+			$data = [
 				$tokens[$position]['content'],
 				$this->emptyLinesBeforeClosingBrace,
 				$emptyLines
-			);
+			];
 			$file->addError($error, $closeBracePosition, 'CloseBracePrecededByEmptyLines', $data);
 		}
 	}

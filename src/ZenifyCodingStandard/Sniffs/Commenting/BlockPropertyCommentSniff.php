@@ -23,7 +23,7 @@ class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function register()
 	{
-		return array(T_DOC_COMMENT);
+		return [T_DOC_COMMENT];
 	}
 
 
@@ -53,7 +53,7 @@ class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 	 */
 	private function isPropertyOrMethodComment(PHP_CodeSniffer_File $file, $position)
 	{
-		$nextPropertyOrMethodPosition = $file->findNext(array(T_VARIABLE, T_FUNCTION), $position + 1);
+		$nextPropertyOrMethodPosition = $file->findNext([T_VARIABLE, T_FUNCTION], $position + 1);
 		$tokens = $file->getTokens();
 
 		if ($nextPropertyOrMethodPosition && $tokens[$nextPropertyOrMethodPosition]['code'] !== T_FUNCTION) {

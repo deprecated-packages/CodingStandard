@@ -29,7 +29,7 @@ class PropertiesMethodsMutualSpacingSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function register()
 	{
-		return array(T_VARIABLE);
+		return [T_VARIABLE];
 	}
 
 
@@ -51,16 +51,16 @@ class PropertiesMethodsMutualSpacingSniff implements PHP_CodeSniffer_Sniff
 		}
 
 		$tokens = $file->getTokens();
-		$next = $file->findNext(array(T_DOC_COMMENT, T_FUNCTION), $position);
+		$next = $file->findNext([T_DOC_COMMENT, T_FUNCTION], $position);
 
 		$endOfProperty = $this->getEndOfProperty($file, $position);
 		$blankLines = $tokens[$next]['line'] - $tokens[$endOfProperty]['line'] - 1;
 		if ($blankLines !== $this->blankLinesInBetween) {
 			$error = 'Between properties and methods should be %s empty line(s); %s found.';
-			$data = array(
+			$data = [
 				$this->blankLinesInBetween,
 				$blankLines
-			);
+			];
 			$file->addError($error, $position, NULL, $data);
 		}
 	}
@@ -78,7 +78,7 @@ class PropertiesMethodsMutualSpacingSniff implements PHP_CodeSniffer_Sniff
 		}
 
 		$tokens = $file->getTokens();
-		$next = $file->findNext(array(T_VARIABLE, T_FUNCTION), $position + 1);
+		$next = $file->findNext([T_VARIABLE, T_FUNCTION], $position + 1);
 		if ($tokens[$next]['code'] === T_VARIABLE) {
 			return FALSE;
 		}

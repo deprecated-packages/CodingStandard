@@ -46,7 +46,7 @@ class BoolSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function register()
 	{
-		return array(T_DOC_COMMENT);
+		return [T_DOC_COMMENT];
 	}
 
 
@@ -67,7 +67,7 @@ class BoolSniff implements PHP_CodeSniffer_Sniff
 			$booleanName = $content[2];
 
 			if ($this->hasCorrectForm($booleanName) === FALSE) {
-				$data = array($this->preferedName, $booleanName);
+				$data = [$this->preferedName, $booleanName];
 				$file->addError(self::MESSAGE_ERROR, $position, '', $data);
 			}
 		}
@@ -80,7 +80,7 @@ class BoolSniff implements PHP_CodeSniffer_Sniff
 	 */
 	private function isBoolNameCommentPart($commentPart)
 	{
-		$prefixes = array('@return', '@param', '@var');
+		$prefixes = ['@return', '@param', '@var'];
 		foreach ($prefixes as $prefix) {
 			$seek = $prefix . ' ' . $this->preferedName;
 			if (strpos($commentPart, $seek) !== FALSE) {

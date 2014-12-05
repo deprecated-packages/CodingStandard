@@ -29,7 +29,7 @@ class InBetweenExceptionSpacingSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function register()
 	{
-		return array(T_CLASS, T_INTERFACE, T_TRAIT);
+		return [T_CLASS, T_INTERFACE, T_TRAIT];
 	}
 
 
@@ -52,7 +52,7 @@ class InBetweenExceptionSpacingSniff implements PHP_CodeSniffer_Sniff
 
 		if ($blankLines !== $this->blankLinesBetweenClasses) {
 			$error = 'Classes/exceptions should have %s empty line(s) between themselves; %s found';
-			$data = array($this->blankLinesBetweenClasses, $blankLines);
+			$data = [$this->blankLinesBetweenClasses, $blankLines];
 			$file->addError($error, $scopeCloserPosition, '', $data);
 		}
 	}
@@ -67,7 +67,7 @@ class InBetweenExceptionSpacingSniff implements PHP_CodeSniffer_Sniff
 	{
 		$tokens = $file->getTokens();
 		$nextClass = $file->findNext($this->register(), $position + 1);
-		$nextClassComment = $file->findNext(array(T_DOC_COMMENT), $position + 1);
+		$nextClassComment = $file->findNext([T_DOC_COMMENT], $position + 1);
 
 		$nextPosition = $this->getMinIfNumbers($nextClass, $nextClassComment);
 		if ($nextPosition) {

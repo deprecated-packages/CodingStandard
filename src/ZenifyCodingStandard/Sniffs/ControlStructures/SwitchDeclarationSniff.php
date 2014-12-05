@@ -65,7 +65,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 		$caseCount = 0;
 		$foundDefault = FALSE;
 
-		$lookFor = array(T_CASE, T_DEFAULT, T_SWITCH);
+		$lookFor = [T_CASE, T_DEFAULT, T_SWITCH];
 		while (($nextCase = $file->findNext($lookFor, ($nextCase + 1), $switch['scope_closer'])) !== FALSE) {
 			// Skip nested SWITCH statements; they are handled on their own.
 			if ($tokens[$nextCase]['code'] === T_SWITCH) {
@@ -90,7 +90,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 
 			$nextBreak = $tokens[$nextCase]['scope_closer'];
 
-			$allowedTokens = array(T_BREAK, T_RETURN, T_CONTINUE, T_THROW, T_EXIT);
+			$allowedTokens = [T_BREAK, T_RETURN, T_CONTINUE, T_THROW, T_EXIT];
 			if (in_array($tokens[$nextBreak]['code'], $allowedTokens)) {
 				$this->processSwitchStructureToken($nextBreak, $nextCase, $caseAlignment, $type, $opener);
 
@@ -101,7 +101,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 		}
 
 		$this->ensureDefaultIsPresent($foundDefault);
-		$this->ensureClosingBraceAligment($switch);
+		$this->ensureClosingBraceAlignment($switch);
 	}
 
 
@@ -312,10 +312,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 	}
 
 
-	/**
-	 * @param array $switch
-	 */
-	private function ensureClosingBraceAligment($switch)
+	private function ensureClosingBraceAlignment(array $switch)
 	{
 		if ($this->tokens[$switch['scope_closer']]['column'] !== $switch['column']) {
 			$error = 'Closing brace of SWITCH statement must be aligned with SWITCH keyword';

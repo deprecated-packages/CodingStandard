@@ -36,7 +36,7 @@ class YodaConditionSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function register()
 	{
-		return array(
+		return [
 			T_IS_IDENTICAL,
 			T_IS_NOT_IDENTICAL,
 			T_IS_EQUAL,
@@ -45,7 +45,7 @@ class YodaConditionSniff implements PHP_CodeSniffer_Sniff
 			T_LESS_THAN,
 			T_IS_GREATER_OR_EQUAL,
 			T_IS_SMALLER_OR_EQUAL
-		);
+		];
 	}
 
 
@@ -87,7 +87,7 @@ class YodaConditionSniff implements PHP_CodeSniffer_Sniff
 	 */
 	private function isExpressionToken(array $token)
 	{
-		if (in_array($token['code'], array(T_MINUS, T_NULL, T_FALSE, T_TRUE, T_LNUMBER, T_CONSTANT_ENCAPSED_STRING))) {
+		if (in_array($token['code'], [T_MINUS, T_NULL, T_FALSE, T_TRUE, T_LNUMBER, T_CONSTANT_ENCAPSED_STRING])) {
 			return TRUE;
 		}
 		return FALSE;

@@ -48,7 +48,7 @@ class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_FunctionSpacin
 	 */
 	public function register()
 	{
-		return array(T_FUNCTION);
+		return [T_FUNCTION];
 	}
 
 
@@ -72,7 +72,7 @@ class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_FunctionSpacin
 
 			} else {
 				$error = 'Method should have %s empty line(s) after itself, %s found.';
-				$data = array($this->blankLinesBetweenMethods, $blankLinesCountAfterFunction);
+				$data = [$this->blankLinesBetweenMethods, $blankLinesCountAfterFunction];
 				$this->file->addError($error, $position, '', $data);
 			}
 		}

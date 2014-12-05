@@ -28,7 +28,7 @@ class IfElseTryCatchFinallySniff implements \PHP_CodeSniffer_Sniff
 	 */
 	public function register()
 	{
-		return array(T_ELSE, T_ELSEIF, T_CATCH, T_FINALLY);
+		return [T_ELSE, T_ELSEIF, T_CATCH, T_FINALLY];
 	}
 
 
@@ -48,11 +48,11 @@ class IfElseTryCatchFinallySniff implements \PHP_CodeSniffer_Sniff
 
 		$error = '%s statement should be preceded by %s empty line(s); %s found';
 		$tokens = $file->getTokens();
-		$data = array(
+		$data = [
 			ucfirst($tokens[$position]['content']),
 			$this->blankLinesBeforeStatement,
 			$diff
-		);
+		];
 		$file->addError($error, $position, '', $data);
 	}
 

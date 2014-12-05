@@ -23,7 +23,7 @@ class OneClassPerFileApartExceptionsSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function register()
 	{
-		return array(T_CLASS, T_INTERFACE, T_TRAIT);
+		return [T_CLASS, T_INTERFACE, T_TRAIT];
 	}
 
 
@@ -34,7 +34,7 @@ class OneClassPerFileApartExceptionsSniff implements PHP_CodeSniffer_Sniff
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
 		$tokens = $file->getTokens();
-		$errorData = array(strtolower($tokens[$position]['content']));
+		$errorData = [strtolower($tokens[$position]['content'])];
 
 		$nextClass = $file->findNext($this->register(), ($tokens[$position]['scope_closer'] + 1));
 		if ($nextClass !== FALSE) {

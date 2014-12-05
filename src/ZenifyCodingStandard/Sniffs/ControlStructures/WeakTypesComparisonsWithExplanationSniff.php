@@ -24,10 +24,10 @@ class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * @var array
 	 */
-	private $weakToStrong = array(
+	private $weakToStrong = [
 		T_IS_EQUAL => '===',
 		T_IS_NOT_EQUAL => '!=='
-	);
+	];
 
 
 	/**
@@ -35,7 +35,7 @@ class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function register()
 	{
-		return array(T_IS_EQUAL, T_IS_NOT_EQUAL);
+		return [T_IS_EQUAL, T_IS_NOT_EQUAL];
 	}
 
 
@@ -63,10 +63,10 @@ class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_Sniff
 
 		if ( ! $hasComment) {
 			$error = '"%s" should be used instead of "%s", or commented with its purpose';
-			$data = array(
+			$data = [
 				$this->getStrongTypeToWeakType($tokens[$position]['code']),
 				$tokens[$position]['content']
-			);
+			];
 			$file->addError($error, $position, '', $data);
 		}
 	}

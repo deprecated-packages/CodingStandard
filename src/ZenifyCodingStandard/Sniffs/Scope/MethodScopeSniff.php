@@ -22,7 +22,7 @@ class MethodScopeSniff extends PHP_CodeSniffer_Standards_AbstractScopeSniff
 
 	public function __construct()
 	{
-		parent::__construct(array(T_CLASS, T_INTERFACE), array(T_FUNCTION));
+		parent::__construct([T_CLASS, T_INTERFACE], [T_FUNCTION]);
 	}
 
 
@@ -48,14 +48,14 @@ class MethodScopeSniff extends PHP_CodeSniffer_Standards_AbstractScopeSniff
 		if ($isClass) {
 			if (($modifier === FALSE) || ($tokens[$modifier]['line'] !== $tokens[$position]['line'])) {
 				$error = 'Function "%s" should have scope modifier.';
-				$data = array($methodName);
+				$data = [$methodName];
 				$file->addError($error, $position, '', $data);
 			}
 
 		} else {
 			if ($modifier !== FALSE) {
 				$error = 'Interface function "%s" should not have scope modifier.';
-				$data = array($methodName);
+				$data = [$methodName];
 				$file->addError($error, $position, '', $data);
 			}
 		}

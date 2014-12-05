@@ -24,7 +24,7 @@ class NewClassSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function register()
 	{
-		return array(T_NEW);
+		return [T_NEW];
 	}
 
 

@@ -34,7 +34,7 @@ class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function register()
 	{
-		return array(T_NAMESPACE);
+		return [T_NAMESPACE];
 	}
 
 
@@ -54,20 +54,20 @@ class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 		if ($linesToNextUse) {
 			if ($linesToNextUse !== $this->emptyLinesBeforeUseStatement) {
 				$error = 'There should be %s empty line(s) from namespace to use statement; %s found';
-				$data = array(
+				$data = [
 					$this->emptyLinesBeforeUseStatement,
 					$linesToNextUse
-				);
+				];
 				$file->addError($error, $position, 'BlankLineAfter', $data);
 			}
 
 		} elseif ($linesToNextClass) {
 			if ($linesToNextClass !== $this->emptyLinesAfterNamespace) {
 				$error = 'There should be %s empty line(s) after the namespace declaration; %s found';
-				$data = array(
+				$data = [
 					$this->emptyLinesAfterNamespace,
 					$linesToNextClass
-				);
+				];
 				$file->addError($error, $position, 'BlankLineAfter', $data);
 			}
 		}
@@ -100,7 +100,7 @@ class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 	private function getLinesToNextClass(PHP_CodeSniffer_File $file, $position)
 	{
 		$tokens = $file->getTokens();
-		$nextClass = $file->findNext(array(T_CLASS, T_INTERFACE, T_TRAIT, T_DOC_COMMENT), $position, NULL, FALSE);
+		$nextClass = $file->findNext([T_CLASS, T_INTERFACE, T_TRAIT, T_DOC_COMMENT], $position, NULL, FALSE);
 		if ($tokens[$nextClass]['line'] === 1) {
 			return FALSE;
 

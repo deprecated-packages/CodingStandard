@@ -22,7 +22,7 @@ class ConcatOperatorSniff implements \PHP_CodeSniffer_Sniff
 	 */
 	public function register()
 	{
-		return array(T_STRING_CONCAT);
+		return [T_STRING_CONCAT];
 	}
 
 

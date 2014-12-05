@@ -36,7 +36,7 @@ class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function register()
 	{
-		return array(T_FUNCTION);
+		return [T_FUNCTION];
 	}
 
 
@@ -104,7 +104,7 @@ class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 			return FALSE;
 		}
 
-		$comment = array();
+		$comment = [];
 		$currentPosition = $this->file->findPrevious(T_DOC_COMMENT, $this->position);
 		$tokens = $this->file->getTokens();
 		while ($tokens[$currentPosition]['code'] === T_DOC_COMMENT) {

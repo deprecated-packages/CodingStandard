@@ -8,6 +8,7 @@
 namespace ZenifyCodingStandard\Sniffs\Namespaces;
 
 use PHP_CodeSniffer_File;
+use PSR2_Sniffs_Namespaces_UseDeclarationSniff;
 
 
 /**
@@ -16,7 +17,7 @@ use PHP_CodeSniffer_File;
  * - USE declarations must go after the first namespace declaration
  * - There must be X blank line(s) after the last USE statement (2 by default) - // todo: move default to config!
  */
-class UseDeclarationSniff extends \PSR2_Sniffs_Namespaces_UseDeclarationSniff
+class UseDeclarationSniff extends PSR2_Sniffs_Namespaces_UseDeclarationSniff
 {
 
 	/**
@@ -30,7 +31,7 @@ class UseDeclarationSniff extends \PSR2_Sniffs_Namespaces_UseDeclarationSniff
 	 */
 	public function register()
 	{
-		return array(T_USE);
+		return [T_USE];
 	}
 
 
@@ -86,7 +87,7 @@ class UseDeclarationSniff extends \PSR2_Sniffs_Namespaces_UseDeclarationSniff
 		}
 
 		// Ignore USE keywords for traits.
-		if ($file->hasCondition($position, array(T_CLASS, T_TRAIT)) === TRUE) {
+		if ($file->hasCondition($position, [T_CLASS, T_TRAIT]) === TRUE) {
 			return TRUE;
 		}
 
@@ -115,7 +116,7 @@ class UseDeclarationSniff extends \PSR2_Sniffs_Namespaces_UseDeclarationSniff
 	private function checkIfOneUseDeclarationPerStatement(PHP_CodeSniffer_File $file, $position)
 	{
 		$tokens = $file->getTokens();
-		$next = $file->findNext(array(T_COMMA, T_SEMICOLON), ($position + 1));
+		$next = $file->findNext([T_COMMA, T_SEMICOLON], ($position + 1));
 		if ($tokens[$next]['code'] === T_COMMA) {
 			$error = 'There must be one USE keyword per declaration';
 			$file->addError($error, $position, 'MultipleDeclarations');
@@ -156,7 +157,7 @@ class UseDeclarationSniff extends \PSR2_Sniffs_Namespaces_UseDeclarationSniff
 			}
 
 			$error = 'There must be %s blank line(s) after the last USE statement; %s found.';
-			$data = array($this->blankLinesAfterUseStatement, $diff);
+			$data = [$this->blankLinesAfterUseStatement, $diff];
 			$file->addError($error, $position, 'SpaceAfterLastUse', $data);
 		}
 	}
