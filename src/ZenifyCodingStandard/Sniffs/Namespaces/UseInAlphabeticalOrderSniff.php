@@ -13,7 +13,7 @@ use PHP_CodeSniffer_Sniff;
 
 /**
  * Rules:
- * - Use statements should be in alphabetical order.
+ * - Use statements should be in alphabetical order
  *
  * @author Mikulas Dite <mikulas@dite.pro>
  */
@@ -50,13 +50,6 @@ class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
 		if ($isClosure) {
 			return;
 		}
-
-//		// Only one USE declaration allowed per statement.
-//		$next = $file->findNext([T_COMMA, T_SEMICOLON], ($position + 1));
-//		if ($tokens[$next]['code'] === T_COMMA) {
-//			$error = 'There must be one USE keyword per declaration';
-//			$file->addError($error, $position);
-//		}
 
 		$uses = [];
 		$next = $position;

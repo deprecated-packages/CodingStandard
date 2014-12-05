@@ -7,10 +7,12 @@ Rules uses default numeric parameters (some can be changed to match your needs).
 - [1 Classes](#1-classes)
 - [2 Commenting](#2-commenting)
 - [3 Control Structures](#3-control-structures) 
-- [4 Namespaces](#4-namespaces) 
-- [5 Naming](#5-naming) 
-- [6 Scope](#6-scope) 
-- [7 WhiteSpace](#7-whitespace) 
+- [4 Debug](#4-debug) 
+- [5 Namespaces](#5-namespaces) 
+- [6 Naming](#6-naming) 
+- [7 PHP](#7-php) 
+- [8 Scope](#8-scope) 
+- [9 WhiteSpace](#9-whitespace) 
 
 ---
 
@@ -247,10 +249,24 @@ if ($i == TRUE) {
 ```
 
 
-## 4 Namespaces
+## 4 Debug
 
 
-### 4.1 NamespaceDeclarationSniff
+## 4.1 DebugFunctionCallSniff
+
+- Debug functions should not be left in the code
+
+*Wrong*
+
+```php
+dump('It works');
+```
+
+
+## 5 Namespaces
+
+
+### 5.1 NamespaceDeclarationSniff
 
 - There must be 2 empty lines after the namespace declaration or 1 empty line followed by use statement.
 
@@ -307,7 +323,7 @@ class SomeClass
 ```
 
 
-### 4.2 UseDeclarationSniff 
+### 5.2 UseDeclarationSniff 
 
 - There must be one USE keyword per declaration
 - There must be 2 blank lines after the last USE statement
@@ -341,10 +357,33 @@ class SomeClass
 ```
 
 
-## 5 Naming
+### 5.3 UseInAlphabeticalOrderSniff
+ 
+-  Use statements should be in alphabetical order
 
 
-### 5.1 BoolSniff
+*Correct*
+
+```php
+use A;
+use B;
+use C;
+```
+
+
+*Wrong*
+
+```php
+use C;
+use A;
+use B;
+```
+
+
+## 6 Naming
+
+
+### 6.1 BoolSniff
 
 - Bool operator should be spelled "bool"
 
@@ -364,10 +403,30 @@ public $isCorrect;
 ```
 
 
-## 6 Scope
+## 7 PHP
 
 
-### 6.1 MethodScopeSniff
+### 7.1 ShortArraySyntaxSniff
+
+- Short array syntax should be used, instead of traditional one.
+
+*Correct*
+
+```php
+private $settings = [];
+```
+
+*Wrong*
+
+```php
+private $settings = array();
+```
+
+
+## 8 Scope
+
+
+### 8.1 MethodScopeSniff
 
 - Function should have scope modifier
 - Interface function should not have scope modifier
@@ -421,10 +480,10 @@ interface SomeInterface
 ```
 
 
-## 7 WhiteSpace
+## 9 WhiteSpace
  
 
-### 7.1 ConcatOperatorSniff
+### 9.1 ConcatOperatorSniff
 
 - ConcatOperator (.) should be surrounded by spaces
 
@@ -441,7 +500,7 @@ $s = 'Ze'.'n';
 ```
 
 
-### 7.2 ExclamationMarkSniff
+### 9.2 ExclamationMarkSniff
 
 - Not operator (!) should be surrounded by spaces
 
@@ -462,7 +521,7 @@ if (!$s) {
 ```
 
 
-### 7.3 IfElseTryCatchFinallySniff
+### 9.3 IfElseTryCatchFinallySniff
 
 - Else/elseif/catch/finally statement should be preceded by 1 empty line
 
@@ -490,7 +549,7 @@ try (1 === 2) {
 ```
 
 
-### 7.4 InBetweenExceptionSpacingSniff
+### 9.4 InBetweenExceptionSpacingSniff
 
 - Class followed by exception or exceptions should have 2 empty lines between themselves
 
@@ -536,7 +595,7 @@ class SomeOtherException extends \Exception
 ```
 
 
-### 7.5 InBetweenMethodSpacingSniff
+### 9.5 InBetweenMethodSpacingSniff
 
 - Method should have 2 empty lines after itself
 
@@ -576,7 +635,7 @@ class SomeClass
 ```
 
 
-### 7.6 PropertiesMethodsMutualSpacingSniff
+### 9.6 PropertiesMethodsMutualSpacingSniff
 
 - Between properties and methods should be 2 empty lines
 
@@ -612,7 +671,7 @@ class SomeClass
 ```
 
 
-### 7.7 OperatorSpacingSniff
+### 9.7 OperatorSpacingSniff
 
 - Operator should be surrounded by spaces or on new line
 - Exceptions: Function's defaults, ?:, +=, &$var and similar
