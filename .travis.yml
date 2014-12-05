@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 5.3.3
   - 5.4
   - 5.5
   - 5.6
@@ -11,27 +10,24 @@ matrix:
   allow_failures:
     - php: hhvm
 
-  exclude:
-    - php: hhvm
-      env: PHP_BIN=php-cgi
-
 before_script:
   - composer self-update
-  - composer install --no-interaction --prefer-source --dev
+  - composer install --no-interaction --prefer-source
   - vendor/bin/parallel-lint -e php,phpt --exclude vendor .
+
+script:
+  - vendor/bin/tester -c=tests/php.ini-unix tests
   # php copy/paste detector
   - vendor/bin/phpcpd src
   - vendor/bin/phpcpd tests
   # php code-sniffer
   - vendor/bin/phpcs src --standard=src/ZenifyCodingStandard/code-sniffer-ruleset.xml
-  - vendor/bin/phpcs src --standard=vendor/mikulas/code-sniffs/cs/ruleset.xml --sniffs=cs.Debug.DebugFunctionCall,cs.Formatting.UseInAlphabeticalOrder,cs.Formatting.UseWithoutStartingSeparator
+#  - vendor/bin/phpcs src --standard=vendor/mikulas/code-sniffs/cs/ruleset.xml --sniffs=cs.Debug.DebugFunctionCall,cs.Formatting.UseInAlphabeticalOrder,cs.Formatting.UseWithoutStartingSeparator
   - vendor/bin/phpcs tests --extensions=phpt --standard=src/ZenifyCodingStandard/code-sniffer-ruleset.xml
-  - vendor/bin/phpcs tests --extensions=phpt --standard=vendor/mikulas/code-sniffs/cs/ruleset.xml --sniffs=cs.Debug.DebugFunctionCall,cs.Formatting.UseInAlphabeticalOrder,cs.Formatting.UseWithoutStartingSeparator
+#  - vendor/bin/phpcs tests --extensions=phpt --standard=vendor/mikulas/code-sniffs/cs/ruleset.xml --sniffs=cs.Debug.DebugFunctionCall,cs.Formatting.UseInAlphabeticalOrder,cs.Formatting.UseWithoutStartingSeparator
   # php mess-detector
   - vendor/bin/phpmd src text src/ZenifyCodingStandard/mess-detector-ruleset.xml
 
-script:
-  - vendor/bin/tester -c=tests/php.ini-unix tests
 
 after_failure:
   - 'for i in $(find ./tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done'
