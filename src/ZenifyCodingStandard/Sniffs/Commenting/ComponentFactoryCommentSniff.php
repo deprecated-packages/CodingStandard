@@ -80,7 +80,6 @@ class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-
 	/**
 	 * @return bool|int
 	 */

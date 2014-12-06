@@ -11,7 +11,6 @@ use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
 
-
 /**
  * Rules:
  * - Same as @see Squiz_Sniffs_ControlStructures_ControlSignatureSniff
