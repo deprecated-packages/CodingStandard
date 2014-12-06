@@ -1,4 +1,4 @@
-<?php
+<?php // lint >= 5.4
 
 $someClass = new SomeNamespace\SomeClass;
 
@@ -15,6 +15,6 @@ $this->em->getDao(Basket::getClassName())->save($basket);
 
 new Nette\Security\Identity($user->getId(), $user->getRole()->getName());
 
-$entity = (new DummyEntity, $form->getEntity());
+(new DummyEntity, $form->getEntity());
 
 (new OperatorSpacingSniffTest)->run();
