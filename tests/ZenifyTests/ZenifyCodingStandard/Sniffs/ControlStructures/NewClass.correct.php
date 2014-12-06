@@ -13,4 +13,8 @@ $configurator = new Nette\Configurator;
 $basket->setDeletedAt(new \DateTime);
 $this->em->getDao(Basket::getClassName())->save($basket);
 
-return new Nette\Security\Identity($user->getId(), $user->getRole()->getName());
+new Nette\Security\Identity($user->getId(), $user->getRole()->getName());
+
+$entity = (new DummyEntity, $form->getEntity());
+
+(new OperatorSpacingSniffTest)->run();

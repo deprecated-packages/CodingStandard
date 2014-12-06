@@ -51,11 +51,9 @@ class NewClassSniff implements PHP_CodeSniffer_Sniff
 		$tokens = $file->getTokens();
 		$nextPosition = $position;
 
-		// find end of class instantiation (;) or first (
 		do {
 			$nextPosition++;
-
-		} while ($tokens[$nextPosition]['content'] !== ';' && $tokens[$nextPosition]['content'] !== '(');
+		} while ( ! $this->doesContentContains($tokens[$nextPosition]['content'], [';', '(', ',', ')']));
 
 		if ($tokens[$nextPosition]['content'] === '(') {
 			if ($tokens[$nextPosition + 1]['content'] === ')') {
@@ -63,6 +61,22 @@ class NewClassSniff implements PHP_CodeSniffer_Sniff
 			}
 		}
 
+		return FALSE;
+	}
+
+
+	/**
+	 * @param string $content
+	 * @param array $chars
+	 * @return bool
+	 */
+	private function doesContentContains($content, array $chars)
+	{
+		foreach ($chars as $char) {
+			if ($content === $char) {
+				return TRUE;
+			}
+		}
 		return FALSE;
 	}
 
