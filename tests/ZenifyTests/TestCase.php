@@ -20,26 +20,21 @@ class TestCase extends Tester\TestCase
 
 	/**
 	 * @param string $source
-	 * @param string $ruleset
-	 * @param string $sniff
-	 * @throws \Exception
 	 * @return int
 	 */
-	protected function runPhpCsForFile($source, $ruleset = self::RULESET_ZENIFY, $sniff = NULL)
+	protected function runPhpCsForFile($source)
 	{
 		if ( ! file_exists($source)) {
 			throw new \Exception("File $source was not found");
 		}
 
-		$rulesetPath = SRC_DIR . $ruleset;
+		$rulesetPath = SRC_DIR . self::RULESET_ZENIFY;
 		if ( ! file_exists($rulesetPath)) {
 			throw new \Exception("Standard file $rulesetPath was not found");
 		}
 
-		$cliCommand = PHPCS_BIN . ' ' . $source . ' --standard=' . $rulesetPath . ' --report=json';
-		if ($sniff) {
-			$cliCommand .= ' --sniffs=' . $sniff;
-		}
+		$cliCommand = PHPCS_BIN . ' ' . $source . ' -s --standard=' . $rulesetPath . ' --report=json';
+		echo $cliCommand . PHP_EOL; // show failed command in case of test failure
 
 		exec($cliCommand, $output);
 		$data = json_decode(implode($output));
@@ -48,10 +43,7 @@ class TestCase extends Tester\TestCase
 			throw new \Exception('Cli "' . $cliCommand . '" failed');
 		}
 
-		$result = [
-			'errors' => $this->getAllErrors($data)
-		];
-		return $result;
+		return ['errors' => $this->getAllErrors($data)];
 	}
 
 
@@ -60,7 +52,7 @@ class TestCase extends Tester\TestCase
 	 * @param $expectedMessage
 	 * @param $expectedSource
 	 */
-	protected function validateErrorMessageAndSource(\StdClass $error, $expectedMessage, $expectedSource)
+	protected function validateErrorMessageAndSource(StdClass $error, $expectedMessage, $expectedSource)
 	{
 		Assert::same($expectedMessage, $error->message);
 		Assert::same($expectedSource, $error->source);

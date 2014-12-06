@@ -27,7 +27,7 @@ class DebugFunctionCallSniff extends Generic_Sniffs_PHP_ForbiddenFunctionsSniff
 	 *
 	 * @var array(string => string|NULL)
 	 */
-	protected $forbiddenFunctions = [
+	public $forbiddenFunctions = [
 		'd' => NULL,
 		'dd' => NULL,
 		'dump' => NULL,

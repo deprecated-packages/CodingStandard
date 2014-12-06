@@ -64,7 +64,7 @@ class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
 				}
 			}
 
-			 // Check for class scoping on use. Traits should be ordered independently.
+			// Check for class scoping on use. Traits should be ordered independently.
 			$scope = 0;
 			if ( ! empty($token['conditions'])) {
 				$scope = key($token['conditions']);
@@ -80,8 +80,19 @@ class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
 		// Prevent multiple uses in the same file from entering
 		$this->processedFiles[$file->getFilename()] = TRUE;
 
-		$ordered = TRUE;
-		$failedIndex = NULL;
+		$failedIndex = $this->getUsesIncorrectOrderPosition($uses);
+		if ($failedIndex) {
+			$error = 'Use statements should be in alphabetical order';
+			$file->addError($error, $failedIndex);
+		}
+	}
+
+
+	/**
+	 * @return int|NULL
+	 */
+	private function getUsesIncorrectOrderPosition(array $uses)
+	{
 		foreach ($uses as $scope => $used) {
 			$defined = $sorted = array_keys($used);
 
@@ -93,18 +104,11 @@ class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
 
 			foreach ($defined as $i => $name) {
 				if ($name !== $sorted[$i]) {
-					if ($failedIndex === NULL) {
-						$failedIndex = $used[$name];
-					}
-					$ordered = FALSE;
+					return $used[$name];
 				}
 			}
 		}
-
-		if ( ! $ordered) {
-			$error = 'Use statements should be in alphabetical order';
-			$file->addError($error, $failedIndex);
-		}
+		return NULL;
 	}
 
 }

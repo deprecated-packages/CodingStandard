@@ -30,6 +30,11 @@ class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 	 */
 	private $file;
 
+	/**
+	 * @var array
+	 */
+	private $tokens;
+
 
 	/**
 	 * @return int[]
@@ -48,22 +53,20 @@ class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 	{
 		$this->file = $file;
 		$this->position = $position;
+		$this->tokens = $file->getTokens();
 
 		if ( ! $this->isComponentFactoryMethod()) {
 			return;
 		}
 
-		$methodComment = $this->getMethodComment();
-		if ( ! $methodComment) {
-			$file->addError('CreateComponent* method should have a doc comment', $position, '');
+		$commentEnd = $this->getCommentEnd();
+		if ( ! $this->hasMethodComment($commentEnd)) {
+			$file->addError('CreateComponent* method should have a doc comment', $position);
 			return;
 		}
 
-		if ($this->hasCommentReturnTag($methodComment) === FALSE) {
-			$error = 'CreateComponent* method should have a @return tag with type';
-			$file->addError($error, $position, '');
-			return;
-		}
+		$commentStart = $this->tokens[$commentEnd]['comment_opener'];
+		$this->processReturnTag($commentStart);
 	}
 
 
@@ -77,60 +80,51 @@ class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
+
 	/**
+	 * @return bool|int
+	 */
+	private function getCommentEnd()
+	{
+		return $this->file->findPrevious(T_WHITESPACE, ($this->position - 3), NULL, TRUE);
+	}
+
+
+	/**
+	 * @param int $position
 	 * @return bool
 	 */
-	private function hasCommentReturnTag(array $comment)
+	private function hasMethodComment($position)
 	{
-		foreach ($comment as $key => $commentPart) {
-			if (strpos($commentPart, '* @return') !== FALSE) {
-				$commentPart = trim($commentPart);
-				if (strlen($commentPart) > 10) { // min length of return tag with type
-					return TRUE;
-				}
-			}
+		if ($this->tokens[$position]['code'] === T_DOC_COMMENT_CLOSE_TAG) {
+			return TRUE;
 		}
-
 		return FALSE;
 	}
 
 
 	/**
-	 * @return bool|array
+	 * @param int $commentStartPosition
 	 */
-	private function getMethodComment()
+	private function processReturnTag($commentStartPosition)
 	{
-		if ($this->hasMethodComment() === FALSE) {
-			return FALSE;
-		}
-
-		$comment = [];
-		$currentPosition = $this->file->findPrevious(T_DOC_COMMENT, $this->position);
-		$tokens = $this->file->getTokens();
-		while ($tokens[$currentPosition]['code'] === T_DOC_COMMENT) {
-			$comment[] = $tokens[$currentPosition]['content'];
-			$currentPosition--;
-		}
-
-		return array_reverse($comment);
-	}
-
-
-	/**
-	 * @return bool
-	 */
-	private function hasMethodComment()
-	{
-		$tokens = $this->file->getTokens();
-		$docPosition = $this->file->findPrevious(T_DOC_COMMENT, $this->position);
-		if ($docPosition) {
-			$lineDiff = $tokens[$this->position]['line'] - $tokens[$docPosition]['line'];
-			if ($lineDiff === 1) {
-				return TRUE;
+		$return = NULL;
+		foreach ($this->tokens[$commentStartPosition]['comment_tags'] as $tag) {
+			if ($this->tokens[$tag]['content'] === '@return') {
+				$return = $tag;
 			}
 		}
+		if ($return !== NULL) {
+			$content = $this->tokens[($return + 2)]['content'];
+			if (empty($content) === TRUE || $this->tokens[($return + 2)]['code'] !== T_DOC_COMMENT_STRING) {
+				$error = 'Return tag should contain type';
+				$this->file->addError($error, $return);
+			}
 
-		return FALSE;
+		} else {
+			$error = 'CreateComponent* method should have a @return tag';
+			$this->file->addError($error, $this->tokens[$commentStartPosition]['comment_closer']);
+		}
 	}
 
 }

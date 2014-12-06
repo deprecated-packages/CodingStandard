@@ -26,7 +26,7 @@ class ComponentFactoryCommentSniffTest extends TestCase
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
-			'CreateComponent* method should have a @return tag with type',
+			'Return tag should contain type',
 			'ZenifyCodingStandard.Commenting.ComponentFactoryComment'
 		);
 
@@ -34,7 +34,7 @@ class ComponentFactoryCommentSniffTest extends TestCase
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
-			'CreateComponent* method should have a @return tag with type',
+			'CreateComponent* method should have a @return tag',
 			'ZenifyCodingStandard.Commenting.ComponentFactoryComment'
 		);
 	}

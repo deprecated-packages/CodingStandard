@@ -2,12 +2,14 @@
 
 namespace SomeNamespace;
 
+use SplFileInfo;
+
 
 class SomeClass
 {
 
 	/**
-	 * @return \SplFileInfo
+	 * @return SplFileInfo
 	 */
 	protected function createComponentStuffs()
 	{

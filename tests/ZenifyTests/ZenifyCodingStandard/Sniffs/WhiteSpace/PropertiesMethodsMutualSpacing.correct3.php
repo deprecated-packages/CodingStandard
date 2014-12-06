@@ -13,6 +13,9 @@ class SomeClass
 	];
 
 
+	/**
+	 * Some comment
+	 */
 	public function run()
 	{
 	}

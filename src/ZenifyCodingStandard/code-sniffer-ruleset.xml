@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <ruleset name="Zenify">
-    <descrition>Zenify selection from default sniffs</descrition>
+	<descrition>Zenify selection from default sniffs</descrition>
 
 	<!-- CodeAnalysis -->
 	<rule ref="Generic.CodeAnalysis.EmptyStatement"/>
@@ -28,11 +28,6 @@
 	<rule ref="Squiz.Classes.LowercaseClassKeywords"/>
 
 	<!-- ControlStructures -->
-	<rule ref="Squiz.ControlStructures.ControlSignature">
-		<properties>
-			<property name="ignoreComments" value="1"/>
-		</properties>
-	</rule>
 	<rule ref="Generic.ControlStructures.InlineControlStructure"/>
 	<rule ref="PEAR.ControlStructures.MultiLineCondition">
 		<properties>

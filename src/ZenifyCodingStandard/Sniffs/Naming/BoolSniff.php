@@ -26,11 +26,6 @@ class BoolSniff implements PHP_CodeSniffer_Sniff
 	public $preferedName = 'bool';
 
 	/**
-	 * @var int
-	 */
-	private $position;
-
-	/**
 	 * @var array
 	 */
 	private $tokens;
@@ -46,7 +41,7 @@ class BoolSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function register()
 	{
-		return [T_DOC_COMMENT];
+		return [T_DOC_COMMENT_OPEN_TAG];
 	}
 
 
@@ -57,33 +52,41 @@ class BoolSniff implements PHP_CodeSniffer_Sniff
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
 		$this->file = $file;
-		$this->position = $position;
 		$this->tokens = $file->getTokens();
 
-		$commentPart = $this->tokens[$position]['content'];
-		if ($this->isBoolNameCommentPart($commentPart)) {
-			$commentPart = trim($commentPart);
-			$content = explode(' ', $commentPart);
-			$booleanName = $content[2];
-
-			if ($this->hasCorrectForm($booleanName) === FALSE) {
-				$data = [$this->preferedName, $booleanName];
-				$file->addError(self::MESSAGE_ERROR, $position, '', $data);
+		for (; ! $this->isCommentCloseTagOnPosition($position); $position++) {
+			$token = $this->tokens[$position];
+			if ($this->isBoolNameInToken($token)) {
+				if ( ! $this->isCorrectFormInToken($token)) {
+					$content = explode(' ', $token['content']);
+					$content = $content[0];
+					$data = [$this->preferedName, $content];
+					$file->addError(self::MESSAGE_ERROR, $position, '', $data);
+				}
 			}
 		}
 	}
 
 
 	/**
-	 * @param string $commentPart
+	 * @param int $position
 	 * @return bool
 	 */
-	private function isBoolNameCommentPart($commentPart)
+	private function isCommentCloseTagOnPosition($position)
 	{
-		$prefixes = ['@return', '@param', '@var'];
-		foreach ($prefixes as $prefix) {
-			$seek = $prefix . ' ' . $this->preferedName;
-			if (strpos($commentPart, $seek) !== FALSE) {
+		$positionCode = $this->tokens[$position]['code'];
+		$closeTags = [T_DOC_COMMENT_CLOSE_TAG, T_DOC_COMMENT_CLOSE_TAG];
+		return in_array($positionCode, $closeTags);
+	}
+
+
+	/**
+	 * @return bool
+	 */
+	private function isBoolNameInToken(array $token)
+	{
+		foreach (['bool', 'boolean'] as $nameForm) {
+			if ($this->getFirstWord($token['content']) === $nameForm) {
 				return TRUE;
 			}
 		}
@@ -92,17 +95,26 @@ class BoolSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
-	 * @param string $booleanName
 	 * @return bool
 	 */
-	private function hasCorrectForm($booleanName)
+	private function isCorrectFormInToken(array $token)
 	{
-		if (strpos($booleanName, $this->preferedName) !== FALSE
-			&& strpos($booleanName, 'boolean') === FALSE
-		) {
+		$content = $this->getFirstWord($token['content']);
+		if ($content === $this->preferedName) {
 			return TRUE;
 		}
 		return FALSE;
+	}
+
+
+	/**
+	 * @param string $content
+	 * @return string
+	 */
+	private function getFirstWord($content)
+	{
+		$list = explode(' ', $content);
+		return $list[0];
 	}
 
 }
