@@ -1,8 +1,8 @@
 # Zenify/CodingStandard
 
-[![Build Status](https://travis-ci.org/Zenify/CodingStandard.svg?branch=master)](https://travis-ci.org/Zenify/CodingStandard)
-[![Downloads this Month](https://img.shields.io/packagist/dm/zenify/coding-standard.svg)](https://packagist.org/packages/zenify/coding-standard)
-[![Latest stable](https://img.shields.io/packagist/v/zenify/coding-standard.svg)](https://packagist.org/packages/zenify/coding-standard)
+[![Build Status](https://img.shields.io/travis/Zenify/CodingStandard.svg?style=flat-square)](https://travis-ci.org/Zenify/CodingStandard)
+[![Downloads this Month](https://img.shields.io/packagist/dm/zenify/coding-standard.svg?style=flat-square)](https://packagist.org/packages/zenify/coding-standard)
+[![Latest stable](https://img.shields.io/packagist/v/zenify/coding-standard.svg?style=flat-square)](https://packagist.org/packages/zenify/coding-standard)
 
 Set of rules for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) based on [PGS-2](http://www.php-fg.org/pgs-2/) and [Nette CS](http://nette.org/en/coding-standard).
 
@@ -16,7 +16,7 @@ Oppose to the most default rules you can change all numerical parameters.
 Install the latest version via composer:
 
 ```sh
-$ composer require zenify/coding-standard
+$ composer require zenify/coding-standard --dev
 ```
 
 And run Php_CodeSniffer:
