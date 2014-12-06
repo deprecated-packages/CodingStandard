@@ -23,6 +23,7 @@ class ShortArraySyntaxSniffTest extends TestCase
 		);
 	}
 
+
 	public function testCorrect()
 	{
 		$result = $this->runPhpCsForFile(__DIR__ . '/ShortArraySyntax.correct.php');
