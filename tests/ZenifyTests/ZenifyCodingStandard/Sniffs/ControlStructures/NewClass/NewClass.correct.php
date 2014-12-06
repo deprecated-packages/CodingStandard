@@ -15,6 +15,6 @@ $this->em->getDao(Basket::getClassName())->save($basket);
 
 new Nette\Security\Identity($user->getId(), $user->getRole()->getName());
 
-(new DummyEntity, $form->getEntity());
+new SomeClass(new DummyEntity, $form->getEntity());
 
 (new OperatorSpacingSniffTest)->run();
