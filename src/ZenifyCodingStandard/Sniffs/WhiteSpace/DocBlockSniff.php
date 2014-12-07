@@ -19,6 +19,22 @@ class DocBlockSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**
+	 * @var PHP_CodeSniffer_File
+	 */
+	private $file;
+
+	/**
+	 * @var int
+	 */
+	private $position;
+
+	/**
+	 * @var array[]
+	 */
+	private $tokens;
+
+
+	/**
 	 * @return int[]
 	 */
 	public function register()
@@ -33,30 +49,44 @@ class DocBlockSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
+		$this->file = $file;
+		$this->position = $position;
+		$this->tokens = $file->getTokens();
+
+		if ($this->isInlineComment()) {
+			return;
+		}
+
 		if ( ! $this->isIndentationCorrect($file, $position)) {
 			$file->addError('DocBlock lines should start with space (except first one)', $position);
 		}
 	}
 
 
-
-
-
 	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
 	 * @return bool
 	 */
-	private function isIndentationCorrect(PHP_CodeSniffer_File $file, $position)
+	private function isInlineComment()
 	{
-		$tokens = $file->getTokens();
-		if ($tokens[$position - 1]['content'] === ' ') {
-			return TRUE;
-		}
-		if (strlen($tokens[$position - 1]['content']) % 2 === 0) {
+		if ($this->tokens[$this->position - 1]['code'] !== T_DOC_COMMENT_WHITESPACE) {
 			return TRUE;
 		}
 		return FALSE;
 	}
 
+
+	/**
+	 * @return bool
+	 */
+	private function isIndentationCorrect()
+	{
+		$tokens = $this->file->getTokens();
+		if ($tokens[$this->position - 1]['content'] === ' ') {
+			return TRUE;
+		}
+		if ((strlen($tokens[$this->position - 1]['content']) % 2) === 0) {
+			return TRUE;
+		}
+		return FALSE;
+	}
 }

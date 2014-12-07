@@ -12,7 +12,8 @@ class SomeClass
 	 */
 	public function go()
 	{
-
+		/** @var SomeClass $service */
+		$service = $this->container->getService();
 	}
 
 }
