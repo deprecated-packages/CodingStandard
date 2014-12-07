@@ -9,7 +9,6 @@ namespace ZenifyCodingStandard\Sniffs\ControlStructures;
 
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
-use Squiz_Sniffs_ControlStructures_ControlSignatureSniff;
 
 
 /**
@@ -67,7 +66,7 @@ class NewClassSniff implements PHP_CodeSniffer_Sniff
 
 	/**
 	 * @param string $content
-	 * @param array $chars
+	 * @param string[] $chars
 	 * @return bool
 	 */
 	private function doesContentContains($content, array $chars)
