@@ -121,11 +121,11 @@ class ControlSignatureSniff implements PHP_CodeSniffer_Sniff
 
 	private function ensureSingleSpaceAfterClosingParenthesis()
 	{
-		if (isset($tokens[$this->position]['parenthesis_closer']) === TRUE
-			&& isset($tokens[$this->position]['scope_opener']) === TRUE
+		if (isset($this->tokens[$this->position]['parenthesis_closer']) === TRUE
+			&& isset($this->tokens[$this->position]['scope_opener']) === TRUE
 		) {
-			$closer = $tokens[$this->position]['parenthesis_closer'];
-			$opener = $tokens[$this->position]['scope_opener'];
+			$closer = $this->tokens[$this->position]['parenthesis_closer'];
+			$opener = $this->tokens[$this->position]['scope_opener'];
 			$content = $this->file->getTokensAsString(($closer + 1), ($opener - $closer - 1));
 			if ($content !== ' ') {
 				$error = 'Expected 1 space after closing parenthesis; found "%s"';
