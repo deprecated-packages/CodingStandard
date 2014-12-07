@@ -89,4 +89,5 @@ class DocBlockSniff implements PHP_CodeSniffer_Sniff
 		}
 		return FALSE;
 	}
+
 }
