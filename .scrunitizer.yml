@@ -7,7 +7,6 @@ before_commands:
 tools:
     external_code_coverage: true
     php_mess_detector: true
-    php_code_sniffer: true
     sensiolabs_security_checker: true
     php_code_coverage:
       enabled: true
@@ -24,7 +23,4 @@ tools:
     php_cpd:
         enabled: true
         command: phpcpd
-        excluded_dirs:
-            - 'bin/*'
-            - 'vendor/*'
-            - 'tests/*'
+        excluded_dirs: [vendor, tests]
