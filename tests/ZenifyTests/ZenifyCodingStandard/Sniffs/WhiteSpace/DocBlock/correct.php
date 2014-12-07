@@ -1,5 +1,9 @@
 <?php
 
+
+/**
+ * Some comment
+ */
 class SomeClass
 {
 

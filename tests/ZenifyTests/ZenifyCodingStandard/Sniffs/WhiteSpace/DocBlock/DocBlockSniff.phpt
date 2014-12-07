@@ -15,13 +15,19 @@ class DocBlockSniffTest extends TestCase
 	public function testWrong()
 	{
 		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
-		Assert::count(2, $result['errors']);
+		Assert::count(4, $result['errors']);
 
-//		$this->validateErrorMessageAndSource(
-//			$result['errors'][0],
-//			'Concat operator (.) should be surrounded by spaces.',
-//			'ZenifyCodingStandard.WhiteSpace.ConcatOperator'
-//		);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'DocBlock lines should start with space (except first one)',
+			'ZenifyCodingStandard.WhiteSpace.DocBlock'
+		);
+
+		$this->validateErrorMessageAndSource(
+			$result['errors'][2],
+			'DocBlock lines should start with space (except first one)',
+			'ZenifyCodingStandard.WhiteSpace.DocBlock'
+		);
 	}
 
 

@@ -39,6 +39,9 @@ class DocBlockSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
+
+
+
 	/**
 	 * @param PHP_CodeSniffer_File $file
 	 * @param int $position
@@ -47,6 +50,9 @@ class DocBlockSniff implements PHP_CodeSniffer_Sniff
 	private function isIndentationCorrect(PHP_CodeSniffer_File $file, $position)
 	{
 		$tokens = $file->getTokens();
+		if ($tokens[$position - 1]['content'] === ' ') {
+			return TRUE;
+		}
 		if (strlen($tokens[$position - 1]['content']) % 2 === 0) {
 			return TRUE;
 		}
