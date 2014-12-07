@@ -14,7 +14,7 @@ class OneClassPerFileApartExceptionsSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/OneClassPerFileApartExceptions.wrong.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -22,7 +22,7 @@ class OneClassPerFileApartExceptionsSniffTest extends TestCase
 			'ZenifyCodingStandard.Classes.OneClassPerFileApartExceptions'
 		);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/OneClassPerFileApartExceptions.wrong2.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong2.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -34,7 +34,7 @@ class OneClassPerFileApartExceptionsSniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/OneClassPerFileApartExceptions.correct.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
 		Assert::count(0, $result['errors']);
 	}
 

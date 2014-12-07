@@ -14,7 +14,7 @@ class ClassDeclarationSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/ClassDeclaration.wrong.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -22,7 +22,7 @@ class ClassDeclarationSniffTest extends TestCase
 			'ZenifyCodingStandard.Classes.ClassDeclaration.OpenBraceFollowedByEmptyLines'
 		);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/ClassDeclaration.wrong2.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong2.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -30,7 +30,7 @@ class ClassDeclarationSniffTest extends TestCase
 			'ZenifyCodingStandard.Classes.ClassDeclaration.CloseBracePrecededByEmptyLines'
 		);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/ClassDeclaration.wrong3.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong3.php');
 		Assert::count(2, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -47,7 +47,7 @@ class ClassDeclarationSniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/ClassDeclaration.correct.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
 		Assert::count(0, $result['errors']);
 	}
 

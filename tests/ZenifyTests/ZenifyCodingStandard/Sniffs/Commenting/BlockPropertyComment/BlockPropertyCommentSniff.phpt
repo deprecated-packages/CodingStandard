@@ -14,7 +14,7 @@ class BlockPropertyCommentSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/BlockPropertyComment.wrong.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -26,10 +26,10 @@ class BlockPropertyCommentSniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/BlockPropertyComment.correct.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
 		Assert::count(0, $result['errors']);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/BlockPropertyComment.correct2.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct2.php');
 		Assert::count(0, $result['errors']);
 	}
 

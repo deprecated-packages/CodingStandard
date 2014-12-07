@@ -14,7 +14,7 @@ class YodaConditionSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/YodaCondition.wrong.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
 		Assert::count(5, $result['errors']);
 		for ($i = 0; $i < 5; $i++) {
 			$this->validateErrorMessageAndSource(
@@ -28,7 +28,7 @@ class YodaConditionSniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/YodaCondition.correct.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
 		Assert::count(0, $result['errors']);
 	}
 

@@ -14,7 +14,7 @@ class SwitchDeclarationSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/SwitchDeclaration.wrong.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
 		Assert::count(4, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -37,7 +37,7 @@ class SwitchDeclarationSniffTest extends TestCase
 			'ZenifyCodingStandard.ControlStructures.SwitchDeclaration.BreakIndent'
 		);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/SwitchDeclaration.wrong2.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong2.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -45,7 +45,7 @@ class SwitchDeclarationSniffTest extends TestCase
 			'ZenifyCodingStandard.ControlStructures.SwitchDeclaration.MissingDefault'
 		);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/SwitchDeclaration.wrong3.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong3.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -57,7 +57,7 @@ class SwitchDeclarationSniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/SwitchDeclaration.correct.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
 		Assert::count(0, $result['errors']);
 	}
 

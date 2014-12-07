@@ -14,7 +14,7 @@ class NewClassSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/NewClass.wrong.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -26,7 +26,7 @@ class NewClassSniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/NewClass.correct.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
 		Assert::count(0, $result['errors']);
 	}
 

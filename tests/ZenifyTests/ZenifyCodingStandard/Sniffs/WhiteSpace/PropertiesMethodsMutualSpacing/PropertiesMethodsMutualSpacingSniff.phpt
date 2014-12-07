@@ -14,7 +14,7 @@ class PropertiesMethodsMutualSpacingSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/PropertiesMethodsMutualSpacing.wrong.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -22,7 +22,7 @@ class PropertiesMethodsMutualSpacingSniffTest extends TestCase
 			'ZenifyCodingStandard.WhiteSpace.PropertiesMethodsMutualSpacing.'
 		);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/PropertiesMethodsMutualSpacing.wrong2.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong2.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -34,13 +34,13 @@ class PropertiesMethodsMutualSpacingSniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/PropertiesMethodsMutualSpacing.correct.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
 		Assert::count(0, $result['errors']);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/PropertiesMethodsMutualSpacing.correct2.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct2.php');
 		Assert::count(0, $result['errors']);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/PropertiesMethodsMutualSpacing.correct3.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct3.php');
 		Assert::count(0, $result['errors']);
 	}
 

@@ -14,7 +14,7 @@ class ExclamationMarkSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/ExclamationMark.wrong.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -22,7 +22,7 @@ class ExclamationMarkSniffTest extends TestCase
 			'ZenifyCodingStandard.WhiteSpace.ExclamationMark'
 		);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/ExclamationMark.wrong2.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong2.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -30,7 +30,7 @@ class ExclamationMarkSniffTest extends TestCase
 			'ZenifyCodingStandard.WhiteSpace.ExclamationMark'
 		);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/ExclamationMark.wrong3.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong3.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -42,7 +42,7 @@ class ExclamationMarkSniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/ExclamationMark.correct.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
 		Assert::count(0, $result['errors']);
 	}
 

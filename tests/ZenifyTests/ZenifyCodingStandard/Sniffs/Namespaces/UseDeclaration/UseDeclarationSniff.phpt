@@ -14,7 +14,7 @@ class UseDeclarationSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/UseDeclaration.wrong.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -22,7 +22,7 @@ class UseDeclarationSniffTest extends TestCase
 			'ZenifyCodingStandard.Namespaces.UseDeclaration.MultipleDeclarations'
 		);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/UseDeclaration.wrong2.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong2.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -30,7 +30,7 @@ class UseDeclarationSniffTest extends TestCase
 			'ZenifyCodingStandard.Namespaces.UseDeclaration.MultipleDeclarations'
 		);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/UseDeclaration.wrong3.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong3.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -42,10 +42,10 @@ class UseDeclarationSniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/UseDeclaration.correct.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
 		Assert::count(0, $result['errors']);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/UseDeclaration.correct2.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct2.php');
 		Assert::count(0, $result['errors']);
 	}
 

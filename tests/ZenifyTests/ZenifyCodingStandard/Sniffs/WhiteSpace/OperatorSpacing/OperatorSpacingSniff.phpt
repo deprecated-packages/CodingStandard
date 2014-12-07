@@ -14,7 +14,7 @@ class OperatorSpacingSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/OperatorSpacing.wrong.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
 		Assert::count(3, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -36,7 +36,7 @@ class OperatorSpacingSniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/OperatorSpacing.correct.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
 		Assert::count(0, $result['errors']);
 	}
 

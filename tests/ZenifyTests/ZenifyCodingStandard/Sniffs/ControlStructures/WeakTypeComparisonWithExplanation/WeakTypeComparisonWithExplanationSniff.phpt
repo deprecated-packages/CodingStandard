@@ -14,7 +14,7 @@ class WeakTypeComparisonWithExplanationSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/WeakTypeComparisonWithExplanation.wrong.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
 		Assert::count(2, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -31,7 +31,7 @@ class WeakTypeComparisonWithExplanationSniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/WeakTypeComparisonWithExplanation.correct.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
 		Assert::count(0, $result['errors']);
 	}
 

@@ -14,7 +14,7 @@ class IfElseTryCatchFinallySniffTest extends TestCase
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/IfElseTryCatchFinally.wrong.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
 
 		Assert::count(PHP_VERSION_ID >= 50500 ? 3 : 2, $result['errors']);
 		$this->validateErrorMessageAndSource(
@@ -40,7 +40,7 @@ class IfElseTryCatchFinallySniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/IfElseTryCatchFinally.correct.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
 		Assert::count(0, $result['errors']);
 	}
 

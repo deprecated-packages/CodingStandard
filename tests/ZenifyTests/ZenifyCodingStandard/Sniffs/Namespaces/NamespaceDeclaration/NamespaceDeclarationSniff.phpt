@@ -14,7 +14,7 @@ class NamespaceDeclarationSniffTest extends TestCase
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/NamespaceDeclaration.wrong.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -22,7 +22,7 @@ class NamespaceDeclarationSniffTest extends TestCase
 			'ZenifyCodingStandard.Namespaces.NamespaceDeclaration.BlankLineAfter'
 		);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/NamespaceDeclaration.wrong2.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong2.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -30,7 +30,7 @@ class NamespaceDeclarationSniffTest extends TestCase
 			'ZenifyCodingStandard.Namespaces.NamespaceDeclaration.BlankLineAfter'
 		);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/NamespaceDeclaration.wrong3.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/wrong3.php');
 		Assert::count(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -42,19 +42,19 @@ class NamespaceDeclarationSniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/NamespaceDeclaration.correct.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
 		Assert::count(0, $result['errors']);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/NamespaceDeclaration.correct2.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct2.php');
 		Assert::count(0, $result['errors']);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/NamespaceDeclaration.correct3.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct3.php');
 		Assert::count(0, $result['errors']);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/NamespaceDeclaration.correct4.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct4.php');
 		Assert::count(0, $result['errors']);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/NamespaceDeclaration.correct5.php');
+		$result = $this->runPhpCsForFile(__DIR__ . '/correct5.php');
 		Assert::count(0, $result['errors']);
 	}
 
