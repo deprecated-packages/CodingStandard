@@ -8,6 +8,10 @@ tools:
     external_code_coverage: true
     php_mess_detector: true
     sensiolabs_security_checker: true
+    php_analyzer:
+    	config:
+        	doc_comment_fixes:
+            	enabled: false
     php_code_coverage:
       enabled: true
       filter:
