@@ -27,7 +27,7 @@ class UseDeclarationSniff extends PSR2_Sniffs_Namespaces_UseDeclarationSniff
 
 
 	/**
-	 * @return array
+	 * @return integer[]
 	 */
 	public function register()
 	{
