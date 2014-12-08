@@ -26,11 +26,11 @@ script:
   # php mess-detector
   - vendor/bin/phpmd src text src/ZenifyCodingStandard/mess-detector-ruleset.xml
   # code coverage
-  - vendor/bin/tester tests/ZenifyTests -c tests/php.ini-unix-coverage --coverage coverage.clover --coverage-src src
+  # - vendor/bin/tester tests/ZenifyTests -c ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini --coverage coverage.clover --coverage-src src
 
-after_script:
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+# after_script:
+#  - wget https://scrutinizer-ci.com/ocular.phar
+#  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
 
 after_failure:
   - 'for i in $(find ./tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done'
