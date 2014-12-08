@@ -45,6 +45,9 @@ In case you want to create your own rules, here are some sources to start with:
 - [Post on Why to add CS as part of your projects](http://edorian.github.io/2013-03-13-Please-ship-your-own-coding-standard-as-part/)
 
 
+---
+
+
 ## Other commands
 
 ### [Copy/Paste Detector](https://github.com/sebastianbergmann/phpcpd)
@@ -71,3 +74,12 @@ $ vendor/bin/phpmd src text ruleset=vendor/zenify/coding-standard/src/ZenifyCodi
 ```
 
 Or with no options to see documentation.
+
+
+### [PHP Depend](https://github.com/pdepend/pdepend/)
+
+To test `src` folder just run. 
+
+```sh
+$ vendor/bin/pdepend --summary-xml="pdepend-summary.xml" src   
+```
