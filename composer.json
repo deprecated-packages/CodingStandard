@@ -9,7 +9,8 @@
 		"php": ">=5.4",
 		"squizlabs/php_codesniffer": "~2.0",
 		"sebastian/phpcpd": "~2.0",
-		"phpmd/phpmd": "~2.1"
+		"phpmd/phpmd": "~2.1",
+		"pdepend/pdepend": "~2.0"
 	},
 	"require-dev": {
 		"tracy/tracy": "~2.2",
