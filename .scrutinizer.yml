@@ -9,9 +9,9 @@ tools:
     php_mess_detector: true
     sensiolabs_security_checker: true
     php_analyzer:
-    	config:
-        	doc_comment_fixes:
-            	enabled: false
+      config:
+        verify_php_doc_comments:
+          suggest_more_specific_types:  false
     php_code_coverage:
       enabled: true
       filter:
