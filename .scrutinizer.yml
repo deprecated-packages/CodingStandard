@@ -15,3 +15,8 @@ tools:
     config:
         verify_php_doc_comments:
           suggest_more_specific_types: false
+
+checks:
+  php:
+    code_rating: true
+    duplication: true
