@@ -75,12 +75,3 @@ $ vendor/bin/phpmd src text ruleset=vendor/zenify/coding-standard/src/ZenifyCodi
 ```
 
 Or with no options to see documentation.
-
-
-### [PHP Depend](https://github.com/pdepend/pdepend/)
-
-To test `src` folder just run. 
-
-```sh
-$ vendor/bin/pdepend --summary-xml="pdepend-summary.xml" src   
-```
