@@ -4,6 +4,7 @@
     convertNoticesToExceptions="true"
     convertWarningsToExceptions="true"
     convertErrorsToExceptions="true"
+    syntaxCheck="true"
     verbose="true"
 >
     <testsuites>
