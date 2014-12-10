@@ -13,7 +13,6 @@
 		"pdepend/pdepend": "~2.0"
 	},
 	"require-dev": {
-		"tracy/tracy": "~2.2",
 		"jakub-onderka/php-parallel-lint": "~0.8",
 		"phpunit/phpunit": "~4.4"
 	}
