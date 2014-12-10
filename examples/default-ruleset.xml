@@ -17,7 +17,7 @@
 	<rule ref="ZenifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation" />
 
 	<!-- Debug -->
-    <rule ref="ZenifyCodingStandard.Debug.DebugFunctionCall" />
+	<rule ref="ZenifyCodingStandard.Debug.DebugFunctionCall" />
 
 	<!-- Namespace -->
 	<rule ref="ZenifyCodingStandard.Namespaces.NamespaceDeclaration" />
@@ -26,9 +26,9 @@
 			<property name="blankLinesAfterUseStatement" value="2" />
 		</properties>
 	</rule>
-    <rule ref="ZenifyCodingStandard.Namespaces.UseInAlphabeticalOrder" />
+	<rule ref="ZenifyCodingStandard.Namespaces.UseInAlphabeticalOrder" />
 
-    <!-- Naming -->
+	<!-- Naming -->
 	<rule ref="ZenifyCodingStandard.Naming.Bool">
 		<properties>
 			<property name="preferedName" value="bool" />
