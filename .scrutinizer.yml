@@ -10,6 +10,7 @@ tools:
   sensiolabs_security_checker: true
   php_code_coverage:
     enabled: true
+    timeout: 900
   php_analyzer:
     config:
         verify_php_doc_comments:
