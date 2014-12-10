@@ -2,20 +2,16 @@
 
 namespace ZenifyTests\ZenifyCodingStandard\Sniffs\ControlStructures\SwitchDeclaration;
 
-use Tester\Assert;
-use ZenifyTests\TestCase;
+use ZenifyTests\SniffTestCase;
 
 
-require_once __DIR__ . '/../../../../bootstrap.php';
-
-
-class SwitchDeclarationSniffTest extends TestCase
+class SwitchDeclarationSniffTest extends SniffTestCase
 {
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
-		Assert::count(4, $result['errors']);
+		$result = $this->codeSnifferRunner->runPhpCsForFile(__DIR__ . '/wrong.php');
+		$this->assertCount(4, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
 			'CASE keyword must be indented 1 spaces from SWITCH keyword',
@@ -37,16 +33,16 @@ class SwitchDeclarationSniffTest extends TestCase
 			'ZenifyCodingStandard.ControlStructures.SwitchDeclaration.BreakIndent'
 		);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/wrong2.php');
-		Assert::count(1, $result['errors']);
+		$result = $this->codeSnifferRunner->runPhpCsForFile(__DIR__ . '/wrong2.php');
+		$this->assertCount(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
 			'All SWITCH statements must contain a DEFAULT case',
 			'ZenifyCodingStandard.ControlStructures.SwitchDeclaration.MissingDefault'
 		);
 
-		$result = $this->runPhpCsForFile(__DIR__ . '/wrong3.php');
-		Assert::count(1, $result['errors']);
+		$result = $this->codeSnifferRunner->runPhpCsForFile(__DIR__ . '/wrong3.php');
+		$this->assertCount(1, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
 			'Empty CASE statements are not allowed',
@@ -57,11 +53,8 @@ class SwitchDeclarationSniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
-		Assert::count(0, $result['errors']);
+		$result = $this->codeSnifferRunner->runPhpCsForFile(__DIR__ . '/correct.php');
+		$this->assertCount(0, $result['errors']);
 	}
 
 }
-
-
-(new SwitchDeclarationSniffTest)->run();

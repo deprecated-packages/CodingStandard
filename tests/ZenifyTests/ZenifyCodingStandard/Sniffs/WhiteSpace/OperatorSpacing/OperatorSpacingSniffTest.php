@@ -2,20 +2,16 @@
 
 namespace ZenifyTests\ZenifyCodingStandard\Sniffs\WhiteSpace\OperatorSpacing;
 
-use Tester\Assert;
-use ZenifyTests\TestCase;
+use ZenifyTests\SniffTestCase;
 
 
-require_once __DIR__ . '/../../../../bootstrap.php';
-
-
-class OperatorSpacingSniffTest extends TestCase
+class OperatorSpacingSniffTest extends SniffTestCase
 {
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
-		Assert::count(3, $result['errors']);
+		$result = $this->codeSnifferRunner->runPhpCsForFile(__DIR__ . '/wrong.php');
+		$this->assertCount(3, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
 			'Operator "&&" should be surrounded by spaces or on new line.',
@@ -36,11 +32,8 @@ class OperatorSpacingSniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
-		Assert::count(0, $result['errors']);
+		$result = $this->codeSnifferRunner->runPhpCsForFile(__DIR__ . '/correct.php');
+		$this->assertCount(0, $result['errors']);
 	}
 
 }
-
-
-(new OperatorSpacingSniffTest)->run();

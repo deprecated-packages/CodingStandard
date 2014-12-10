@@ -1,0 +1,14 @@
+<phpunit
+    bootstrap="tests/ZenifyTests/bootstrap.php"
+    colors="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    convertErrorsToExceptions="true"
+    verbose="true"
+>
+    <testsuites>
+        <testsuite name="Sniff tests">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

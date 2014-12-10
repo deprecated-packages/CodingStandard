@@ -10,13 +10,15 @@ matrix:
   allow_failures:
     - php: hhvm
 
-before_script:
+before_install:
   - composer self-update
-  - composer install --no-interaction --prefer-source
-  - vendor/bin/parallel-lint -e php,phpt --exclude vendor .
 
-script:
-  - vendor/bin/tester -c=tests/php.ini-unix tests
+install:
+  - composer install --prefer-source
+
+before_script:
+  # php linter
+  - vendor/bin/parallel-lint -e php --exclude vendor .
   # php copy/paste detector
   - vendor/bin/phpcpd src
   - vendor/bin/phpcpd tests
@@ -25,12 +27,11 @@ script:
   - vendor/bin/phpcs tests --extensions=phpt --standard=src/ZenifyCodingStandard/code-sniffer-ruleset.xml
   # php mess-detector
   - vendor/bin/phpmd src text src/ZenifyCodingStandard/mess-detector-ruleset.xml
-  # code coverage
-  # - vendor/bin/tester tests/ZenifyTests -c ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini --coverage coverage.clover --coverage-src src
 
-# after_script:
-#  - wget https://scrutinizer-ci.com/ocular.phar
-#  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+script:
+  - vendor/bin/phpunit --coverage-clover=coverage.clover
 
-after_failure:
-  - 'for i in $(find ./tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done'
+after_script:
+  # move code coverage
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover

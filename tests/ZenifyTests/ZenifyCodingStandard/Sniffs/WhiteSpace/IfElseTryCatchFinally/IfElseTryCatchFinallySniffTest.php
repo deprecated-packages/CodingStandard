@@ -2,21 +2,17 @@
 
 namespace ZenifyTests\ZenifyCodingStandard\Sniffs\WhiteSpace\IfElseTryCatchFinally;
 
-use Tester\Assert;
-use ZenifyTests\TestCase;
+use ZenifyTests\SniffTestCase;
 
 
-require_once __DIR__ . '/../../../../bootstrap.php';
-
-
-class IfElseTryCatchFinallySniffTest extends TestCase
+class IfElseTryCatchFinallySniffTest extends SniffTestCase
 {
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
+		$result = $this->codeSnifferRunner->runPhpCsForFile(__DIR__ . '/wrong.php');
 
-		Assert::count(PHP_VERSION_ID >= 50500 ? 3 : 2, $result['errors']);
+		$this->assertCount(PHP_VERSION_ID >= 50500 ? 3 : 2, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
 			'Elseif statement should be preceded by 1 empty line(s); 0 found',
@@ -40,11 +36,8 @@ class IfElseTryCatchFinallySniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
-		Assert::count(0, $result['errors']);
+		$result = $this->codeSnifferRunner->runPhpCsForFile(__DIR__ . '/correct.php');
+		$this->assertCount(0, $result['errors']);
 	}
 
 }
-
-
-(new IfElseTryCatchFinallySniffTest)->run();

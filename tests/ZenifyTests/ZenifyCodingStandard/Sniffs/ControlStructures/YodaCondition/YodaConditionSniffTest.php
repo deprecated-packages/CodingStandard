@@ -2,20 +2,16 @@
 
 namespace ZenifyTests\ZenifyCodingStandard\Sniffs\ControlStructures\YodaCondition;
 
-use Tester\Assert;
-use ZenifyTests\TestCase;
+use ZenifyTests\SniffTestCase;
 
 
-require_once __DIR__ . '/../../../../bootstrap.php';
-
-
-class YodaConditionSniffTest extends TestCase
+class YodaConditionSniffTest extends SniffTestCase
 {
 
 	public function testWrong()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/wrong.php');
-		Assert::count(5, $result['errors']);
+		$result = $this->codeSnifferRunner->runPhpCsForFile(__DIR__ . '/wrong.php');
+		$this->assertCount(5, $result['errors']);
 		for ($i = 0; $i < 5; $i++) {
 			$this->validateErrorMessageAndSource(
 				$result['errors'][$i],
@@ -28,11 +24,8 @@ class YodaConditionSniffTest extends TestCase
 
 	public function testCorrect()
 	{
-		$result = $this->runPhpCsForFile(__DIR__ . '/correct.php');
-		Assert::count(0, $result['errors']);
+		$result = $this->codeSnifferRunner->runPhpCsForFile(__DIR__ . '/correct.php');
+		$this->assertCount(0, $result['errors']);
 	}
 
 }
-
-
-(new YodaConditionSniffTest)->run();
