@@ -1,30 +1,22 @@
 filter:
-   excluded_paths: [vendor/*, tests/*]
+  paths:  [src/*]
+  excluded_paths: [vendor/*, tests/*]
 
 before_commands:
-    - 'composer install --prefer-source'
+  - "composer install --prefer-source"
 
 tools:
-    external_code_coverage: true
-    php_mess_detector: true
-    sensiolabs_security_checker: true
-    php_analyzer:
-      config:
+  external_code_coverage: true
+  php_mess_detector: true
+  sensiolabs_security_checker: true
+  php_code_coverage: true
+  php_analyzer:
+    config:
         verify_php_doc_comments:
-          suggest_more_specific_types:  false
-    php_code_coverage:
-      enabled: true
-      filter:
-        excluded_paths: [vendor, tests]
-    php_pdepend:
-      enabled: true
-      excluded_dirs:
-        - vendor
-        - tests
-    php_loc:
-        enabled: true
-        excluded_dirs: [vendor, tests]
-    php_cpd:
-        enabled: true
-        command: phpcpd
-        excluded_dirs: [vendor, tests]
+          suggest_more_specific_types: false
+  php_code_coverage:
+    enabled: true
+  php_cpd:
+    enabled: true
+    command: phpcpd
+    excluded_dirs: [vendor, tests]
