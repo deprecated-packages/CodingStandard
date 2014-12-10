@@ -37,7 +37,7 @@ class BoolSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
-	 * @return int[]
+	 * @return integer[]
 	 */
 	public function register()
 	{

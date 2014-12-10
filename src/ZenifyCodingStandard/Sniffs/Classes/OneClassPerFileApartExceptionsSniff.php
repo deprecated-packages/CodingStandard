@@ -49,7 +49,7 @@ class OneClassPerFileApartExceptionsSniff implements PHP_CodeSniffer_Sniff
 
 	/**
 	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
+	 * @param integer $classPosition
 	 * @return bool
 	 */
 	private function isExceptionClass($file, $classPosition)

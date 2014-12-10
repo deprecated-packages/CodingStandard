@@ -44,7 +44,7 @@ class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_FunctionSpacin
 
 
 	/**
-	 * @return int[]
+	 * @return integer[]
 	 */
 	public function register()
 	{
@@ -115,7 +115,7 @@ class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_FunctionSpacin
 
 
 	/**
-	 * @return bool|int
+	 * @return integer
 	 */
 	private function getScopeCloser()
 	{
