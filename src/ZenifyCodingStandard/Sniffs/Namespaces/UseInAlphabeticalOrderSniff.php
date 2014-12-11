@@ -16,6 +16,7 @@ use PHP_CodeSniffer_Sniff;
  * - Use statements should be in alphabetical order
  *
  * @author Mikulas Dite <mikulas@dite.pro>
+ * @author Tomas Votruba <tomas.vot@gmail.com>
  */
 class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
 {
@@ -79,7 +80,7 @@ class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
 	private function getUseStatementIncorrectOrderPosition(array $uses)
 	{
 		foreach ($uses as $scope => $used) {
-			$defined = $sorted = array_keys($used);
+			$defined = $sorted = $this->replaceBackSlashesBySlashes(array_keys($used));
 
 			natcasesort($sorted);
 			$sorted = array_values($sorted);
@@ -124,6 +125,19 @@ class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
 			if ( ! $next) {
 				break;
 			}
+		}
+		return $uses;
+	}
+
+
+	/**
+	 * @return array
+	 */
+	private function replaceBackSlashesBySlashes(array $uses)
+	{
+		foreach ($uses as $key => $use) {
+			$use = str_replace('\\', '/', $use);
+			$uses[$key] = $use;
 		}
 		return $uses;
 	}
