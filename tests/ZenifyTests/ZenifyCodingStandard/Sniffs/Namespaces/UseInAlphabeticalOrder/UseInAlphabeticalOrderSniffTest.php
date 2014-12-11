@@ -17,6 +17,14 @@ class UseInAlphabeticalOrderSniffTest extends SniffTestCase
 			'Use statements should be in alphabetical order',
 			'ZenifyCodingStandard.Namespaces.UseInAlphabeticalOrder'
 		);
+
+		$result = $this->codeSnifferRunner->runForFile(__DIR__ . '/wrong2.php');
+		$this->assertCount(1, $result['errors']);
+		$this->validateErrorMessageAndSource(
+			$result['errors'][0],
+			'Use statements should be in alphabetical order',
+			'ZenifyCodingStandard.Namespaces.UseInAlphabeticalOrder'
+		);
 	}
 
 

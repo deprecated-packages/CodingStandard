@@ -80,7 +80,7 @@ class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
 	private function getUseStatementIncorrectOrderPosition(array $uses)
 	{
 		foreach ($uses as $scope => $used) {
-			$defined = $sorted = $this->replaceBackSlashesBySlashes(array_keys($used));
+			$defined = $sorted = array_keys($used);
 
 			natcasesort($sorted);
 			$sorted = array_values($sorted);
@@ -120,6 +120,8 @@ class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
 			if ( ! empty($token['conditions'])) {
 				$scope = key($token['conditions']);
 			}
+
+			$content = $this->replaceBackSlashesBySlashes($content);
 			$uses[$scope][$content] = $index;
 			$next = $this->file->findNext(T_USE, $end);
 			if ( ! $next) {
@@ -131,15 +133,12 @@ class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
-	 * @return array
+	 * @param string $content
+	 * @return string
 	 */
-	private function replaceBackSlashesBySlashes(array $uses)
+	private function replaceBackSlashesBySlashes($content)
 	{
-		foreach ($uses as $key => $use) {
-			$use = str_replace('\\', '/', $use);
-			$uses[$key] = $use;
-		}
-		return $uses;
+		return str_replace('\\', '/', $content);
 	}
 
 }
