@@ -9,7 +9,7 @@
 >
     <testsuites>
         <testsuite name="Sniff tests">
-            <directory>tests</directory>
+            <directory>tests/ZenifyTests/ZenifyCodingStandard</directory>
         </testsuite>
     </testsuites>
 </phpunit>
