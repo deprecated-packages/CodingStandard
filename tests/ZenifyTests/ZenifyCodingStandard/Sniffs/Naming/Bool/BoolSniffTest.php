@@ -10,7 +10,7 @@ class BoolSniff extends SniffTestCase
 
 	public function testWrong()
 	{
-		$result = $this->codeSnifferRunner->runPhpCsForFile(__DIR__ . '/wrong.php');
+		$result = $this->codeSnifferRunner->runForFile(__DIR__ . '/wrong.php');
 		$this->assertCount(5, $result['errors']);
 		for ($i = 0; $i < 5; $i++) {
 			$this->validateErrorMessageAndSource(
@@ -24,7 +24,7 @@ class BoolSniff extends SniffTestCase
 
 	public function testCorrect()
 	{
-		$result = $this->codeSnifferRunner->runPhpCsForFile(__DIR__ . '/correct.php');
+		$result = $this->codeSnifferRunner->runForFile(__DIR__ . '/correct.php');
 		$this->assertCount(0, $result['errors']);
 	}
 

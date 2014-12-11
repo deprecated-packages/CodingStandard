@@ -39,7 +39,7 @@ class CodeSnifferRunner
 	 * @param string $source
 	 * @return int
 	 */
-	public function runPhpCsForFile($source)
+	public function runForFile($source)
 	{
 		if ( ! file_exists($source)) {
 			throw new \Exception("File $source was not found");

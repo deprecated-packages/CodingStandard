@@ -10,7 +10,7 @@ class OperatorSpacingSniffTest extends SniffTestCase
 
 	public function testWrong()
 	{
-		$result = $this->codeSnifferRunner->runPhpCsForFile(__DIR__ . '/wrong.php');
+		$result = $this->codeSnifferRunner->runForFile(__DIR__ . '/wrong.php');
 		$this->assertCount(3, $result['errors']);
 		$this->validateErrorMessageAndSource(
 			$result['errors'][0],
@@ -32,7 +32,7 @@ class OperatorSpacingSniffTest extends SniffTestCase
 
 	public function testCorrect()
 	{
-		$result = $this->codeSnifferRunner->runPhpCsForFile(__DIR__ . '/correct.php');
+		$result = $this->codeSnifferRunner->runForFile(__DIR__ . '/correct.php');
 		$this->assertCount(0, $result['errors']);
 	}
 
