@@ -1,6 +1,6 @@
 <?php
 
-use MyNamespace\InTheEnd as Top;
+use MyNamespace\InTheEnd;
 use MyNamespace\AtTheStart as Top;
 
 
