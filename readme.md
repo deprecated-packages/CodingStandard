@@ -71,7 +71,7 @@ Rules are nicely [explained here](http://edorian.github.io/php-coding-standard-g
 To test `src` folder with `text` output, just run. 
 
 ```sh
-$ vendor/bin/phpmd src text ruleset=vendor/zenify/coding-standard/src/ZenifyCodingStandard/mess-detector-ruleset.xml  
+$ vendor/bin/phpmd src text vendor/zenify/coding-standard/src/ZenifyMessDetector/ruleset.xml  
 ```
 
 Or with no options to see documentation.
