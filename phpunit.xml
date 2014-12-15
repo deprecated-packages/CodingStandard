@@ -8,8 +8,11 @@
     verbose="true"
 >
     <testsuites>
-        <testsuite name="Sniff tests">
+        <testsuite name="Code Sniffer tests">
             <directory>tests/ZenifyTests/ZenifyCodingStandard</directory>
+        </testsuite>
+        <testsuite name="Mess Detector tests">
+            <directory>tests/ZenifyTests/ZenifyMessDetector</directory>
         </testsuite>
     </testsuites>
 </phpunit>
