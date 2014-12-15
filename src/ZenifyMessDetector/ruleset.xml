@@ -1,6 +1,5 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <ruleset name="Zenify">
-
     <!-- Naming -->
     <rule ref="rulesets/naming.xml/LongVariable">
         <priority>5</priority>
@@ -71,5 +70,4 @@
 
     <!-- Unused code -->
     <rule ref="rulesets/unusedcode.xml/UnusedPrivateMethod"/>
-
 </ruleset>
