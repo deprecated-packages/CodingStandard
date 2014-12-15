@@ -51,19 +51,6 @@ In case you want to create your own rules, here are some sources to start with:
 
 ## Other commands
 
-### [Copy/Paste Detector](https://github.com/sebastianbergmann/phpcpd)
-
-Simple package by PhpUnit author Sebastian Bergmann, that detects duplicated code.
-
-To test `src` folder, just run:
-
-```sh
-$ vendor/bin/phpcpd src
-```
-
-Or with no options to see documentation
-
-
 ### [PHP Mess Detector](https://github.com/phpmd/phpmd)
 
 Rules are nicely [explained here](http://edorian.github.io/php-coding-standard-generator/#phpmd).

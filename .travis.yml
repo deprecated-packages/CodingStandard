@@ -18,8 +18,6 @@ install:
 before_script:
   # php linter
   - vendor/bin/parallel-lint -e php src tests
-  # php copy/paste detector
-  - vendor/bin/phpcpd src tests
   # php code-sniffer
   - vendor/bin/phpcs src tests/ZenifyTests --standard=src/ZenifyCodingStandard/code-sniffer-ruleset.xml --ignore=wrong,correct,bootstrap
   # php mess-detector
