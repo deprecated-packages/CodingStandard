@@ -19,9 +19,9 @@ before_script:
   # php linter
   - vendor/bin/parallel-lint -e php src tests
   # php code-sniffer
-  - vendor/bin/phpcs src tests/ZenifyTests --standard=src/ZenifyCodingStandard/code-sniffer-ruleset.xml --ignore=wrong,correct,bootstrap
+  - vendor/bin/phpcs src tests/ZenifyTests --standard=src/ZenifyCodingStandard/ruleset.xml --ignore=wrong,correct,bootstrap
   # php mess-detector
-  - vendor/bin/phpmd src,tests text src/ZenifyCodingStandard/mess-detector-ruleset.xml --exclude "correct*,wrong*"
+  - vendor/bin/phpmd src,tests text src/ZenifyMessDetector/ruleset.xml --exclude "correct*,wrong*"
 
 script:
   - vendor/bin/phpunit --coverage-clover=coverage.clover
