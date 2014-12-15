@@ -1,10 +1,5 @@
 <?php
 
-/**
- * This file is part of Zenify
- * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
- */
-
 namespace ZenifyTests;
 
 use PHPUnit_Framework_TestCase;
@@ -26,6 +21,7 @@ class SniffTestCase extends PHPUnit_Framework_TestCase
 			realpath(__DIR__ . '/../../vendor/bin/phpcs'),
 			realpath(__DIR__ . '/../../src')
 		);
+
 	}
 
 
