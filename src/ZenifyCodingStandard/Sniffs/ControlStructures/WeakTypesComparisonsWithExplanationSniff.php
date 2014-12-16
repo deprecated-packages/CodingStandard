@@ -59,7 +59,7 @@ class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_Sniff
 			}
 			$currentPosition++;
 
-		} while ($tokens[$currentPosition]['content'] !== PHP_EOL);
+		} while (isset($tokens[$currentPosition]) && $tokens[$currentPosition]['content'] !== PHP_EOL);
 
 		if ( ! $hasComment) {
 			$error = '"%s" should be used instead of "%s", or commented with its purpose';
