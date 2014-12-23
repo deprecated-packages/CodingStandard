@@ -15,7 +15,7 @@ use PSR2_Sniffs_Namespaces_UseDeclarationSniff;
  * Rules:
  * - There must be one USE keyword per declaration
  * - USE declarations must go after the first namespace declaration
- * - There must be X blank line(s) after the last USE statement (2 by default) - // todo: move default to config!
+ * - There must be 2 blank line(s) after the last USE statement
  */
 class UseDeclarationSniff extends PSR2_Sniffs_Namespaces_UseDeclarationSniff
 {
