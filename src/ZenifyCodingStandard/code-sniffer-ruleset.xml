@@ -17,6 +17,7 @@
 		</properties>
 		<severity>3</severity>
 	</rule>
+	<rule ref="Generic.Files.OneClassPerFile"/>
 	<rule ref="Generic.Files.OneInterfacePerFile"/>
 	<rule ref="PSR2.Files.EndFileNewline"/>
 	<rule ref="Zend.Files.ClosingTag"/>

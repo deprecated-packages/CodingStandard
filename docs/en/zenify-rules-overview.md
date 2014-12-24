@@ -51,41 +51,6 @@ class SomeClass
 ```
 
 
-### 1.2 OneClassPerFileApartExceptionsSniff
-
-- Each class must be standalone file, apart exception classes
-
-*Correct*
-
-```php
-class SomeClass
-{
-
-}
-
-
-class SomeException extends \Exception
-{
-
-}
-```
-
-*Wrong*
-
-```php
-class SomeClass
-{
-
-}
-
-
-class SomeOtherClass
-{
-
-}
-```
-
-
 ## 2 Commenting
 
 
