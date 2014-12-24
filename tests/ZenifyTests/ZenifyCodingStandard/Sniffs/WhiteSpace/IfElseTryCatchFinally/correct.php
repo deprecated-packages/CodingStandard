@@ -15,5 +15,5 @@ try {
 	return 2;
 
 } finally {
-	return $i++;
+	$this->someFunction();
 }
