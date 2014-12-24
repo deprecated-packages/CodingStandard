@@ -1,6 +1,7 @@
 language: php
 
 php:
+  - 5.4
   - 5.5
   - 5.6
   - hhvm
@@ -15,12 +16,10 @@ before_script:
   # php linter
   - vendor/bin/parallel-lint -e php src tests
   # php code-sniffer
-  - vendor/bin/phpcs src tests/ZenifyTests --standard=src/ZenifyCodingStandard/ruleset.xml --ignore=wrong,correct,bootstrap
-  # php mess-detector
-  - vendor/bin/phpmd src,tests text src/ZenifyMessDetector/ruleset.xml --exclude "correct*,wrong*"
+  - vendor/bin/phpcs src tests --standard=src/ZenifyCodingStandard/ruleset.xml --ignore=wrong,correct
 
 script:
-  - vendor/bin/phpunit --coverage-clover=coverage.clover
+  - vendor/bin/phpunit
 
 after_script:
   # move code coverage

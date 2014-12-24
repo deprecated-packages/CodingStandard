@@ -1,14 +1,13 @@
 {
 	"name": "zenify/coding-standard",
-	"description": "Set of rules for PHP_CodeSniffer based on PGS-2 (http://php-fg.com) and Nette CS.",
+	"description": "Set of rules for PHP_CodeSniffer preferring tabs and based on Nette coding standard.",
 	"license": "MIT",
 	"authors": [
-		{ "name": "Tomáš Votruba", "homepage": "http://tomasvotruba.cz" }
+		{ "name": "Tomáš Votruba", "email": "tomas.vot@gmail.com", "homepage": "http://tomasvotruba.cz" }
 	],
 	"require": {
-		"php": ">=5.5",
-		"squizlabs/php_codesniffer": "~2.0",
-		"phpmd/phpmd": "~2.1"
+		"php": ">=5.4",
+		"squizlabs/php_codesniffer": "~2.1"
 	},
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "~0.8",
@@ -16,7 +15,7 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"ZenifyTests\\": "tests/ZenifyTests"
+			"Zenify\\CodingStandard\\Tests\\": "tests"
 		}
 	}
 }
