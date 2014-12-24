@@ -8,11 +8,8 @@
     verbose="true"
 >
     <testsuites>
-        <testsuite name="Code Sniffer tests">
-            <directory>tests/ZenifyTests/ZenifyCodingStandard</directory>
-        </testsuite>
-        <testsuite name="Mess Detector tests">
-            <directory>tests/ZenifyTests/ZenifyMessDetector</directory>
+        <testsuite>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
     <filter>
