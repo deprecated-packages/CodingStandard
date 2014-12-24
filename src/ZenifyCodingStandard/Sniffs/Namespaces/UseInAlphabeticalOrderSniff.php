@@ -75,6 +75,43 @@ class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
+	 * @return array
+	 */
+	private function findAllUseStatements()
+	{
+		$uses = [];
+		$next = $this->position;
+		while (TRUE) {
+			$content = '';
+			$end = $this->file->findNext([T_SEMICOLON, T_OPEN_CURLY_BRACKET], $next);
+			$useTokens = array_slice($this->file->getTokens(), $next, $end - $next, TRUE);
+			$index = NULL;
+			foreach ($useTokens as $index => $token) {
+				if ($token['code'] === T_STRING || $token['code'] === T_NS_SEPARATOR) {
+					$content .= $token['content'];
+				}
+			}
+			// Check for class scoping on use. Traits should be ordered independently.
+			$scope = 0;
+			if ( ! empty($token['conditions'])) {
+				$scope = key($token['conditions']);
+			}
+
+			if ($this->isUseForNamespaceOrTrait($next)) {
+				$content = $this->replaceBackSlashesBySlashes($content);
+				$uses[$scope][$content] = $index;
+			}
+
+			$next = $this->file->findNext(T_USE, $end);
+			if ( ! $next) {
+				break;
+			}
+		}
+		return $uses;
+	}
+
+
+	/**
 	 * @return int|NULL
 	 */
 	private function getUseStatementIncorrectOrderPosition(array $uses)
@@ -99,46 +136,26 @@ class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
-	 * @return array
-	 */
-	private function findAllUseStatements()
-	{
-		$uses = [];
-		$next = $this->position;
-		while (TRUE) {
-			$content = '';
-			$end = $this->file->findNext([T_SEMICOLON, T_OPEN_CURLY_BRACKET], $next);
-			$useTokens = array_slice($this->file->getTokens(), $next, $end - $next, TRUE);
-			$index = NULL;
-			foreach ($useTokens as $index => $token) {
-				if ($token['code'] === T_STRING || $token['code'] === T_NS_SEPARATOR) {
-					$content .= $token['content'];
-				}
-			}
-			// Check for class scoping on use. Traits should be ordered independently.
-			$scope = 0;
-			if ( ! empty($token['conditions'])) {
-				$scope = key($token['conditions']);
-			}
-
-			$content = $this->replaceBackSlashesBySlashes($content);
-			$uses[$scope][$content] = $index;
-			$next = $this->file->findNext(T_USE, $end);
-			if ( ! $next) {
-				break;
-			}
-		}
-		return $uses;
-	}
-
-
-	/**
 	 * @param string $content
 	 * @return string
 	 */
 	private function replaceBackSlashesBySlashes($content)
 	{
 		return str_replace('\\', '/', $content);
+	}
+
+
+	/**
+	 * @param int $position
+	 * @return bool
+	 */
+	private function isUseForNamespaceOrTrait($position)
+	{
+		$firstLetter = $this->file->getTokens()[$position + 2]['content'];
+		if ($firstLetter === '(') { // use ($var)
+			return FALSE;
+		}
+		return TRUE;
 	}
 
 }
