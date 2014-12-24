@@ -6,9 +6,7 @@
 [![Downloads this Month](https://img.shields.io/packagist/dm/zenify/coding-standard.svg?style=flat-square)](https://packagist.org/packages/zenify/coding-standard)
 [![Latest stable](https://img.shields.io/packagist/v/zenify/coding-standard.svg?style=flat-square)](https://packagist.org/packages/zenify/coding-standard)
 
-Set of rules for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) based on [PGS-2](http://www.php-fg.org/pgs-2/) and [Nette CS](http://nette.org/en/coding-standard).
-
-Oppose to the most default rules you can change all numerical parameters.
+Set of rules for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) preferring tabs and based on [Nette coding standard](http://nette.org/en/coding-standard).
 
 **Check [rules overview](docs/en/zenify-rules-overview.md) for examples.**
 
@@ -24,7 +22,7 @@ $ composer require zenify/coding-standard --dev
 And run Php_CodeSniffer:
 
 ```sh
-$ vendor/bin/phpcs src --standard=vendor/zenify/coding-standard/src/ZenifyCodingStandard/code-sniffer-ruleset.xml
+$ vendor/bin/phpcs src --standard=vendor/zenify/coding-standard/src/ZenifyCodingStandard/ruleset.xml
 ```
 
 ### PhpStorm integration
