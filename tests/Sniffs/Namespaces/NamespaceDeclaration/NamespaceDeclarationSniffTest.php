@@ -31,6 +31,7 @@ class NamespaceDeclarationSniffTest extends PHPUnit_Framework_TestCase
 		$this->assertSame(0, $this->codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct3.php'));
 		$this->assertSame(0, $this->codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct4.php'));
 		$this->assertSame(0, $this->codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct5.php'));
+		$this->assertSame(0, $this->codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct6.php'));
 	}
 
 }

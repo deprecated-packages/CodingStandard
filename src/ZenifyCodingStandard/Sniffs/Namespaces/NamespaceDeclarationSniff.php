@@ -28,6 +28,16 @@ class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 	 */
 	private $emptyLinesBeforeUseStatement;
 
+	/**
+	 * @var PHP_CodeSniffer_File
+	 */
+	private $file;
+
+	/**
+	 * @var int
+	 */
+	private $position;
+
 
 	/**
 	 * @return int[]
@@ -44,12 +54,15 @@ class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
+		$this->file = $file;
+		$this->position = $position;
+
 		// Fix type
 		$this->emptyLinesAfterNamespace = (int) $this->emptyLinesAfterNamespace;
 		$this->emptyLinesBeforeUseStatement = (int) $this->emptyLinesAfterNamespace - 1;
 
-		$linesToNextUse = $this->getLinesToNextUse($file, $position);
-		$linesToNextClass = $this->getLinesToNextClass($file, $position);
+		$linesToNextUse = $this->getLinesToNextUse();
+		$linesToNextClass = $this->getLinesToNextClass();
 
 		if ($linesToNextUse) {
 			if ($linesToNextUse !== $this->emptyLinesBeforeUseStatement) {
@@ -75,39 +88,51 @@ class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
 	 * @return bool|int
 	 */
-	private function getLinesToNextUse(PHP_CodeSniffer_File $file, $position)
+	private function getLinesToNextUse()
 	{
-		$tokens = $file->getTokens();
-		$nextUse = $file->findNext(T_USE, $position, NULL, FALSE);
-		if ($tokens[$nextUse]['line'] === 1) {
+		$tokens = $this->file->getTokens();
+		$nextUse = $this->file->findNext(T_USE, $this->position, NULL, FALSE);
+
+		if ($tokens[$nextUse]['line'] === 1 || $this->isInsideClass($nextUse)) {
 			return FALSE;
 
 		} else {
-			return $tokens[$nextUse]['line'] - $tokens[$position]['line'] - 1;
+			return $tokens[$nextUse]['line'] - $tokens[$this->position]['line'] - 1;
 		}
 	}
 
 
 	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
 	 * @return bool|int
 	 */
-	private function getLinesToNextClass(PHP_CodeSniffer_File $file, $position)
+	private function getLinesToNextClass()
 	{
-		$tokens = $file->getTokens();
-		$nextClass = $file->findNext([T_CLASS, T_INTERFACE, T_TRAIT, T_DOC_COMMENT_OPEN_TAG], $position, NULL, FALSE);
+		$tokens = $this->file->getTokens();
+		$nextClass = $this->file->findNext(
+			[T_CLASS, T_INTERFACE, T_TRAIT, T_DOC_COMMENT_OPEN_TAG], $this->position, NULL, FALSE
+		);
 		if ($tokens[$nextClass]['line'] === 1) {
 			return FALSE;
 
 		} else {
-			return $tokens[$nextClass]['line'] - $tokens[$position]['line'] - 1;
+			return $tokens[$nextClass]['line'] - $tokens[$this->position]['line'] - 1;
 		}
+	}
 
+
+	/**
+	 * @param $position
+	 * @return bool
+	 */
+	private function isInsideClass($position)
+	{
+		$prevClassPosition = $this->file->findPrevious(T_CLASS, $position, NULL, FALSE);
+		if ($prevClassPosition) {
+			return TRUE;
+		}
+		return FALSE;
 	}
 
 }
