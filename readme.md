@@ -29,7 +29,7 @@ $ vendor/bin/phpcs src --standard=vendor/zenify/coding-standard/src/ZenifyCoding
 
 If you use PhpStorm, code sniffer can check your syntax as you write. [How to integrate?](docs/en/integration-to-php-storm.md)
 
-## Other PGS-2 related cs
+## Other Nette related cs
 
 - [Mikulas/code-sniffs](https://github.com/Mikulas/code-sniffs)
 - [juzna/nette-coding-standard](https://github.com/juzna/nette-coding-standard)
