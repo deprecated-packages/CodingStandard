@@ -24,6 +24,11 @@ abstract class NamingSniffer implements PHP_CodeSniffer_Sniff
 	 */
 	protected $file;
 
+	/**
+	 * @var int
+	 */
+	private $position;
+
 
 	/**
 	 * @return int[]
@@ -59,19 +64,14 @@ abstract class NamingSniffer implements PHP_CodeSniffer_Sniff
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
 		$this->file = $file;
+		$this->position = $position;
 		$this->tokens = $file->getTokens();
 
 		for (; ! $this->isCommentCloseTagOnPosition($position); $position++) {
 			$token = $this->tokens[$position];
 			if ($this->isNameInToken($token)) {
 				if ( ! $this->isCorrectFormInToken($token)) {
-					$content = explode(' ', $token['content']);
-					$foundName = $content = $content[0];
-					$data = [$this->getAllowedForm(), $content];
-					$fix = $file->addFixableError($this->getErrorMessage(), $position, '', $data);
-					if ($fix) {
-						$this->fixViolation($position, $foundName);
-					}
+					$this->processIncorrectToken($token);
 				}
 			}
 		}
@@ -114,6 +114,18 @@ abstract class NamingSniffer implements PHP_CodeSniffer_Sniff
 			return TRUE;
 		}
 		return FALSE;
+	}
+
+
+	private function processIncorrectToken(array $token)
+	{
+		$content = explode(' ', $token['content']);
+		$foundName = $content = $content[0];
+		$data = [$this->getAllowedForm(), $content];
+		$fix = $this->file->addFixableError($this->getErrorMessage(), $this->position, '', $data);
+		if ($fix) {
+			$this->fixViolation($position, $foundName);
+		}
 	}
 
 
