@@ -1,4 +1,4 @@
-<?php // lint >= 5.5
+<?php
 
 if ($i === 1) {
 	return $i;

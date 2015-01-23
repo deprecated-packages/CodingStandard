@@ -1,4 +1,4 @@
-<?php // lint >= 5.5
+<?php
 
 if ($count === 2) {
 	return 3;

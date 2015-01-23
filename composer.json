@@ -9,10 +9,6 @@
 		"php": ">=5.4",
 		"squizlabs/php_codesniffer": "~2.1"
 	},
-	"require-dev": {
-		"jakub-onderka/php-parallel-lint": "~0.8",
-		"phpunit/phpunit": "~4.4"
-	},
 	"autoload-dev": {
 		"psr-4": {
 			"Zenify\\CodingStandard\\Tests\\": "tests"

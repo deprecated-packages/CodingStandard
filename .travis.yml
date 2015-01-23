@@ -13,13 +13,11 @@ install:
   - composer install --prefer-source
 
 before_script:
-  # php linter
-  - vendor/bin/parallel-lint -e php src tests
   # php code-sniffer
   - vendor/bin/phpcs src tests --standard=src/ZenifyCodingStandard/ruleset.xml --ignore=wrong,correct
 
 script:
-  - vendor/bin/phpunit
+  - phpunit
 
 after_script:
   # move code coverage

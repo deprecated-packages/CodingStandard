@@ -1,4 +1,4 @@
-<?php // lint >= 5.4
+<?php
 
 $someClass = new SomeNamespace\SomeClass;
 
