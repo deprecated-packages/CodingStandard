@@ -10,9 +10,9 @@ namespace ZenifyCodingStandard\Sniffs\Naming;
 
 /**
  * Rules:
- * - Bool operator should be spelled 'bool'
+ * - Integer operator should be spelled 'int'
  */
-class BoolSniff extends NamingSniffer
+class IntSniff extends NamingSniffer
 {
 
 	/**
@@ -20,7 +20,7 @@ class BoolSniff extends NamingSniffer
 	 */
 	protected function getPossibleForms()
 	{
-		return ['bool', 'boolean'];
+		return ['int', 'integer'];
 	}
 
 
@@ -29,7 +29,7 @@ class BoolSniff extends NamingSniffer
 	 */
 	protected function getAllowedForm()
 	{
-		return 'bool';
+		return 'int';
 	}
 
 
@@ -38,7 +38,7 @@ class BoolSniff extends NamingSniffer
 	 */
 	protected function getErrorMessage()
 	{
-		return 'Bool operator should be spelled "%s"; "%s" found';
+		return 'Integer operator should be spelled "%s"; "%s" found';
 	}
 
 }
