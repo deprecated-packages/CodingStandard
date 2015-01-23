@@ -66,9 +66,12 @@ abstract class NamingSniffer implements PHP_CodeSniffer_Sniff
 			if ($this->isNameInToken($token)) {
 				if ( ! $this->isCorrectFormInToken($token)) {
 					$content = explode(' ', $token['content']);
-					$content = $content[0];
+					$foundName = $content = $content[0];
 					$data = [$this->getAllowedForm(), $content];
-					$file->addError($this->getErrorMessage(), $position, '', $data);
+					$fix = $file->addFixableError($this->getErrorMessage(), $position, '', $data);
+					if ($fix) {
+						$this->fixViolation($position, $foundName);
+					}
 				}
 			}
 		}
@@ -122,6 +125,19 @@ abstract class NamingSniffer implements PHP_CodeSniffer_Sniff
 	{
 		$list = explode(' ', $content);
 		return $list[0];
+	}
+
+
+	/**
+	 * @param int $position
+	 */
+	private function fixViolation($position, $foundName)
+	{
+		$this->file->fixer->beginChangeset();
+		$tokenContent = $this->tokens[$position]['content'];
+		$newContent = $this->getAllowedForm() . ltrim($tokenContent, $foundName);
+		$this->file->fixer->replaceToken($position, $newContent);
+		$this->file->fixer->endChangeset();
 	}
 
 }

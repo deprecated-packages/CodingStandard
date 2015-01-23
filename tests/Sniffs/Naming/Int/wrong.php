@@ -20,7 +20,7 @@ class Answer
 	 * @param integer $strict Check if integer value has changed.
 	 * @return integer
 	 */
-	public function hasChanged($strict = FALSE)
+	public function hasChanged($strict = 0)
 	{
 		/** @var integer $hasChecked */
 		$hasChecked = '...';
