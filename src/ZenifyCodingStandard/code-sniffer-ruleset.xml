@@ -35,6 +35,7 @@
 			<property name="indent" value="1"/>
 		</properties>
 	</rule>
+	<rule ref="PEAR.ControlStructures.MultiLineCondition.SpacingAfterOpenBrace"><severity>0</severity></rule>
 	<rule ref="PSR2.ControlStructures.ElseIfDeclaration"/>
 	<rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
 	<rule ref="Squiz.ControlStructures.ForLoopDeclaration"/>
