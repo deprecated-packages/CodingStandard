@@ -41,10 +41,10 @@ In case you don't want to use Php_CodeSniffer manually for every change in the c
 ```json
 "scripts": {
 	"post-install-cmd": [
-		"Zenify\\CodingStandard\\Composer\\ScriptHandler::createPreCommitHook"
+		"Zenify\\CodingStandard\\Composer\\ScriptHandler::addPhpCsToPreCommitHook"
 	],
 	"post-update-cmd": [
-		"Zenify\\CodingStandard\\Composer\\ScriptHandler::createPreCommitHook"
+		"Zenify\\CodingStandard\\Composer\\ScriptHandler::addPhpCsToPreCommitHook"
 	]
 }
 ```

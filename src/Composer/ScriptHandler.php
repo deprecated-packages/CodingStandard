@@ -13,24 +13,21 @@ use Composer\Script\Event;
 class ScriptHandler
 {
 
-	public function createPreCommitHook(Event $event)
+	public function addPhpCsToPreCommitHook(Event $event)
 	{
-		self::copyIfNotExists(getcwd() . '/.git/hooks/pre-commit', __DIR__ . '/templates/git/hooks/pre-commit');
-		exec('chmod +x .git/hooks/pre-commit');
-	}
+		$originFile = getcwd() . '/.git/hooks/pre-commit';
+		$templateContent = file_get_contents(__DIR__ . '/templates/git/hooks/pre-commit-phpcs');
+		if (file_exists($originFile)) {
+			$originContent = file_get_contents($originFile);
+			if (strpos($originContent, '# run phpcs') === FALSE) {
+				$newContent = $originContent . PHP_EOL . PHP_EOL . $templateContent;
+				file_put_contents($originFile, $newContent);
+			}
 
-
-	/**
-	 * @param string $targetFile
-	 * @param string $sourceFile
-	 */
-	private static function copyIfNotExists($targetFile, $sourceFile)
-	{
-		if ( ! file_exists($targetFile)) {
-			$content = file_get_contents($sourceFile);
-			@mkdir(dirname($targetFile), 0777, TRUE);
-			file_put_contents($targetFile, $content);
+		} else {
+			file_put_contents($originFile, $templateContent);
 		}
+		exec('chmod +x .git/hooks/pre-commit');
 	}
 
 }
