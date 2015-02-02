@@ -1,0 +1,22 @@
+#!/bin/sh
+
+EXIT_CODE=0
+
+
+# get changed files
+FILES=$(git diff --name-only HEAD master | grep .php); # get only *.php files
+
+if [ ! -z "$FILES" ]; then
+	# check coding standard
+	printf "Running Code Sniffer..."
+	vendor/bin/phpcs $FILES --standard=vendor/zenify/coding-standard/src/ZenifyCodingStandard/ruleset.xml
+
+	if [ $? -ne 0 ]
+	then
+		printf "\033[0;41;37mFix coding standards before commit!\033[0m\n"
+		EXIT_CODE=1
+	fi
+fi
+
+
+exit $EXIT_CODE

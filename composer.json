@@ -9,6 +9,11 @@
 		"php": ">=5.4",
 		"squizlabs/php_codesniffer": "~2.1"
 	},
+	"autoload": {
+		"psr-4": {
+			"Zenify\\CodingStandard\\": "src"
+		}
+	},
 	"autoload-dev": {
 		"psr-4": {
 			"Zenify\\CodingStandard\\Tests\\": "tests"
