@@ -36,7 +36,7 @@ If you use PhpStorm, code sniffer can check your syntax as you write. [How to in
 
 ## How to Avoid Manual Usage
 
-In case you don't want to use Php_CodeSniffer manually, you can add pre-commit hook via `composer.json`:
+In case you don't want to use Php_CodeSniffer manually for every change in the code you make, you can add pre-commit hook via `composer.json`:
 
 ```json
 "scripts": {
