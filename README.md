@@ -52,3 +52,5 @@ In case you don't want to use Php_CodeSniffer manually for every change in the c
 **Every time you try to commit, Php_CodeSniffer will run on changed `.php` files only.**
 
 This is much faster than whole project, running manually or wait for CI.
+
+*Pretty cool, huh?*
