@@ -13,13 +13,11 @@ install:
   - composer install --prefer-source
 
 before_script:
-  # php code-sniffer
+  - if [ $TRAVIS_PHP_VERSION = '5.6' ]; then PHPUNIT_FLAGS="--coverage-clover=coverage.clover"; fi
   - vendor/bin/phpcs src tests --standard=src/ZenifyCodingStandard/ruleset.xml --ignore=wrong,correct
 
 script:
-  - phpunit
+  - phpunit $PHPUNIT_FLAGS
 
 after_script:
-  # move code coverage
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+  - if [ ! -z "$PHPUNIT_FLAGS" ]; then wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi

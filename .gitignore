@@ -1,5 +1,2 @@
-.idea
 composer.lock
 vendor
-coverage.*
-phpunit.xml
