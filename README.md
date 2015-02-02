@@ -11,7 +11,7 @@ Set of rules for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 **Check [rules overview](docs/en/zenify-rules-overview.md) for examples.**
 
 
-## Usage
+## Install
 
 Install the latest version via composer:
 
@@ -19,26 +19,36 @@ Install the latest version via composer:
 $ composer require zenify/coding-standard --dev
 ```
 
+
+## Usage
+
 And run Php_CodeSniffer:
 
 ```sh
 $ vendor/bin/phpcs src --standard=vendor/zenify/coding-standard/src/ZenifyCodingStandard/ruleset.xml
 ```
 
-### PhpStorm integration
+
+## PhpStorm Integration
 
 If you use PhpStorm, code sniffer can check your syntax as you write. [How to integrate?](docs/en/integration-to-php-storm.md)
 
-## Other Nette related cs
 
-- [Mikulas/code-sniffs](https://github.com/Mikulas/code-sniffs)
-- [juzna/nette-coding-standard](https://github.com/juzna/nette-coding-standard)
+## How to Avoid Manual Usage
 
+In case you don't want to use Php_CodeSniffer manually, you can add pre-commit hook via `composer.json`:
 
-## How to: own rules 
+```json
+"scripts": {
+	"post-install-cmd": [
+		"Zenify\\CodingStandard\\Composer\\ScriptHandler::createPreCommitHook"
+	],
+	"post-update-cmd": [
+		"Zenify\\CodingStandard\\Composer\\ScriptHandler::createPreCommitHook"
+	]
+}
+```
 
-In case you want to create your own rules, here are some sources to start with:
+**Every time you try to commit, Php_CodeSniffer will run on changed `.php` files only.**
 
-- [Nice explanatory tutorial](http://blog.mayflower.de/631-Creating-coding-standards-for-PHP_CodeSniffer.html)
-- [Overview of default rules with examples](http://edorian.github.io/php-coding-standard-generator/#phpcs)
-- [Post on Why to add CS as part of your projects](http://edorian.github.io/2013-03-13-Please-ship-your-own-coding-standard-as-part/)
+This is much faster than whole project, running manually or wait for CI.
