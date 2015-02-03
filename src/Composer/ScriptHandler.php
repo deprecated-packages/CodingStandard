@@ -13,7 +13,7 @@ use Composer\Script\Event;
 class ScriptHandler
 {
 
-	public function addPhpCsToPreCommitHook(Event $event)
+	public static function addPhpCsToPreCommitHook(Event $event)
 	{
 		$originFile = getcwd() . '/.git/hooks/pre-commit';
 		$templateContent = file_get_contents(__DIR__ . '/templates/git/hooks/pre-commit-phpcs');
