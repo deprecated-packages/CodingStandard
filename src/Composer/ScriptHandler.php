@@ -27,7 +27,7 @@ class ScriptHandler
 		} else {
 			file_put_contents($originFile, $templateContent);
 		}
-		exec('chmod +x .git/hooks/pre-commit');
+		chmod($originFile, 0755);
 	}
 
 }
