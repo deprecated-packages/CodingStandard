@@ -387,14 +387,34 @@ use B;
 
 ```php
 /** @var bool */
-public $isCorrect;
+public $someProperty;
 ```
 
 *Wrong*
 
 ```php
 /** @var boolean */
-public $isCorrect;
+public $someProperty;
+```
+
+
+### 6.2 IntSniff
+
+- Int operator should be spelled "int"
+
+
+*Correct*
+
+```php
+/** @var int */
+public $someProperty;
+```
+
+*Wrong*
+
+```php
+/** @var integer */
+public $someProperty;
 ```
 
 
