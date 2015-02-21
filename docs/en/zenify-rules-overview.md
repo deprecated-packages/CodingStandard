@@ -113,6 +113,36 @@ protected function createComponentDisplay()
 ```
 
 
+### 2.3 VarPropertyCommentSniff
+
+- Property should have docblock comment.
+ 
+*Correct*
+
+```php
+class SomeClass
+{
+
+	/**
+	 * @var int
+	 */
+	private $someProperty;
+
+}
+```
+
+*Wrong*
+
+```php
+class SomeClass
+{
+
+	private $someProperty;
+
+}
+```
+
+
 ## 3 Control Structures
 
 
