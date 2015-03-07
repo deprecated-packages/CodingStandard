@@ -7,15 +7,20 @@ php:
   - 7.0
   - hhvm
 
+env:
+  global:
+    - PHPCS_FLAGS="--ignore=wrong,correct"
+
 install:
+  - composer create-project --prefer-source --dev --no-interaction zenify/ci vendor/ci @dev
+  - . vendor/ci/travis/coverage-init.sh
   - composer install --prefer-source
 
 before_script:
-  - if [ $TRAVIS_PHP_VERSION = '5.6' ]; then PHPUNIT_FLAGS="--coverage-clover=coverage.clover"; fi
-  - if [ $TRAVIS_PHP_VERSION = '5.6' ]; then vendor/bin/phpcs src tests --standard=src/ZenifyCodingStandard/ruleset.xml --ignore=wrong,correct -p; fi
+  - . vendor/ci/travis/static-analysis.sh
 
 script:
   - phpunit $PHPUNIT_FLAGS
 
 after_script:
-  - if [ $TRAVIS_PHP_VERSION = '5.6' ]; then wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
+  - . vendor/ci/travis/coverage-send.sh
