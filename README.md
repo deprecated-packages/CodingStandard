@@ -13,7 +13,7 @@ Set of rules for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 
 ## Install
 
-Install the latest version via composer:
+Via Composer:
 
 ```sh
 $ composer require zenify/coding-standard --dev
@@ -22,10 +22,10 @@ $ composer require zenify/coding-standard --dev
 
 ## Usage
 
-And run Php_CodeSniffer:
+Run with Php_CodeSniffer:
 
 ```sh
-$ vendor/bin/phpcs src --standard=vendor/zenify/coding-standard/src/ZenifyCodingStandard/ruleset.xml
+$ vendor/bin/phpcs src --standard=vendor/zenify/coding-standard/src/ZenifyCodingStandard/ruleset.xml -p
 ```
 
 
