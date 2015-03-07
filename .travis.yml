@@ -12,7 +12,7 @@ install:
 
 before_script:
   - if [ $TRAVIS_PHP_VERSION = '5.6' ]; then PHPUNIT_FLAGS="--coverage-clover=coverage.clover"; fi
-  - vendor/bin/phpcs src tests --standard=src/ZenifyCodingStandard/ruleset.xml --ignore=wrong,correct
+  - if [ $TRAVIS_PHP_VERSION = '5.6' ]; then vendor/bin/phpcs src tests --standard=src/ZenifyCodingStandard/ruleset.xml --ignore=wrong,correct; fi
 
 script:
   - phpunit $PHPUNIT_FLAGS
