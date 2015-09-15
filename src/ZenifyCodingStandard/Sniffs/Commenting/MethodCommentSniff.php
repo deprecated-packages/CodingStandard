@@ -45,21 +45,14 @@ final class MethodCommentSniff implements PHP_CodeSniffer_Sniff
 		}
 
 		// 2. all methods have typehints
-		$parameterWithTypehintsCount = 0;
-		foreach ($parameters as $parameter) {
-			if ($parameter['type_hint']) {
-				$parameterWithTypehintsCount++;
-			}
-		}
-
-		if ($parameterCount === $parameterWithTypehintsCount) {
+		if ($parameterCount === $this->countParametersWithTypehint($parameters)) {
 			return;
 		}
 
 		$file->addError(
-				'Method docblock is missing, due to some parameters without typehints.',
-				$position,
-				'SpaceAfterLastUse'
+			'Method docblock is missing, due to some parameters without typehints.',
+			$position,
+			'SpaceAfterLastUse'
 		);
 	}
 
@@ -85,6 +78,21 @@ final class MethodCommentSniff implements PHP_CodeSniffer_Sniff
 		}
 
 		return FALSE;
+	}
+
+
+	/**
+	 * @return int
+	 */
+	private function countParametersWithTypehint(array $parameters)
+	{
+		$parameterWithTypehintCount = 0;
+		foreach ($parameters as $parameter) {
+			if ($parameter['type_hint']) {
+				$parameterWithTypehintCount++;
+			}
+		}
+		return $parameterWithTypehintCount;
 	}
 
 }
