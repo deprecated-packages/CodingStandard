@@ -7,7 +7,7 @@ use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers MethodCommentSniff
+ * @covers ZenifyCodingStandard\Sniffs\Commenting\MethodCommentSniff
  */
 class MethodCommentSniffTest extends PHPUnit_Framework_TestCase
 {
