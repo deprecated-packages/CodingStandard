@@ -143,6 +143,53 @@ class SomeClass
 ```
 
 
+### 2.4 MethodCommentSniff
+
+- Method without parameter typehints should have docblock comment.
+
+*Correct*
+
+```php
+class SomeClass
+{
+
+	/**
+	 * @param int $values
+	 */
+	public function count($values)
+	{
+	}
+
+}
+```
+
+
+```php
+class SomeClass
+{
+
+	public function count(array $values)
+	{
+	}
+
+}
+```
+
+
+*Wrong*
+
+```php
+class SomeClass
+{
+
+	public function count($values)
+	{
+	}
+
+}
+```
+
+
 ## 3 Control Structures
 
 
