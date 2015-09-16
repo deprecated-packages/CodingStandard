@@ -14,6 +14,9 @@ use PHP_CodeSniffer_Sniff;
 /**
  * Rules:
  * - Non-abstract class that implements interface should be final.
+ *
+ * Inspiration:
+ * - http://ocramius.github.io/blog/when-to-declare-classes-final/
  */
 final class FinalInterfaceSniff implements PHP_CodeSniffer_Sniff
 {
@@ -50,11 +53,7 @@ final class FinalInterfaceSniff implements PHP_CodeSniffer_Sniff
 			return;
 		}
 
-		if ($this->isAbstractClass()) {
-			return;
-		}
-
-		if ($this->isFinalClass()) {
+		if ($this->isFinalOrAbstractClass()) {
 			return;
 		}
 
@@ -77,18 +76,10 @@ final class FinalInterfaceSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * @return bool
 	 */
-	private function isAbstractClass()
+	private function isFinalOrAbstractClass()
 	{
-		return (bool) $this->file->findPrevious(T_ABSTRACT, $this->position);
-	}
-
-
-	/**
-	 * @return bool
-	 */
-	private function isFinalClass()
-	{
-		return (bool) $this->file->findPrevious(T_FINAL , $this->position);
+		$classProperties = $this->file->getClassProperties($this->position);
+		return ($classProperties['is_abstract'] || $classProperties['is_final']);
 	}
 
 }
