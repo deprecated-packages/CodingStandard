@@ -51,6 +51,45 @@ class SomeClass
 ```
 
 
+### 1.2 FinalInterfaceSniff
+
+- Non-abstract class that implements interface should be final.
+
+*Correct*
+
+```php
+final class SomeClass implements SomeInterface
+{
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function run()
+	{
+
+	}
+
+}
+```
+
+*Wrong*
+
+```php
+class SomeClass implements SomeInterface
+{
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function run()
+	{
+
+	}
+
+}
+```
+
+
 ## 2 Commenting
 
 
