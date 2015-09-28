@@ -14,6 +14,7 @@ use PHP_CodeSniffer_Sniff;
 /**
  * Rules:
  * - Non-abstract class that implements interface should be final.
+ * - Except for Doctrine entities, they cannot be final.
  *
  * Inspiration:
  * - http://ocramius.github.io/blog/when-to-declare-classes-final/
@@ -57,6 +58,10 @@ final class FinalInterfaceSniff implements PHP_CodeSniffer_Sniff
 			return;
 		}
 
+		if ($this->isDoctrineEntity()) {
+			return;
+		}
+
 		$file->addError(
 			'Non-abstract class that implements interface should be final.',
 			$position
@@ -80,6 +85,26 @@ final class FinalInterfaceSniff implements PHP_CodeSniffer_Sniff
 	{
 		$classProperties = $this->file->getClassProperties($this->position);
 		return ($classProperties['is_abstract'] || $classProperties['is_final']);
+	}
+
+
+	/**
+	 * @return bool
+	 */
+	private function isDoctrineEntity()
+	{
+		$docCommentPosition = $this->file->findPrevious(T_DOC_COMMENT_OPEN_TAG, $this->position);
+
+		$seekPosition = $docCommentPosition;
+		while ($docCommentPosition = $this->file->findNext(T_DOC_COMMENT_TAG, $seekPosition, $this->position)) {
+			$docCommentTokenContent = $this->file->getTokens()[$docCommentPosition]['content'];
+			if (strpos($docCommentTokenContent, 'Entity') !== FALSE) {
+				return TRUE;
+			}
+			$seekPosition++;
+		}
+
+		return FALSE;
 	}
 
 }

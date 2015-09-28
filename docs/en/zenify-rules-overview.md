@@ -54,6 +54,7 @@ class SomeClass
 ### 1.2 FinalInterfaceSniff
 
 - Non-abstract class that implements interface should be final.
+- Except for Doctrine entities, they cannot be final.
 
 *Correct*
 
