@@ -94,15 +94,20 @@ final class FinalInterfaceSniff implements PHP_CodeSniffer_Sniff
 	private function isDoctrineEntity()
 	{
 		$docCommentPosition = $this->file->findPrevious(T_DOC_COMMENT_OPEN_TAG, $this->position);
+		if ($docCommentPosition === FALSE) {
+			return FALSE;
+		}
 
 		$seekPosition = $docCommentPosition;
-		while ($docCommentPosition = $this->file->findNext(T_DOC_COMMENT_TAG, $seekPosition, $this->position)) {
+
+		do {
 			$docCommentTokenContent = $this->file->getTokens()[$docCommentPosition]['content'];
 			if (strpos($docCommentTokenContent, 'Entity') !== FALSE) {
 				return TRUE;
 			}
 			$seekPosition++;
-		}
+
+		} while ($docCommentPosition = $this->file->findNext(T_DOC_COMMENT_TAG, $seekPosition, $this->position));
 
 		return FALSE;
 	}
