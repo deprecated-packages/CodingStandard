@@ -6,7 +6,7 @@ use PHPUnit_Framework_TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
-class BoolSniff extends PHPUnit_Framework_TestCase
+class BoolSniffTest extends PHPUnit_Framework_TestCase
 {
 
 	/**
