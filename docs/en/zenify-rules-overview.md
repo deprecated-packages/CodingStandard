@@ -699,53 +699,7 @@ try (1 === 2) {
 ```
 
 
-### 9.4 InBetweenExceptionSpacingSniff
-
-- Class followed by exception or exceptions should have 2 empty lines between themselves
-
-*Correct*
-
-```php
-class SomeClass
-{
-
-}
-
-
-class SomeException extends \Exception
-{
-
-}
-
-
-class SomeOtherException extends \Exception
-{
-
-}
-
-```
-
-*Wrong*
-
-```php
-class SomeClass
-{
-
-}
-
-class SomeException extends \Exception
-{
-
-}
-
-class SomeOtherException extends \Exception
-{
-
-}
-```
-
-
-### 9.5 InBetweenMethodSpacingSniff
+### 9.4 InBetweenMethodSpacingSniff
 
 - Method should have 2 empty lines after itself
 
@@ -785,7 +739,7 @@ class SomeClass
 ```
 
 
-### 9.6 PropertiesMethodsMutualSpacingSniff
+### 9.5 PropertiesMethodsMutualSpacingSniff
 
 - Between properties and methods should be 2 empty lines
 
@@ -821,7 +775,7 @@ class SomeClass
 ```
 
 
-### 9.7 OperatorSpacingSniff
+### 9.6 OperatorSpacingSniff
 
 - Operator should be surrounded by spaces or on new line
 - Exceptions: Function's defaults, ?:, +=, &$var and similar
