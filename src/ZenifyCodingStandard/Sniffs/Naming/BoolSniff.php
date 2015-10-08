@@ -12,7 +12,7 @@ namespace ZenifyCodingStandard\Sniffs\Naming;
  * Rules:
  * - Bool operator should be spelled 'bool'
  */
-class BoolSniff extends NamingSniffer
+class BoolSniff extends AbstractNamingSniffer
 {
 
 	/**

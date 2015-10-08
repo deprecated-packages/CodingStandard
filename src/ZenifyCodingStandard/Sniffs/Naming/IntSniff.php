@@ -12,7 +12,7 @@ namespace ZenifyCodingStandard\Sniffs\Naming;
  * Rules:
  * - Integer operator should be spelled 'int'
  */
-class IntSniff extends NamingSniffer
+class IntSniff extends AbstractNamingSniffer
 {
 
 	/**

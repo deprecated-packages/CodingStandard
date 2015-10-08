@@ -11,7 +11,7 @@ use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
 
-abstract class NamingSniffer implements PHP_CodeSniffer_Sniff
+abstract class AbstractNamingSniffer implements PHP_CodeSniffer_Sniff
 {
 
 	/**
