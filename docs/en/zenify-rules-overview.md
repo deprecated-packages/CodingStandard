@@ -505,6 +505,54 @@ public $someProperty;
 ```
 
 
+### 6.3 AbstractClassNameSniff
+
+- Abstract class should have prefix "Abstract"
+
+
+*Correct*
+
+```php
+abstract class AbstractClass
+{
+
+}
+```
+
+*Wrong*
+
+```php
+abstract class SomeClass
+{
+
+}
+```
+
+
+### 6.4 InterfaceNameSniff
+
+- Interface should have suffix "Interface"
+
+
+*Correct*
+
+```php
+interface SomeInterface
+{
+
+}
+```
+
+*Wrong*
+
+```php
+interface Some
+{
+
+}
+```
+
+
 ## 7 PHP
 
 
