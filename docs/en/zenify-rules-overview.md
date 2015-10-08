@@ -19,7 +19,7 @@ Rules uses default numeric parameters (some can be changed to match your needs).
 ## 1 Classes
 
 
-### 1.1 ClassDeclarationSniff
+### ClassDeclarationSniff
 
 - Opening brace for the class should be followed by 1 empty line
 - Closing brace for the class should be preceded by 1 empty line
@@ -51,7 +51,7 @@ class SomeClass
 ```
 
 
-### 1.2 FinalInterfaceSniff
+### FinalInterfaceSniff
 
 - Non-abstract class that implements interface should be final.
 - Except for Doctrine entities, they cannot be final.
@@ -125,7 +125,7 @@ class SomeClass
 ```
 
 
-### 2.2 ComponentFactoryCommentSniff
+### ComponentFactoryCommentSniff
 
 - CreateComponent* method should have a doc comment
 - CreateComponent* method should have a return tag
@@ -153,7 +153,7 @@ protected function createComponentDisplay()
 ```
 
 
-### 2.3 VarPropertyCommentSniff
+### VarPropertyCommentSniff
 
 - Property should have docblock comment.
  
@@ -183,7 +183,7 @@ class SomeClass
 ```
 
 
-### 2.4 MethodCommentSniff
+### MethodCommentSniff
 
 - Method without parameter typehints should have docblock comment.
 
@@ -233,7 +233,7 @@ class SomeClass
 ## 3 Control Structures
 
 
-### 3.1 NewClassSniff
+### NewClassSniff
  
 - New class statement should not have empty parentheses
 
@@ -250,7 +250,7 @@ $someClass = new SomeNamespace\SomeClass($keyHandler);
 $someClass = new SomeNamespace\SomeClass();
 ```
 
-### 3.2 SwitchDeclarationSniff
+### SwitchDeclarationSniff
 
 *Correct*
 
@@ -280,7 +280,7 @@ case 1:
 ```
 
 
-### 3.3 YodaConditionSniff
+### YodaConditionSniff
 
 - Yoda condition should not be used; switch expression order
 
@@ -306,7 +306,7 @@ $go = TRUE === $decide ?: FALSE;
 ```
 
 
-### 3.4 WeakTypeComparisonWithExplanationSniff
+### WeakTypeComparisonWithExplanationSniff
 
 - Strong comparison should be used instead of weak one, or commented with its purpose
 
@@ -334,7 +334,7 @@ if ($i == TRUE) {
 ## 4 Debug
 
 
-## 4.1 DebugFunctionCallSniff
+### DebugFunctionCallSniff
 
 - Debug functions should not be left in the code
 
@@ -348,7 +348,7 @@ dump('It works');
 ## 5 Namespaces
 
 
-### 5.1 NamespaceDeclarationSniff
+### NamespaceDeclarationSniff
 
 - There must be 2 empty lines after the namespace declaration or 1 empty line followed by use statement.
 
@@ -405,7 +405,7 @@ class SomeClass
 ```
 
 
-### 5.2 UseDeclarationSniff 
+### UseDeclarationSniff 
 
 - There must be one USE keyword per declaration
 - There must be 2 blank lines after the last USE statement
@@ -439,7 +439,7 @@ class SomeClass
 ```
 
 
-### 5.3 UseInAlphabeticalOrderSniff
+### UseInAlphabeticalOrderSniff
  
 -  Use statements should be in alphabetical order
 
@@ -465,7 +465,7 @@ use B;
 ## 6 Naming
 
 
-### 6.1 BoolSniff
+### BoolSniff
 
 - Bool operator should be spelled "bool"
 
@@ -485,7 +485,7 @@ public $someProperty;
 ```
 
 
-### 6.2 IntSniff
+### IntSniff
 
 - Int operator should be spelled "int"
 
@@ -505,7 +505,7 @@ public $someProperty;
 ```
 
 
-### 6.3 AbstractClassNameSniff
+### AbstractClassNameSniff
 
 - Abstract class should have prefix "Abstract"
 
@@ -529,7 +529,7 @@ abstract class SomeClass
 ```
 
 
-### 6.4 InterfaceNameSniff
+### InterfaceNameSniff
 
 - Interface should have suffix "Interface"
 
@@ -556,7 +556,7 @@ interface Some
 ## 7 PHP
 
 
-### 7.1 ShortArraySyntaxSniff
+### ShortArraySyntaxSniff
 
 - Short array syntax should be used, instead of traditional one.
 
@@ -576,7 +576,7 @@ private $settings = array();
 ## 8 Scope
 
 
-### 8.1 MethodScopeSniff
+### MethodScopeSniff
 
 - Function should have scope modifier
 - Interface function should not have scope modifier
@@ -633,7 +633,7 @@ interface SomeInterface
 ## 9 WhiteSpace
  
 
-### 9.1 ConcatOperatorSniff
+### ConcatOperatorSniff
 
 - ConcatOperator (.) should be surrounded by spaces
 
@@ -650,7 +650,7 @@ $s = 'Ze'.'n';
 ```
 
 
-### 9.2 ExclamationMarkSniff
+### ExclamationMarkSniff
 
 - Not operator (!) should be surrounded by spaces
 
@@ -671,7 +671,7 @@ if (!$s) {
 ```
 
 
-### 9.3 IfElseTryCatchFinallySniff
+### IfElseTryCatchFinallySniff
 
 - Else/elseif/catch/finally statement should be preceded by 1 empty line
 
@@ -699,7 +699,7 @@ try (1 === 2) {
 ```
 
 
-### 9.4 InBetweenMethodSpacingSniff
+### InBetweenMethodSpacingSniff
 
 - Method should have 2 empty lines after itself
 
@@ -739,7 +739,7 @@ class SomeClass
 ```
 
 
-### 9.5 PropertiesMethodsMutualSpacingSniff
+### PropertiesMethodsMutualSpacingSniff
 
 - Between properties and methods should be 2 empty lines
 
@@ -775,7 +775,7 @@ class SomeClass
 ```
 
 
-### 9.6 OperatorSpacingSniff
+### OperatorSpacingSniff
 
 - Operator should be surrounded by spaces or on new line
 - Exceptions: Function's defaults, ?:, +=, &$var and similar
