@@ -69,7 +69,7 @@ final class AbstractClassNameSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
-	 * @return string
+	 * @return string|FALSE
 	 */
 	private function getClassName()
 	{
