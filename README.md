@@ -13,8 +13,6 @@ Set of rules for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 
 ## Install
 
-Via Composer:
-
 ```sh
 $ composer require zenify/coding-standard --dev
 ```

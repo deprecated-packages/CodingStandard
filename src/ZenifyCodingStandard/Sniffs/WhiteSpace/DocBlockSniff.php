@@ -15,7 +15,7 @@ use PHP_CodeSniffer_Sniff;
  * Rules:
  * - DocBlock lines should start with space (except first one)
  */
-class DocBlockSniff implements PHP_CodeSniffer_Sniff
+final class DocBlockSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**

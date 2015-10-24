@@ -19,7 +19,7 @@ use PHP_CodeSniffer_Tokens;
  * Exceptions:
  * - Function's defaults, ?:, +=, &$var and similar.
  */
-class OperatorSpacingSniff implements PHP_CodeSniffer_Sniff
+final class OperatorSpacingSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**

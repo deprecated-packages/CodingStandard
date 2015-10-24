@@ -17,7 +17,7 @@ use PHP_CodeSniffer_Sniff;
  * - CreateComponent* method should have a return tag.
  * - Return tag should contain type.
  */
-class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
+final class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**

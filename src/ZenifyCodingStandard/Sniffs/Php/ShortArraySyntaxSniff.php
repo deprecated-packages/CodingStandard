@@ -15,7 +15,7 @@ use PHP_CodeSniffer_Sniff;
  * Rules:
  * - Short array syntax should be used, instead of traditional one.
  */
-class ShortArraySyntaxSniff implements PHP_CodeSniffer_Sniff
+final class ShortArraySyntaxSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**

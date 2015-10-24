@@ -15,7 +15,7 @@ use PHP_CodeSniffer_Sniff;
  * Rules:
  * - Yoda condition should not be used; switch expression order
  */
-class YodaConditionSniff implements PHP_CodeSniffer_Sniff
+final class YodaConditionSniff implements PHP_CodeSniffer_Sniff
 {
 
 	const MESSAGE_ERROR = 'Yoda condition should not be used; switch expression order';

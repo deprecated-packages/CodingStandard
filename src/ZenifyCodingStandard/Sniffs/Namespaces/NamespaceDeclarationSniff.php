@@ -15,7 +15,7 @@ use PHP_CodeSniffer_Sniff;
  * Rules:
  * - There must be x empty line(s) after the namespace declaration or y empty line(s) followed by use statement.
  */
-class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
+final class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**

@@ -14,7 +14,7 @@ use PHP_CodeSniffer_File;
  * Rules:
  * - ConcatOperator (.) should be surrounded by spaces.
  */
-class ConcatOperatorSniff implements \PHP_CodeSniffer_Sniff
+final class ConcatOperatorSniff implements \PHP_CodeSniffer_Sniff
 {
 
 	/**

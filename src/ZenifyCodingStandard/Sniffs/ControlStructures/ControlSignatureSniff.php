@@ -16,7 +16,7 @@ use PHP_CodeSniffer_Sniff;
  * - Same as @see Squiz_Sniffs_ControlStructures_ControlSignatureSniff
  * - This modification allows comments
  */
-class ControlSignatureSniff implements PHP_CodeSniffer_Sniff
+final class ControlSignatureSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**

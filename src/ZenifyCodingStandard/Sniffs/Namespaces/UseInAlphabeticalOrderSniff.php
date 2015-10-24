@@ -18,7 +18,7 @@ use PHP_CodeSniffer_Sniff;
  * @author Mikulas Dite <mikulas@dite.pro>
  * @author Tomas Votruba <tomas.vot@gmail.com>
  */
-class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
+final class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**

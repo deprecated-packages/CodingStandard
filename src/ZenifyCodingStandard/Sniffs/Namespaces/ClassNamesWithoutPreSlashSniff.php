@@ -15,7 +15,7 @@ use PHP_CodeSniffer_Sniff;
  * Rules:
  * - Class name after new/instanceof should not start with slash
  */
-class ClassNamesWithoutPreSlashSniff implements PHP_CodeSniffer_Sniff
+final class ClassNamesWithoutPreSlashSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**

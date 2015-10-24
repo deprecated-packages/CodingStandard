@@ -15,7 +15,7 @@ use PHP_CodeSniffer_Sniff;
  * Rules:
  * - Block comment should be used instead of one liner.
  */
-class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
+final class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**

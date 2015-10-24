@@ -15,7 +15,7 @@ use PHP_CodeSniffer_Sniff;
  * Rules:
  * - New class statement should not have empty parentheses.
  */
-class NewClassSniff implements PHP_CodeSniffer_Sniff
+final class NewClassSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**

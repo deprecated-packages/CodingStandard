@@ -15,7 +15,7 @@ use PHP_CodeSniffer_Sniff;
  * Rules:
  * - Between properties and methods should be x empty line(s).
  */
-class PropertiesMethodsMutualSpacingSniff implements PHP_CodeSniffer_Sniff
+final class PropertiesMethodsMutualSpacingSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**

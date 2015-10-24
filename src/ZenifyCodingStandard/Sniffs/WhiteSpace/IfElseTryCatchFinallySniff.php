@@ -8,13 +8,14 @@
 namespace ZenifyCodingStandard\Sniffs\Whitespace;
 
 use PHP_CodeSniffer_File;
+use PHP_CodeSniffer_Sniff;
 
 
 /**
  * Rules:
  * - Else/elseif/catch/finally statement should be preceded by x empty line(s)
  */
-class IfElseTryCatchFinallySniff implements \PHP_CodeSniffer_Sniff
+final class IfElseTryCatchFinallySniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**

@@ -18,7 +18,7 @@ use PHP_CodeSniffer_Sniff;
  * @author Jan Dolecek <juzna.cz@gmail.com>
  * @author Tomas Votruba <tomas.vot@gmail.com>
  */
-class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_Sniff
+final class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**

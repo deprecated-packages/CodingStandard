@@ -7,12 +7,14 @@
 
 namespace ZenifyCodingStandard\Sniffs\WhiteSpace;
 
+use PHP_CodeSniffer_Sniff;
+
 
 /**
  * Rules:
  * - Not operator (!) should be surrounded by spaces.
  */
-class ExclamationMarkSniff implements \PHP_CodeSniffer_Sniff
+final class ExclamationMarkSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**
