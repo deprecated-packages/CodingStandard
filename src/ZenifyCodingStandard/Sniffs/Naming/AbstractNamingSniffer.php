@@ -38,6 +38,7 @@ abstract class AbstractNamingSniffer implements PHP_CodeSniffer_Sniff
 		return [T_DOC_COMMENT_OPEN_TAG];
 	}
 
+
 	/**
 	 * {@inheritdoc}
 	 */
