@@ -7,13 +7,11 @@
 
 namespace Zenify\CodingStandard\Composer;
 
-use Composer\Script\Event;
 
-
-class ScriptHandler
+final class ScriptHandler
 {
 
-	public static function addPhpCsToPreCommitHook(Event $event)
+	public static function addPhpCsToPreCommitHook()
 	{
 		$originFile = getcwd() . '/.git/hooks/pre-commit';
 		$templateContent = file_get_contents(__DIR__ . '/templates/git/hooks/pre-commit-phpcs');
