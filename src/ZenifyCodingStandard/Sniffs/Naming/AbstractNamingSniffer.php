@@ -38,25 +38,6 @@ abstract class AbstractNamingSniffer implements PHP_CodeSniffer_Sniff
 		return [T_DOC_COMMENT_OPEN_TAG];
 	}
 
-
-	/**
-	 * @return string
-	 */
-	abstract protected function getErrorMessage();
-
-
-	/**
-	 * @return string
-	 */
-	abstract protected function getAllowedForm();
-
-
-	/**
-	 * @return string[]
-	 */
-	abstract protected function getPossibleForms();
-
-
 	/**
 	 * {@inheritdoc}
 	 */
@@ -75,6 +56,24 @@ abstract class AbstractNamingSniffer implements PHP_CodeSniffer_Sniff
 			}
 		}
 	}
+
+
+	/**
+	 * @return string[]
+	 */
+	abstract protected function getPossibleForms();
+
+
+	/**
+	 * @return string
+	 */
+	abstract protected function getAllowedForm();
+
+
+	/**
+	 * @return string
+	 */
+	abstract protected function getErrorMessage();
 
 
 	/**

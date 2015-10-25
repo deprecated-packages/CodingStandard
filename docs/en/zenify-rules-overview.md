@@ -94,7 +94,7 @@ class SomeClass implements SomeInterface
 ## 2 Commenting
 
 
-### 2.1 BlockPropertyCommentSniff
+### BlockPropertyCommentSniff
 
 - Block comment should be used instead of one liner
 
@@ -548,6 +548,44 @@ interface SomeInterface
 ```php
 interface Some
 {
+
+}
+```
+
+
+### InheritDocSniff
+
+- Inheritdoc comment should be spelled "{@inheritdoc}"
+
+
+*Correct*
+
+```php
+class SomeClass
+{
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getSome()
+	{
+	}
+
+}
+```
+
+*Wrong*
+
+```php
+class SomeClass
+{
+
+	/**
+	 * @{inheritDoc}
+	 */
+	public function getSome()
+	{
+	}
 
 }
 ```
