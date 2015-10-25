@@ -7,7 +7,7 @@ use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers InheritDocSniff
+ * @covers ZenifyCodingStandard\Sniffs\Naming\InheritDocSniff
  */
 final class InheritDocSniffTest extends PHPUnit_Framework_TestCase
 {

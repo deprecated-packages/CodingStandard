@@ -6,25 +6,18 @@ use PHPUnit_Framework_TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
-class ConcatOperatorSniffTest extends PHPUnit_Framework_TestCase
+/**
+ * @covers ZenifyCodingStandard\Sniffs\WhiteSpace\ConcatOperatorSniff
+ */
+final class ConcatOperatorSniffTest extends PHPUnit_Framework_TestCase
 {
-
-	/**
-	 * @var CodeSnifferRunner
-	 */
-	private $codeSnifferRunner;
-
-
-	protected function setUp()
-	{
-		$this->codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.WhiteSpace.ConcatOperator');
-	}
-
 
 	public function testDetection()
 	{
-		$this->assertSame(1, $this->codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
-		$this->assertSame(0, $this->codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct.php'));
+		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.WhiteSpace.ConcatOperator');
+
+		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
+		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct.php'));
 	}
 
 }

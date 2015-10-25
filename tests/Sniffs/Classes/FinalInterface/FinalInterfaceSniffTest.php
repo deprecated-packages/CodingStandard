@@ -12,25 +12,15 @@ use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 final class FinalInterfaceSniffTest extends PHPUnit_Framework_TestCase
 {
 
-	/**
-	 * @var CodeSnifferRunner
-	 */
-	private $codeSnifferRunner;
-
-
-	protected function setUp()
-	{
-		$this->codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.Classes.FinalInterface');
-	}
-
-
 	public function testDetection()
 	{
-		$this->assertSame(1, $this->codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
-		$this->assertSame(0, $this->codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct.php'));
-		$this->assertSame(0, $this->codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct2.php'));
-		$this->assertSame(0, $this->codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct3.php'));
-		$this->assertSame(0, $this->codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct4.php'));
+		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.Classes.FinalInterface');
+
+		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
+		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct.php'));
+		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct2.php'));
+		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct3.php'));
+		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct4.php'));
 	}
 
 }

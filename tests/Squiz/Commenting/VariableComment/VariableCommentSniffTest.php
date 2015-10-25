@@ -6,6 +6,9 @@ use PHPUnit_Framework_TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
+/**
+ * @covers Squiz_Sniffs_Commenting_VariableCommentSniff
+ */
 final class VariableCommentSniffTest extends PHPUnit_Framework_TestCase
 {
 
