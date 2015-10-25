@@ -7,6 +7,7 @@
 
 namespace ZenifyCodingStandard\Sniffs\WhiteSpace;
 
+use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
 
@@ -18,7 +19,7 @@ final class ExclamationMarkSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**
-	 * @return int[]
+	 * {@inheritdoc}
 	 */
 	public function register()
 	{
@@ -27,10 +28,9 @@ final class ExclamationMarkSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
-	 * @param \PHP_CodeSniffer_File $file
-	 * @param int $position
+	 * {@inheritdoc}
 	 */
-	public function process(\PHP_CodeSniffer_File $file, $position)
+	public function process(PHP_CodeSniffer_File $file, $position)
 	{
 		$tokens = $file->getTokens();
 		if ($tokens[$position - 1]['code'] !== T_WHITESPACE || $tokens[$position + 1]['code'] !== T_WHITESPACE) {

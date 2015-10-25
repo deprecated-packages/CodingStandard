@@ -27,9 +27,7 @@ class MethodScopeSniff extends PHP_CodeSniffer_Standards_AbstractScopeSniff
 
 
 	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @param int $currScope
+	 * {@inheritdoc}
 	 */
 	protected function processTokenWithinScope(PHP_CodeSniffer_File $file, $position, $currScope)
 	{

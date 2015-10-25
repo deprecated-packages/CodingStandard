@@ -35,7 +35,7 @@ final class DocBlockSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
-	 * @return int[]
+	 * {@inheritdoc}
 	 */
 	public function register()
 	{
@@ -44,8 +44,7 @@ final class DocBlockSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
+	 * {@inheritdoc}
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
@@ -57,7 +56,7 @@ final class DocBlockSniff implements PHP_CodeSniffer_Sniff
 			return;
 		}
 
-		if ( ! $this->isIndentationCorrect($file, $position)) {
+		if ( ! $this->isIndentationCorrect()) {
 			$file->addError('DocBlock lines should start with space (except first one)', $position);
 		}
 	}

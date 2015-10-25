@@ -16,7 +16,7 @@ class BoolSniff extends AbstractNamingSniffer
 {
 
 	/**
-	 * @return string[]
+	 * {@inheritdoc}
 	 */
 	protected function getPossibleForms()
 	{
@@ -25,7 +25,7 @@ class BoolSniff extends AbstractNamingSniffer
 
 
 	/**
-	 * @return string
+	 * {@inheritdoc}
 	 */
 	protected function getAllowedForm()
 	{
@@ -34,7 +34,7 @@ class BoolSniff extends AbstractNamingSniffer
 
 
 	/**
-	 * @return string
+	 * {@inheritdoc}
 	 */
 	protected function getErrorMessage()
 	{

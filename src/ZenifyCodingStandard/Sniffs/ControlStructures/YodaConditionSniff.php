@@ -18,6 +18,9 @@ use PHP_CodeSniffer_Sniff;
 final class YodaConditionSniff implements PHP_CodeSniffer_Sniff
 {
 
+	/**
+	 * @var string
+	 */
 	const MESSAGE_ERROR = 'Yoda condition should not be used; switch expression order';
 
 	/**
@@ -32,7 +35,7 @@ final class YodaConditionSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
-	 * @return int[]
+	 * {@inheritdoc}
 	 */
 	public function register()
 	{
@@ -50,8 +53,7 @@ final class YodaConditionSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
+	 * {@inheritdoc}
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{

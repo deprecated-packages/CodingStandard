@@ -27,7 +27,7 @@ class UseDeclarationSniff extends PSR2_Sniffs_Namespaces_UseDeclarationSniff
 
 
 	/**
-	 * @return array
+	 * {@inheritdoc}
 	 */
 	public function register()
 	{
@@ -36,8 +36,7 @@ class UseDeclarationSniff extends PSR2_Sniffs_Namespaces_UseDeclarationSniff
 
 
 	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
+	 * {@inheritdoc}
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{

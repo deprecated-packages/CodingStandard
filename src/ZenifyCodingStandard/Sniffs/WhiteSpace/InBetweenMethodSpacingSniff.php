@@ -44,7 +44,7 @@ class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_FunctionSpacin
 
 
 	/**
-	 * @return int[]
+	 * {@inheritdoc}
 	 */
 	public function register()
 	{
@@ -53,8 +53,7 @@ class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_FunctionSpacin
 
 
 	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
+	 * {@inheritdoc}
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{

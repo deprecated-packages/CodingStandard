@@ -27,7 +27,7 @@ final class ClassNamesWithoutPreSlashSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
-	 * @return int[]
+	 * {@inheritdoc}
 	 */
 	public function register()
 	{
@@ -36,8 +36,7 @@ final class ClassNamesWithoutPreSlashSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
+	 * {@inheritdoc}
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{

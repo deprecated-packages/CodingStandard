@@ -31,7 +31,7 @@ final class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_
 
 
 	/**
-	 * @return int[]
+	 * {@inheritdoc}
 	 */
 	public function register()
 	{
@@ -40,8 +40,7 @@ final class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_
 
 
 	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
+	 * {@inheritdoc}
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
