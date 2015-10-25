@@ -28,6 +28,9 @@
 	<rule ref="Squiz.Classes.ValidClassName"/>
 	<rule ref="Squiz.Classes.LowercaseClassKeywords"/>
 
+	<!-- Commenting -->
+	<rule ref="Squiz.Commenting.VariableComment"/>
+
 	<!-- ControlStructures -->
 	<rule ref="Generic.ControlStructures.InlineControlStructure"/>
 	<rule ref="PEAR.ControlStructures.MultiLineCondition">

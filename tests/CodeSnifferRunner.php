@@ -3,9 +3,11 @@
 namespace Zenify\CodingStandard\Tests;
 
 use PHP_CodeSniffer;
+use Zenify\CodingStandard\Tests\Exception\FileNotFoundException;
+use Zenify\CodingStandard\Tests\Exception\StandardRulesetNotFoundException;
 
 
-class CodeSnifferRunner
+final class CodeSnifferRunner
 {
 
 	/**
@@ -13,14 +15,24 @@ class CodeSnifferRunner
 	 */
 	private $codeSniffer;
 
+	/**
+	 * @var string[]
+	 */
+	private $standardRulesets = [
+		'Squiz' => __DIR__ . '/../vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Squiz/ruleset.xml',
+		'ZenifyCodingStandard' => __DIR__ . '/../src/ZenifyCodingStandard/ruleset.xml'
+	];
+
 
 	/**
 	 * @param string $sniff
 	 */
 	public function __construct($sniff)
 	{
+		$ruleset = $this->detectRulesetFromSniffName($sniff);
+
 		$this->codeSniffer = new PHP_CodeSniffer;
-		$this->codeSniffer->initStandard(__DIR__ . '/../src/ZenifyCodingStandard/ruleset.xml', [$sniff]);
+		$this->codeSniffer->initStandard($ruleset, [$sniff]);
 	}
 
 
@@ -30,12 +42,56 @@ class CodeSnifferRunner
 	 */
 	public function getErrorCountInFile($source)
 	{
-		if ( ! file_exists($source)) {
-			throw new \Exception("File $source was not found");
-		}
+		$this->ensureFileExists($source);
 
 		$file = $this->codeSniffer->processFile($source);
 		return $file->getErrorCount();
+	}
+
+
+	/**
+	 * @param string $name
+	 * @return string
+	 */
+	public function detectRulesetFromSniffName($sniff)
+	{
+		$standard = $this->detectStandardFromSniffName($sniff);
+
+		if (isset($this->standardRulesets[$standard])) {
+			return $this->standardRulesets[$standard];
+		}
+
+		throw new StandardRulesetNotFoundException(
+			sprintf('Ruleset for standard "%s" not found.', $standard)
+		);
+	}
+
+
+	/**
+	 * @param string $source
+	 */
+	private function ensureFileExists($source)
+	{
+		if ( ! file_exists($source)) {
+			throw new FileNotFoundException(
+				sprintf('File "%s" was not found.', $source)
+			);
+		}
+	}
+
+
+	/**
+	 * @param string $sniff
+	 * @return string
+	 */
+	private function detectStandardFromSniffName($sniff)
+	{
+		$parts = explode('.', $sniff);
+		if (isset($parts[0])) {
+			return $parts[0];
+		}
+
+		return NULL;
 	}
 
 }
