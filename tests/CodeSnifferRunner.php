@@ -53,9 +53,9 @@ final class CodeSnifferRunner
 	 * @param string $name
 	 * @return string
 	 */
-	public function detectRulesetFromSniffName($sniff)
+	public function detectRulesetFromSniffName($name)
 	{
-		$standard = $this->detectStandardFromSniffName($sniff);
+		$standard = $this->detectStandardFromSniffName($name);
 
 		if (isset($this->standardRulesets[$standard])) {
 			return $this->standardRulesets[$standard];

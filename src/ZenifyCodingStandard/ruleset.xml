@@ -15,6 +15,7 @@
 	<rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
 
 	<!-- Commenting -->
+	<rule ref="Squiz.Commenting.FunctionComment"/>
 	<rule ref="Squiz.Commenting.VariableComment"/>
 
 	<!-- ControlStructures -->
