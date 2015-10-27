@@ -49,11 +49,7 @@ final class MethodCommentSniff implements PHP_CodeSniffer_Sniff
 			return;
 		}
 
-		$file->addError(
-			'Method docblock is missing, due to some parameters without typehints.',
-			$position,
-			'SpaceAfterLastUse'
-		);
+		$file->addError('Method docblock is missing, due to some parameters without typehints.', $position);
 	}
 
 
