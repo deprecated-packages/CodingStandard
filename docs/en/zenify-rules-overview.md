@@ -155,7 +155,7 @@ protected function createComponentDisplay()
 
 ### VarPropertyCommentSniff
 
-- Property should have docblock comment.
+- Property should have docblock comment (except for {@inheritdoc}).
  
 *Correct*
 
@@ -223,6 +223,61 @@ class SomeClass
 {
 
 	public function count($values)
+	{
+	}
+
+}
+```
+
+
+### MethodCommentReturnTagSniff
+
+- Getters should have @return tag (except for {@inheritdoc}).
+
+*Correct*
+
+```php
+class SomeClass
+{
+
+	/**
+	 * @return int
+	 */
+	public function getResult()
+	{
+		// ...
+	}
+
+}
+```
+
+
+```php
+class SomeClass
+{
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getResult()
+	{
+		// ...
+	}
+
+}
+```
+
+
+*Wrong*
+
+```php
+class SomeClass
+{
+
+	/**
+	 * This will return something.
+	 */
+	public function getResult()
 	{
 	}
 

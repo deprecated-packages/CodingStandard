@@ -7,8 +7,11 @@ class SomeClass
 {
 
 	/**
-	 * @var string
+	 * @var int
 	 */
-	private $property;
+	public $count;
+
+
+	public $user;
 
 }
