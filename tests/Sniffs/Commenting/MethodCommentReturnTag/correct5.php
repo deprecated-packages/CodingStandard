@@ -2,8 +2,6 @@
 
 namespace SomeNamespace;
 
-use stdClass;
-
 
 class SomeClass
 {
