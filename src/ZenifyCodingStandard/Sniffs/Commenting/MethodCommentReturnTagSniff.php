@@ -20,18 +20,18 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**
+	 * @var string[]
+	 */
+	private $getterMethodPrefixes = ['get', 'is', 'has', 'will', 'should'];
+
+
+	/**
 	 * {@inheritdoc}
 	 */
 	public function register()
 	{
 		return [T_FUNCTION];
 	}
-
-
-	/**
-	 * @var string[]
-	 */
-	private $getterMethodPrefixes = ['get', 'is', 'has', 'will', 'should'];
 
 
 	/**

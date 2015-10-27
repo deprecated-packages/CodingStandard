@@ -45,7 +45,6 @@ final class VarPropertyCommentSniff extends PHP_CodeSniffer_Standards_AbstractVa
 	 */
 	protected function processVariable(PHP_CodeSniffer_File $file, $position)
 	{
-		return;
 	}
 
 
@@ -54,8 +53,8 @@ final class VarPropertyCommentSniff extends PHP_CodeSniffer_Standards_AbstractVa
 	 */
 	protected function processVariableInString(PHP_CodeSniffer_File $file, $position)
 	{
-		return;
 	}
+
 
 	/**
 	 * @param PHP_CodeSniffer_File $file
