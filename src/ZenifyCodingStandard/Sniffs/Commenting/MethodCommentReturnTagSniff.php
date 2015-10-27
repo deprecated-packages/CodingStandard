@@ -51,6 +51,11 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
 		}
 
 		$commentString = MethodDocBlock::getMethodDocBlock($file, $position);
+
+		if (strpos($commentString, '{@inheritdoc}') !== FALSE) {
+			return;
+		}
+
 		if (strpos($commentString, '@return') !== FALSE) {
 			return;
 		}
