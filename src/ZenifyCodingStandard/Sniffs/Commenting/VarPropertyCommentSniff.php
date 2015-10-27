@@ -8,29 +8,23 @@
 namespace ZenifyCodingStandard\Sniffs\Commenting;
 
 use PHP_CodeSniffer_File;
-use PHP_CodeSniffer_Sniff;
+use PHP_CodeSniffer_Standards_AbstractVariableSniff;
 
 
 /**
  * Rules:
  * - Property should have docblock comment (except for {@inheritdoc}).
+ *
+ * @see PHP_CodeSniffer_Standards_AbstractVariableSniff is used, because it's very difficult to
+ * separate properties from variables (in args, method etc.). This class does is for us.
  */
-final class VarPropertyCommentSniff implements PHP_CodeSniffer_Sniff
+final class VarPropertyCommentSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
 {
 
 	/**
 	 * {@inheritdoc}
 	 */
-	public function register()
-	{
-		return [T_VARIABLE];
-	}
-
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function process(PHP_CodeSniffer_File $file, $position)
+	protected function processMemberVar(PHP_CodeSniffer_File $file, $position)
 	{
 		$commentString = $this->getPropertyComment($file, $position);
 
@@ -45,6 +39,23 @@ final class VarPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 		$file->addError('Property should have docblock comment.', $position);
 	}
 
+
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function processVariable(PHP_CodeSniffer_File $file, $position)
+	{
+		return;
+	}
+
+
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function processVariableInString(PHP_CodeSniffer_File $file, $position)
+	{
+		return;
+	}
 
 	/**
 	 * @param PHP_CodeSniffer_File $file
