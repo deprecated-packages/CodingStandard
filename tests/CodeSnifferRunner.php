@@ -19,7 +19,6 @@ final class CodeSnifferRunner
 	 * @var string[]
 	 */
 	private $standardRulesets = [
-		'Squiz' => __DIR__ . '/../vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Squiz/ruleset.xml',
 		'ZenifyCodingStandard' => __DIR__ . '/../src/ZenifyCodingStandard/ruleset.xml'
 	];
 
