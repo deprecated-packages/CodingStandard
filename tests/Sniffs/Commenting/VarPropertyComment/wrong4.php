@@ -6,6 +6,12 @@ namespace SomeNamespace;
 class SomeClass
 {
 
-	private $property;
+	public $user;
+
+
+	/**
+	 * @var int
+	 */
+	public $count;
 
 }
