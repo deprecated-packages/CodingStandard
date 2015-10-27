@@ -13,7 +13,7 @@ use PHP_CodeSniffer_Sniff;
 
 /**
  * Rules:
- * - Property should have docblock comment.
+ * - Property should have docblock comment (except for {@inheritdoc}).
  */
 final class VarPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 {
@@ -60,7 +60,6 @@ final class VarPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 
 		$tokens = $file->getTokens();
 		if ($tokens[$commentEnd]['code'] !== T_DOC_COMMENT_CLOSE_TAG) {
-			var_dump('MHH?');
 			return '';
 
 		} else {

@@ -14,7 +14,7 @@ use ZenifyCodingStandard\Helper\Commenting\MethodDocBlock;
 
 /**
  * Rules:
- * - Getters should have @return tag (except {@inheritdoc}).
+ * - Getters should have @return tag (except for {@inheritdoc}).
  */
 final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
 {
