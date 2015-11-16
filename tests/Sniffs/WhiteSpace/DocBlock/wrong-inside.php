@@ -10,6 +10,7 @@
  *                "simple" = "Test2"
  * })
  */
-class Test{
+class Test
+{
 
 }
