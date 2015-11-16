@@ -29,4 +29,13 @@ final class DocBlockSniffTest extends PHPUnit_Framework_TestCase
 		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct-inside.php'));
 	}
 
+
+	public function testIdentationInside2()
+	{
+		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.WhiteSpace.DocBlock');
+
+		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong-inside2.php'));
+		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct-inside2.php'));
+	}
+
 }
