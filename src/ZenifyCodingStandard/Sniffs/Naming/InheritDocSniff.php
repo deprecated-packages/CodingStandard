@@ -34,7 +34,7 @@ class InheritDocSniff extends AbstractNamingSniffer
 	 */
 	protected function getAllowedForm()
 	{
-		return ['{@inheritdoc}'];
+		return '{@inheritdoc}';
 	}
 
 
