@@ -18,24 +18,10 @@ final class DocBlockSniffTest extends PHPUnit_Framework_TestCase
 
 		$this->assertSame(4, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
 		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct.php'));
-	}
 
-
-	public function testIdentationInside()
-	{
-		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.WhiteSpace.DocBlock');
-
-		$this->assertSame(2, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong-inside.php'));
+		// Testing indentation inside DocBlock
+		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong-inside.php'));
 		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct-inside.php'));
-	}
-
-
-	public function testIdentationInside2()
-	{
-		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.WhiteSpace.DocBlock');
-
-		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong-inside2.php'));
-		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct-inside2.php'));
 	}
 
 }
