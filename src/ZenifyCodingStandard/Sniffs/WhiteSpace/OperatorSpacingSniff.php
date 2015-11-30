@@ -78,7 +78,7 @@ final class OperatorSpacingSniff implements PHP_CodeSniffer_Sniff
 		$isSpaceAfter = ($this->tokens[$position + 1]['code'] === T_WHITESPACE);
 		$isNewlineAfter = ($this->tokens[$position]['line'] !== $this->tokens[$position + 2]['line']);
 
-		if ( ! $isSpaceBefore || ! $isSpaceAfter || $isNewlineAfter) {
+		if ( ! $isSpaceBefore || ! ($isSpaceAfter || $isNewlineAfter) ) {
 			$error = 'Operator "%s" should be surrounded by spaces or on new line.';
 			$data = [
 				$this->tokens[$position]['content']

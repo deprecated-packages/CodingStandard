@@ -16,7 +16,7 @@ final class OperatorSpacingSniffTest extends PHPUnit_Framework_TestCase
 	{
 		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.WhiteSpace.OperatorSpacing');
 
-		$this->assertSame(3, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
+		$this->assertSame(2, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
 		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct.php'));
 	}
 

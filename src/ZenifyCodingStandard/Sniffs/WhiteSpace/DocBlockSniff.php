@@ -56,8 +56,12 @@ final class DocBlockSniff implements PHP_CodeSniffer_Sniff
 			return;
 		}
 
-		if ( ! $this->isIndentationCorrect()) {
+		if ( ! $this->isIndentationInFrontCorrect()) {
 			$file->addError('DocBlock lines should start with space (except first one)', $position);
+		}
+
+		if ( ! $this->isIndentationInsideCorrect()) {
+			$file->addError('Indentation in DocBlock should be one space followed by tabs (if necessary)', $position);
 		}
 	}
 
@@ -77,7 +81,7 @@ final class DocBlockSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * @return bool
 	 */
-	private function isIndentationCorrect()
+	private function isIndentationInFrontCorrect()
 	{
 		$tokens = $this->file->getTokens();
 		if ($tokens[$this->position - 1]['content'] === ' ') {
@@ -87,6 +91,25 @@ final class DocBlockSniff implements PHP_CodeSniffer_Sniff
 			return TRUE;
 		}
 		return FALSE;
+	}
+
+
+	/**
+	 * @return bool
+	 */
+	private function isIndentationInsideCorrect()
+	{
+		$tokens = $this->file->getTokens();
+		if ($tokens[$this->position + 1]['code'] === 'PHPCS_T_DOC_COMMENT_WHITESPACE') {
+			$content = $tokens[$this->position + 1]['content'];
+			$content = rtrim($content, "\n");
+			if ( strlen($content) > 1
+				&& $content !== ' ' . str_repeat("\t", strlen($content) - 1)
+			) {
+				return FALSE;
+			}
+		}
+		return TRUE;
 	}
 
 }
