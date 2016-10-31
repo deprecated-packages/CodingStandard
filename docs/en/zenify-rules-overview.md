@@ -361,31 +361,6 @@ $go = TRUE === $decide ?: FALSE;
 ```
 
 
-### WeakTypeComparisonWithExplanationSniff
-
-- Strong comparison should be used instead of weak one, or commented with its purpose
-
-*Correct*
-
-```php
-if ($i == TRUE) { // intentionally ==, failure proof
-	return;
-}
-
-if ($i !== TRUE) {
-	return;
-}
-```
-
-*Wrong*
-
-```php
-if ($i == TRUE) {
-	return;
-}
-```
-
-
 ## 4 Debug
 
 
