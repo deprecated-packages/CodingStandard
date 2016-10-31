@@ -10,9 +10,8 @@ Rules uses default numeric parameters (some can be changed to match your needs).
 - [4 Debug](#4-debug) 
 - [5 Namespaces](#5-namespaces) 
 - [6 Naming](#6-naming) 
-- [7 PHP](#7-php) 
-- [8 Scope](#8-scope) 
-- [9 WhiteSpace](#9-whitespace) 
+- [7 Scope](#7-scope) 
+- [8 WhiteSpace](#8-whitespace) 
 
 ---
 
@@ -598,27 +597,7 @@ class SomeClass
 ```
 
 
-## 7 PHP
-
-
-### ShortArraySyntaxSniff
-
-- Short array syntax should be used, instead of traditional one.
-
-*Correct*
-
-```php
-private $settings = [];
-```
-
-*Wrong*
-
-```php
-private $settings = array();
-```
-
-
-## 8 Scope
+## 7 Scope
 
 
 ### MethodScopeSniff
@@ -675,7 +654,7 @@ interface SomeInterface
 ```
 
 
-## 9 WhiteSpace
+## 8 WhiteSpace
  
 
 ### ConcatOperatorSniff
