@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\ControlStructures\YodaCondition;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\ControlStructures\YodaConditionSniff
+ * @covers \ZenifyCodingStandard\Sniffs\ControlStructures\YodaConditionSniff
  */
-final class YodaConditionSniffTest extends PHPUnit_Framework_TestCase
+final class YodaConditionSniffTest extends TestCase
 {
 
 	public function testDetection()

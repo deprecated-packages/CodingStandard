@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\WhiteSpace\ConcatOperator;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\WhiteSpace\ConcatOperatorSniff
+ * @covers \ZenifyCodingStandard\Sniffs\WhiteSpace\ConcatOperatorSniff
  */
-final class ConcatOperatorSniffTest extends PHPUnit_Framework_TestCase
+final class ConcatOperatorSniffTest extends TestCase
 {
 
 	public function testDetection()

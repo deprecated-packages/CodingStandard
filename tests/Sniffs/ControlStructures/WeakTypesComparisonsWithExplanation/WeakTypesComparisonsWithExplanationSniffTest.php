@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\ControlStructures\WeakTypesComparisonsWithExplanation;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\ControlStructures\WeakTypesComparisonsWithExplanationSniff
+ * @covers \ZenifyCodingStandard\Sniffs\ControlStructures\WeakTypesComparisonsWithExplanationSniff
  */
-final class WeakTypesComparisonsWithExplanationSniffTest extends PHPUnit_Framework_TestCase
+final class WeakTypesComparisonsWithExplanationSniffTest extends TestCase
 {
 
 	public function testDetection()

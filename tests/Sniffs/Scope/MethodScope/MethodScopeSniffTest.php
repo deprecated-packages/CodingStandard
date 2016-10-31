@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\Scope\MethodScope;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\Scope\MethodScopeSniff
+ * @covers \ZenifyCodingStandard\Sniffs\Scope\MethodScopeSniff
  */
-final class MethodScopeSniffTest extends PHPUnit_Framework_TestCase
+final class MethodScopeSniffTest extends TestCase
 {
 
 	public function testDetection()

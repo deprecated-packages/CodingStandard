@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\WhiteSpace\PropertiesMethodsMutualSpacing;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\WhiteSpace\PropertiesMethodsMutualSpacingSniff
+ * @covers \ZenifyCodingStandard\Sniffs\WhiteSpace\PropertiesMethodsMutualSpacingSniff
  */
-final class PropertiesMethodsMutualSpacingSniffTest extends PHPUnit_Framework_TestCase
+final class PropertiesMethodsMutualSpacingSniffTest extends TestCase
 {
 
 	public function testDetection()

@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\Php\ShortArraySyntax;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\Php\ShortArraySyntaxSniff
+ * @covers \ZenifyCodingStandard\Sniffs\Php\ShortArraySyntaxSniff
  */
-final class ShortArraySyntaxSniffTest extends PHPUnit_Framework_TestCase
+final class ShortArraySyntaxSniffTest extends TestCase
 {
 
 	public function testDetection()

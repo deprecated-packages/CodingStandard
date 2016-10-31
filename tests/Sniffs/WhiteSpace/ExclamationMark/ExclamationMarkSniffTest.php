@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\WhiteSpace\ExclamationMark;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\WhiteSpace\ExclamationMarkSniff
+ * @covers \ZenifyCodingStandard\Sniffs\WhiteSpace\ExclamationMarkSniff
  */
-final class ExclamationMarkSniffTest extends PHPUnit_Framework_TestCase
+final class ExclamationMarkSniffTest extends TestCase
 {
 
 	public function testDetection()

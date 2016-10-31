@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\Naming\Bool;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\Naming\BoolSniff
+ * @covers \ZenifyCodingStandard\Sniffs\Naming\BoolSniff
  */
-final class BoolSniffTest extends PHPUnit_Framework_TestCase
+final class BoolSniffTest extends TestCase
 {
 
 	public function testDetection()

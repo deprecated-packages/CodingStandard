@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\WhiteSpace\OperatorSpacing;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\WhiteSpace\OperatorSpacingSniff
+ * @covers \ZenifyCodingStandard\Sniffs\WhiteSpace\OperatorSpacingSniff
  */
-final class OperatorSpacingSniffTest extends PHPUnit_Framework_TestCase
+final class OperatorSpacingSniffTest extends TestCase
 {
 
 	public function testDetection()

@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\Naming\Int;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\Naming\IntSniff
+ * @covers \ZenifyCodingStandard\Sniffs\Naming\IntSniff
  */
-final class IntSniffTest extends PHPUnit_Framework_TestCase
+final class IntSniffTest extends TestCase
 {
 
 	public function testDetection()

@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\ControlStructures\ControlSignature;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\ControlStructures\ControlSignatureSniff
+ * @covers \ZenifyCodingStandard\Sniffs\ControlStructures\ControlSignatureSniff
  */
-final class ControlSignatureSniffTest extends PHPUnit_Framework_TestCase
+final class ControlSignatureSniffTest extends TestCase
 {
 
 	public function testDetection()

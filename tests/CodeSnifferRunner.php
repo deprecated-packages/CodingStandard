@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests;
 
 use PHP_CodeSniffer;
@@ -23,10 +25,7 @@ final class CodeSnifferRunner
 	];
 
 
-	/**
-	 * @param string $sniff
-	 */
-	public function __construct($sniff)
+	public function __construct(string $sniff)
 	{
 		$ruleset = $this->detectRulesetFromSniffName($sniff);
 
@@ -36,10 +35,9 @@ final class CodeSnifferRunner
 
 
 	/**
-	 * @param string $source
 	 * @return int
 	 */
-	public function getErrorCountInFile($source)
+	public function getErrorCountInFile(string $source) : int
 	{
 		$this->ensureFileExists($source);
 
@@ -48,11 +46,7 @@ final class CodeSnifferRunner
 	}
 
 
-	/**
-	 * @param string $name
-	 * @return string
-	 */
-	public function detectRulesetFromSniffName($name)
+	public function detectRulesetFromSniffName(string $name) : string
 	{
 		$standard = $this->detectStandardFromSniffName($name);
 
@@ -66,10 +60,7 @@ final class CodeSnifferRunner
 	}
 
 
-	/**
-	 * @param string $source
-	 */
-	private function ensureFileExists($source)
+	private function ensureFileExists(string $source)
 	{
 		if ( ! file_exists($source)) {
 			throw new FileNotFoundException(
@@ -79,18 +70,14 @@ final class CodeSnifferRunner
 	}
 
 
-	/**
-	 * @param string $sniff
-	 * @return string
-	 */
-	private function detectStandardFromSniffName($sniff)
+	private function detectStandardFromSniffName(string $sniff) : string
 	{
 		$parts = explode('.', $sniff);
 		if (isset($parts[0])) {
 			return $parts[0];
 		}
 
-		return NULL;
+		return '';
 	}
 
 }

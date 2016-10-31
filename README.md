@@ -22,7 +22,7 @@ $ composer require zenify/coding-standard --dev
 Run with Php_CodeSniffer:
 
 ```sh
-$ vendor/bin/phpcs src --standard=vendor/zenify/coding-standard/src/ZenifyCodingStandard/ruleset.xml -p
+vendor/bin/phpcs src --standard=vendor/zenify/coding-standard/src/ZenifyCodingStandard/ruleset.xml -p
 ```
 
 That's all!
@@ -55,3 +55,22 @@ In case you don't want to use Php_CodeSniffer manually for every change in the c
 This is much faster than checking whole project, running manually or wait for CI.
 
 *Pretty cool, huh?*
+
+
+## Testing
+
+```sh
+composer check-cs
+vendor/bin/phpunit
+```
+
+
+## Contributing
+
+Rules are simple:
+
+- new feature needs tests
+- all tests must pass
+- 1 feature per PR
+
+We would be happy to merge your feature then!

@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\Namespaces\NamespaceDeclaration;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\Namespaces\NamespaceDeclarationSniff
+ * @covers \ZenifyCodingStandard\Sniffs\Namespaces\NamespaceDeclarationSniff
  */
-final class NamespaceDeclarationSniffTest extends PHPUnit_Framework_TestCase
+final class NamespaceDeclarationSniffTest extends TestCase
 {
 
 	public function testDetection()
