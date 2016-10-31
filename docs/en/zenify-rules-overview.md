@@ -619,23 +619,6 @@ interface SomeInterface
 ## 8 WhiteSpace
  
 
-### ConcatOperatorSniff
-
-- ConcatOperator (.) should be surrounded by spaces
-
-*Correct*
-
-```php
-$s = 'Ze' . 'n';
-```
-
-*Wrong*
-
-```php
-$s = 'Ze'.'n';
-```
-
-
 ### DocBlockSniff
 
 - DocBlock lines should start with space (except first one)
