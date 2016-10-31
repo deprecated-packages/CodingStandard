@@ -494,29 +494,6 @@ class SomeClass
 ```
 
 
-### UseInAlphabeticalOrderSniff
- 
--  Use statements should be in alphabetical order
-
-
-*Correct*
-
-```php
-use A;
-use B;
-use C;
-```
-
-
-*Wrong*
-
-```php
-use C;
-use A;
-use B;
-```
-
-
 ## 6 Naming
 
 
