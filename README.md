@@ -28,11 +28,6 @@ vendor/bin/phpcs src --standard=vendor/zenify/coding-standard/src/ZenifyCodingSt
 That's all!
 
 
-## PhpStorm Integration
-
-If you use PhpStorm, code sniffer can check your syntax as you write. [How to integrate?](docs/en/integration-to-php-storm.md)
-
-
 ## How to be both Lazy and Safe
 
 ### Composer hook
