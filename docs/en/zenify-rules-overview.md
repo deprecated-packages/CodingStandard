@@ -59,9 +59,6 @@ class SomeClass
 final class SomeClass implements SomeInterface
 {
 
-	/**
-	 * {@inheritdoc}
-	 */
 	public function run()
 	{
 
@@ -76,9 +73,6 @@ final class SomeClass implements SomeInterface
 class SomeClass implements SomeInterface
 {
 
-	/**
-	 * {@inheritdoc}
-	 */
 	public function run()
 	{
 
@@ -152,7 +146,7 @@ protected function createComponentDisplay()
 
 ### VarPropertyCommentSniff
 
-- Property should have docblock comment (except for {@inheritdoc}).
+- Property should have docblock comment.
  
 *Correct*
 
@@ -229,7 +223,7 @@ class SomeClass
 
 ### MethodCommentReturnTagSniff
 
-- Getters should have @return tag (except for {@inheritdoc}).
+- Getters should have @return tag or return type.
 
 *Correct*
 
@@ -239,22 +233,6 @@ class SomeClass
 
 	/**
 	 * @return int
-	 */
-	public function getResult()
-	{
-		// ...
-	}
-
-}
-```
-
-
-```php
-class SomeClass
-{
-
-	/**
-	 * {@inheritdoc}
 	 */
 	public function getResult()
 	{
