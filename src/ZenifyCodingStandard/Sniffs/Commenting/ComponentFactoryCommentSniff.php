@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
@@ -69,10 +71,7 @@ final class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @return bool
-	 */
-	private function isComponentFactoryMethod()
+	private function isComponentFactoryMethod() : bool
 	{
 		$functionName = $this->file->getDeclarationName($this->position);
 		return (strpos($functionName, 'createComponent') === 0);
@@ -88,11 +87,7 @@ final class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @param int $position
-	 * @return bool
-	 */
-	private function hasMethodComment($position)
+	private function hasMethodComment(int $position) : bool
 	{
 		if ($this->tokens[$position]['code'] === T_DOC_COMMENT_CLOSE_TAG) {
 			return TRUE;
@@ -101,10 +96,7 @@ final class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @param int $commentStartPosition
-	 */
-	private function processReturnTag($commentStartPosition)
+	private function processReturnTag(int $commentStartPosition)
 	{
 		$return = NULL;
 		foreach ($this->tokens[$commentStartPosition]['comment_tags'] as $tag) {

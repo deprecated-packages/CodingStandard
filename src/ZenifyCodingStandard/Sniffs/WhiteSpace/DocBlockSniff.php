@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
@@ -66,10 +68,7 @@ final class DocBlockSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @return bool
-	 */
-	private function isInlineComment()
+	private function isInlineComment() : bool
 	{
 		if ($this->tokens[$this->position - 1]['code'] !== T_DOC_COMMENT_WHITESPACE) {
 			return TRUE;
@@ -78,10 +77,7 @@ final class DocBlockSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @return bool
-	 */
-	private function isIndentationInFrontCorrect()
+	private function isIndentationInFrontCorrect() : bool
 	{
 		$tokens = $this->file->getTokens();
 		if ($tokens[$this->position - 1]['content'] === ' ') {
@@ -94,10 +90,7 @@ final class DocBlockSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @return bool
-	 */
-	private function isIndentationInsideCorrect()
+	private function isIndentationInsideCorrect() : bool
 	{
 		$tokens = $this->file->getTokens();
 		if ($tokens[$this->position + 1]['code'] === 'PHPCS_T_DOC_COMMENT_WHITESPACE') {

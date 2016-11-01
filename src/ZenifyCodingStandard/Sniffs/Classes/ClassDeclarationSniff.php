@@ -16,7 +16,7 @@ use PHP_CodeSniffer_File;
  * - Opening brace for the %s should be followed by %s empty line(s).
  * - Closing brace for the %s should be preceded by %s empty line(s).
  */
-class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSniff
+final class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSniff
 {
 
 	/**

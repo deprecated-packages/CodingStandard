@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
@@ -17,7 +19,7 @@ use PSR2_Sniffs_Namespaces_UseDeclarationSniff;
  * - USE declarations must go after the first namespace declaration
  * - There must be 2 blank line(s) after the last USE statement
  */
-class UseDeclarationSniff extends PSR2_Sniffs_Namespaces_UseDeclarationSniff
+final class UseDeclarationSniff extends PSR2_Sniffs_Namespaces_UseDeclarationSniff
 {
 
 	/**
@@ -70,12 +72,10 @@ class UseDeclarationSniff extends PSR2_Sniffs_Namespaces_UseDeclarationSniff
 
 	/**
 	 * Check if this use statement is part of the namespace block.
-	 *
-	 * @param PHP_CodeSniffer_File $file The file being scanned.
-	 * @param int $position The position of the current token in the stack passed in $tokens.
-	 * @return bool
+	 * @param PHP_CodeSniffer_File $file
+	 * @param int|bool $position
 	 */
-	private function shouldIgnoreUse(PHP_CodeSniffer_File $file, $position)
+	private function shouldIgnoreUse(PHP_CodeSniffer_File $file, $position) : bool
 	{
 		$tokens = $file->getTokens();
 
@@ -94,11 +94,7 @@ class UseDeclarationSniff extends PSR2_Sniffs_Namespaces_UseDeclarationSniff
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 */
-	private function checkIfSingleSpaceAfterUseKeyword(PHP_CodeSniffer_File $file, $position)
+	private function checkIfSingleSpaceAfterUseKeyword(PHP_CodeSniffer_File $file, int $position)
 	{
 		$tokens = $file->getTokens();
 		if ($tokens[($position + 1)]['content'] !== ' ') {
@@ -108,11 +104,7 @@ class UseDeclarationSniff extends PSR2_Sniffs_Namespaces_UseDeclarationSniff
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 */
-	private function checkIfOneUseDeclarationPerStatement(PHP_CodeSniffer_File $file, $position)
+	private function checkIfOneUseDeclarationPerStatement(PHP_CodeSniffer_File $file, int $position)
 	{
 		$tokens = $file->getTokens();
 		$next = $file->findNext([T_COMMA, T_SEMICOLON], ($position + 1));
@@ -123,11 +115,7 @@ class UseDeclarationSniff extends PSR2_Sniffs_Namespaces_UseDeclarationSniff
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 */
-	private function checkIfUseComesAfterNamespaceDeclaration(PHP_CodeSniffer_File $file, $position)
+	private function checkIfUseComesAfterNamespaceDeclaration(PHP_CodeSniffer_File $file, int $position)
 	{
 		$prev = $file->findPrevious(T_NAMESPACE, ($position - 1));
 		if ($prev !== FALSE) {
@@ -140,11 +128,7 @@ class UseDeclarationSniff extends PSR2_Sniffs_Namespaces_UseDeclarationSniff
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 */
-	private function checkBlankLineAfterLastUseStatement(PHP_CodeSniffer_File $file, $position)
+	private function checkBlankLineAfterLastUseStatement(PHP_CodeSniffer_File $file, int $position)
 	{
 		$tokens = $file->getTokens();
 		$end = $file->findNext(T_SEMICOLON, ($position + 1));

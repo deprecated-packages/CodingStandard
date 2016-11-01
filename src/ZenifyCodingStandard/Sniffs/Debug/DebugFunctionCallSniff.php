@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
@@ -16,7 +18,7 @@ use Generic_Sniffs_PHP_ForbiddenFunctionsSniff;
  *
  * @author Mikulas Dite <mikulas@dite.pro>
  */
-class DebugFunctionCallSniff extends Generic_Sniffs_PHP_ForbiddenFunctionsSniff
+final class DebugFunctionCallSniff extends Generic_Sniffs_PHP_ForbiddenFunctionsSniff
 {
 
 	/**

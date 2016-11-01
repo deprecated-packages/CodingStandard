@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
@@ -56,12 +58,7 @@ final class VarPropertyCommentSniff extends PHP_CodeSniffer_Standards_AbstractVa
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @return string
-	 */
-	private function getPropertyComment(PHP_CodeSniffer_File $file, $position)
+	private function getPropertyComment(PHP_CodeSniffer_File $file, int $position) : string
 	{
 		$commentEnd = $file->findPrevious([T_DOC_COMMENT_CLOSE_TAG], $position);
 		if ($commentEnd === FALSE) {

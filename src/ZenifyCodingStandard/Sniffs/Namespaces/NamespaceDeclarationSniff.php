@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
@@ -121,11 +123,7 @@ final class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @param $position
-	 * @return bool
-	 */
-	private function isInsideClass($position)
+	private function isInsideClass(int $position) : bool
 	{
 		$prevClassPosition = $this->file->findPrevious(T_CLASS, $position, NULL, FALSE);
 		if ($prevClassPosition) {

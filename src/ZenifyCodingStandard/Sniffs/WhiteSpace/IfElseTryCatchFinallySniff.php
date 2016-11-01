@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
@@ -57,12 +59,7 @@ final class IfElseTryCatchFinallySniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @return int
-	 */
-	private function getEmptyLinesCountBefore(PHP_CodeSniffer_File $file, $position)
+	private function getEmptyLinesCountBefore(PHP_CodeSniffer_File $file, int $position) : int
 	{
 		$tokens = $file->getTokens();
 		$currentLine = $tokens[$position]['line'];

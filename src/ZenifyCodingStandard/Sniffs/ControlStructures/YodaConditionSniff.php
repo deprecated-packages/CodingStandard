@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
@@ -84,10 +86,7 @@ final class YodaConditionSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @return bool
-	 */
-	private function isExpressionToken(array $token)
+	private function isExpressionToken(array $token) : bool
 	{
 		if (in_array($token['code'], [T_MINUS, T_NULL, T_FALSE, T_TRUE, T_LNUMBER, T_CONSTANT_ENCAPSED_STRING])) {
 			return TRUE;

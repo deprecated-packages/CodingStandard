@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
@@ -156,12 +158,7 @@ final class ControlSignatureSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @return bool
-	 */
-	private function isCommentOnTheSameLine(PHP_CodeSniffer_File $file, $position)
+	private function isCommentOnTheSameLine(PHP_CodeSniffer_File $file, int $position) : bool
 	{
 		$isComment = $file->findNext(T_COMMENT, ($position + 1), NULL);
 		if ($this->tokens[$isComment]['line'] === $this->tokens[$position]['line']) {
@@ -171,10 +168,7 @@ final class ControlSignatureSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @param int $closerPosition
-	 */
-	private function ensureZeroSpacesAfterParenthesisCloser($closerPosition)
+	private function ensureZeroSpacesAfterParenthesisCloser(int $closerPosition)
 	{
 		$found = 0;
 		if ($this->tokens[($closerPosition + 1)]['code'] === T_WHITESPACE) {

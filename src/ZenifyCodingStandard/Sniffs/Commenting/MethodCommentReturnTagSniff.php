@@ -64,11 +64,7 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @param string $methodName
-	 * @return bool
-	 */
-	private function guessIsGetterMethod($methodName)
+	private function guessIsGetterMethod(string $methodName) : bool
 	{
 		foreach ($this->getterMethodPrefixes as $getterMethodPrefix) {
 			if (strpos($methodName, $getterMethodPrefix) === 0) {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
@@ -12,7 +14,7 @@ use PHP_CodeSniffer_Tokens;
 use Squiz_Sniffs_ControlStructures_SwitchDeclarationSniff;
 
 
-class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclarationSniff
+final class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclarationSniff
 {
 
 	/**
@@ -104,14 +106,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @param array $tokens
-	 * @param string $type
-	 * @param int $caseAlignment
-	 */
-	private function checkIfKeywordIsIndented(PHP_CodeSniffer_File $file, $position, $tokens, $type, $caseAlignment)
+	private function checkIfKeywordIsIndented(PHP_CodeSniffer_File $file, int $position, array $tokens, string $type, int $caseAlignment)
 	{
 		if ($tokens[$position]['column'] !== $caseAlignment) {
 			$error = strtoupper($type) . ' keyword must be indented ' . $this->indent . ' spaces from SWITCH keyword';
@@ -120,12 +115,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 	}
 
 
-	/**
-	 * @param int $nextCase
-	 * @param int $nextBreak
-	 * @param string $type
-	 */
-	private function checkBreak($nextCase, $nextBreak, $type)
+	private function checkBreak(int $nextCase, int $nextBreak, string $type)
 	{
 		if ($type === 'Case') {
 			// Ensure empty CASE statements are not allowed.
@@ -170,10 +160,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 	}
 
 
-	/**
-	 * @return bool
-	 */
-	private function areSwitchStartAndEndKnown()
+	private function areSwitchStartAndEndKnown() : bool
 	{
 		if ( ! isset($this->tokens[$this->position]['scope_opener'])) {
 			return FALSE;
@@ -187,14 +174,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 	}
 
 
-	/**
-	 * @param int $nextBreak
-	 * @param int $nextCase
-	 * @param int $caseAlignment
-	 * @param string $type
-	 * @param int $opener
-	 */
-	private function processSwitchStructureToken($nextBreak, $nextCase, $caseAlignment, $type, $opener)
+	private function processSwitchStructureToken(int $nextBreak, int $nextCase, int $caseAlignment, string $type, int $opener)
 	{
 		if ($this->tokens[$nextBreak]['scope_condition'] === $nextCase) {
 			$this->ensureCaseIndention($nextBreak, $caseAlignment);
@@ -216,12 +196,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 	}
 
 
-	/**
-	 * @param int $nextLine
-	 * @param int $breakLine
-	 * @param int $nextBreak
-	 */
-	private function ensureBreakIsNotFollowedByBlankLine($nextLine, $breakLine, $nextBreak)
+	private function ensureBreakIsNotFollowedByBlankLine(int $nextLine, int $breakLine, int $nextBreak)
 	{
 		if ($nextLine !== ($breakLine + 1)) {
 			$error = 'Blank lines are not allowed after the DEFAULT case\'s breaking statement';
@@ -230,10 +205,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 	}
 
 
-	/**
-	 * @param int $nextBreak
-	 */
-	private function ensureNoBlankLinesBeforeBreak($nextBreak)
+	private function ensureNoBlankLinesBeforeBreak(int $nextBreak)
 	{
 		$prev = $this->file->findPrevious(T_WHITESPACE, ($nextBreak - 1), $this->position, TRUE);
 		if ($this->tokens[$prev]['line'] !== ($this->tokens[$nextBreak]['line'] - 1)) {
@@ -243,13 +215,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 	}
 
 
-	/**
-	 * @param int $nextCase
-	 * @param int $nextBreak
-	 * @param string $type
-	 * @param int $opener
-	 */
-	private function ensureNoBlankLinesAfterStatement($nextCase, $nextBreak, $type, $opener)
+	private function ensureNoBlankLinesAfterStatement(int $nextCase, int $nextBreak, string $type, int $opener)
 	{
 		$caseLine = $this->tokens[$nextCase]['line'];
 		$nextLine = $this->tokens[$nextBreak]['line'];
@@ -266,11 +232,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 	}
 
 
-	/**
-	 * @param int $nextBreak
-	 * @return int
-	 */
-	private function getNextLineFromNextBreak($nextBreak)
+	private function getNextLineFromNextBreak(int $nextBreak) : int
 	{
 		$semicolon = $this->file->findNext(T_SEMICOLON, $nextBreak);
 		for ($i = ($semicolon + 1); $i < $this->tokens[$this->position]['scope_closer']; $i++) {
@@ -283,11 +245,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 	}
 
 
-	/**
-	 * @param int $nextBreak
-	 * @param int $caseAlignment
-	 */
-	private function ensureCaseIndention($nextBreak, $caseAlignment)
+	private function ensureCaseIndention(int $nextBreak, int $caseAlignment)
 	{
 		// Only need to check a couple of things once, even if the
 		// break is shared between multiple case statements, or even
@@ -299,10 +257,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 	}
 
 
-	/**
-	 * @param bool $foundDefault
-	 */
-	private function ensureDefaultIsPresent($foundDefault)
+	private function ensureDefaultIsPresent(bool $foundDefault)
 	{
 		if ($foundDefault === FALSE) {
 			$error = 'All SWITCH statements must contain a DEFAULT case';
@@ -320,12 +275,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 	}
 
 
-	/**
-	 * @param string $opener
-	 * @param int $nextCase
-	 * @param string $type
-	 */
-	private function ensureNoSpaceBeforeColon($opener, $nextCase, $type)
+	private function ensureNoSpaceBeforeColon(int $opener, int $nextCase, string $type)
 	{
 		if ($this->tokens[($opener - 1)]['type'] === 'T_WHITESPACE') {
 			$error = 'There must be no space before the colon in a ' . strtoupper($type) . ' statement';
@@ -334,11 +284,7 @@ class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_SwitchDeclar
 	}
 
 
-	/**
-	 * @param int $nextCase
-	 * @param string $type
-	 */
-	private function checkSpaceAfterKeyword($nextCase, $type)
+	private function checkSpaceAfterKeyword(int $nextCase, string $type)
 	{
 		if ($type === 'Case' && ($this->tokens[($nextCase + 1)]['type'] !== 'T_WHITESPACE'
 			|| $this->tokens[($nextCase + 1)]['content'] !== ' ')
