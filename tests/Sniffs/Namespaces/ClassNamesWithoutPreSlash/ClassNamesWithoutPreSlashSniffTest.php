@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\Namespaces\ClassNamesWithoutPreSlash;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\Namespaces\ClassNamesWithoutPreSlashSniff
+ * @covers \ZenifyCodingStandard\Sniffs\Namespaces\ClassNamesWithoutPreSlashSniff
  */
-final class ClassNamesWithoutPreSlashSniffTest extends PHPUnit_Framework_TestCase
+final class ClassNamesWithoutPreSlashSniffTest extends TestCase
 {
 
 	public function testDetection()

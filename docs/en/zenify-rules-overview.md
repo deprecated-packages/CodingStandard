@@ -10,9 +10,6 @@ Rules uses default numeric parameters (some can be changed to match your needs).
 - [4 Debug](#4-debug) 
 - [5 Namespaces](#5-namespaces) 
 - [6 Naming](#6-naming) 
-- [7 PHP](#7-php) 
-- [8 Scope](#8-scope) 
-- [9 WhiteSpace](#9-whitespace) 
 
 ---
 
@@ -361,31 +358,6 @@ $go = TRUE === $decide ?: FALSE;
 ```
 
 
-### WeakTypeComparisonWithExplanationSniff
-
-- Strong comparison should be used instead of weak one, or commented with its purpose
-
-*Correct*
-
-```php
-if ($i == TRUE) { // intentionally ==, failure proof
-	return;
-}
-
-if ($i !== TRUE) {
-	return;
-}
-```
-
-*Wrong*
-
-```php
-if ($i == TRUE) {
-	return;
-}
-```
-
-
 ## 4 Debug
 
 
@@ -494,71 +466,7 @@ class SomeClass
 ```
 
 
-### UseInAlphabeticalOrderSniff
- 
--  Use statements should be in alphabetical order
-
-
-*Correct*
-
-```php
-use A;
-use B;
-use C;
-```
-
-
-*Wrong*
-
-```php
-use C;
-use A;
-use B;
-```
-
-
 ## 6 Naming
-
-
-### BoolSniff
-
-- Bool operator should be spelled "bool"
-
-
-*Correct*
-
-```php
-/** @var bool */
-public $someProperty;
-```
-
-*Wrong*
-
-```php
-/** @var boolean */
-public $someProperty;
-```
-
-
-### IntSniff
-
-- Int operator should be spelled "int"
-
-
-*Correct*
-
-```php
-/** @var int */
-public $someProperty;
-```
-
-*Wrong*
-
-```php
-/** @var integer */
-public $someProperty;
-```
-
 
 ### AbstractClassNameSniff
 
@@ -608,140 +516,8 @@ interface Some
 ```
 
 
-### InheritDocSniff
-
-- Inheritdoc comment should be spelled "{@inheritdoc}"
-
-
-*Correct*
-
-```php
-class SomeClass
-{
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getSome()
-	{
-	}
-
-}
-```
-
-*Wrong*
-
-```php
-class SomeClass
-{
-
-	/**
-	 * @{inheritDoc}
-	 */
-	public function getSome()
-	{
-	}
-
-}
-```
-
-
-## 7 PHP
-
-
-### ShortArraySyntaxSniff
-
-- Short array syntax should be used, instead of traditional one.
-
-*Correct*
-
-```php
-private $settings = [];
-```
-
-*Wrong*
-
-```php
-private $settings = array();
-```
-
-
-## 8 Scope
-
-
-### MethodScopeSniff
-
-- Function should have scope modifier
-- Interface function should not have scope modifier
-
-*Correct*
-
-```php
-class SomeClass
-{
-
-	public function run()
-	{
-	}
-
-}
-```
-
-or
-
-```php
-interface SomeInterface
-{
-
-	function run();
-
-}
-```
-
-*Wrong*
-
-```php
-class SomeClass
-{
-
-	function run()
-	{
-	}
-
-}
-```
-
-or 
-
-```php
-interface SomeInterface
-{
-
-	public function run();
-
-}
-```
-
-
-## 9 WhiteSpace
+## 7 WhiteSpace
  
-
-### ConcatOperatorSniff
-
-- ConcatOperator (.) should be surrounded by spaces
-
-*Correct*
-
-```php
-$s = 'Ze' . 'n';
-```
-
-*Wrong*
-
-```php
-$s = 'Ze'.'n';
-```
-
 
 ### DocBlockSniff
 
@@ -888,28 +664,4 @@ class SomeClass
 	}
 
 }
-```
-
-
-### OperatorSpacingSniff
-
-- Operator should be surrounded by spaces or on new line
-- Exceptions: Function's defaults, ?:, +=, &$var and similar
-
-*Correct*
-
-```php
-$result = 5 && 3 || 2;
-
-$output = $tooLonLine
-	+ $anotherLongLine;
-```
-
-*Wrong*
-
-```php
-$result = 5 &&3|| 2;
-
-$car = 'wheels' +
-	'engine';
 ```

@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\Classes\ClassDeclaration;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\Classes\ClassDeclarationSniff
+ * @covers \ZenifyCodingStandard\Sniffs\Classes\ClassDeclarationSniff
  */
-final class ClassDeclarationSniffTest extends PHPUnit_Framework_TestCase
+final class ClassDeclarationSniffTest extends TestCase
 {
 
 	public function testDetection()

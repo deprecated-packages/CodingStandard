@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\Commenting\VarPropertyComment;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\Commenting\VarPropertyCommentSniff
+ * @covers \ZenifyCodingStandard\Sniffs\Commenting\VarPropertyCommentSniff
  */
-final class VarPropertyCommentSniffTest extends PHPUnit_Framework_TestCase
+final class VarPropertyCommentSniffTest extends TestCase
 {
 
 	public function testDetection()

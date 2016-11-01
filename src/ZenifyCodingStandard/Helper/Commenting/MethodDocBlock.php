@@ -1,6 +1,8 @@
 <?php
 
-/**
+declare(strict_types = 1);
+
+/*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
  */
@@ -13,12 +15,7 @@ use PHP_CodeSniffer_File;
 final class MethodDocBlock
 {
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @return bool
-	 */
-	public static function hasMethodDocBlock(PHP_CodeSniffer_File $file, $position)
+	public static function hasMethodDocBlock(PHP_CodeSniffer_File $file, int $position) : bool
 	{
 		$tokens = $file->getTokens();
 		$currentToken = $tokens[$position];
@@ -37,12 +34,7 @@ final class MethodDocBlock
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @return string
-	 */
-	public static function getMethodDocBlock(PHP_CodeSniffer_File $file, $position)
+	public static function getMethodDocBlock(PHP_CodeSniffer_File $file, int $position) : string
 	{
 		if ( ! self::hasMethodDocBlock($file, $position)) {
 			return '';

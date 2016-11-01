@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\WhiteSpace\IfElseTryCatchFinally;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\WhiteSpace\IfElseTryCatchFinallySniff
+ * @covers \ZenifyCodingStandard\Sniffs\WhiteSpace\IfElseTryCatchFinallySniff
  */
-final class IfElseTryCatchFinallySniffTest extends PHPUnit_Framework_TestCase
+final class IfElseTryCatchFinallySniffTest extends TestCase
 {
 
 	public function testDetection()

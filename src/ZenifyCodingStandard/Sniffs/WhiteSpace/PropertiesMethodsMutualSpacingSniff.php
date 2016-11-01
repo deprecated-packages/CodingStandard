@@ -1,6 +1,8 @@
 <?php
 
-/**
+declare(strict_types = 1);
+
+/*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
  */
@@ -65,12 +67,7 @@ final class PropertiesMethodsMutualSpacingSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @return bool
-	 */
-	private function isLastProperty(PHP_CodeSniffer_File $file, $position)
+	private function isLastProperty(PHP_CodeSniffer_File $file, int $position) : bool
 	{
 		if ($this->isInsideMethod($file, $position)) {
 			return FALSE;
@@ -86,12 +83,7 @@ final class PropertiesMethodsMutualSpacingSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @return bool
-	 */
-	private function isInsideMethod(PHP_CodeSniffer_File $file, $position)
+	private function isInsideMethod(PHP_CodeSniffer_File $file, int $position) : bool
 	{
 		$previousMethod = $file->findPrevious(T_FUNCTION, $position);
 		$tokens = $file->getTokens();
@@ -102,12 +94,7 @@ final class PropertiesMethodsMutualSpacingSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @return bool
-	 */
-	private function areMethodsPresent(PHP_CodeSniffer_File $file, $position)
+	private function areMethodsPresent(PHP_CodeSniffer_File $file, int $position) : bool
 	{
 		$next = $file->findNext(T_FUNCTION, $position + 1);
 		$tokens = $file->getTokens();
@@ -118,12 +105,7 @@ final class PropertiesMethodsMutualSpacingSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @return int
-	 */
-	private function getEndOfProperty(PHP_CodeSniffer_File $file, $position)
+	private function getEndOfProperty(PHP_CodeSniffer_File $file, int $position) : int
 	{
 		$tokens = $file->getTokens();
 

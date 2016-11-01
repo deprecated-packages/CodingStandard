@@ -1,6 +1,8 @@
 <?php
 
-/**
+declare(strict_types = 1);
+
+/*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
  */
@@ -16,7 +18,7 @@ use PHP_CodeSniffer_File;
  * - Opening brace for the %s should be followed by %s empty line(s).
  * - Closing brace for the %s should be preceded by %s empty line(s).
  */
-class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSniff
+final class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSniff
 {
 
 	/**
@@ -46,11 +48,7 @@ class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSniff
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 */
-	private function processOpen(PHP_CodeSniffer_File $file, $position)
+	private function processOpen(PHP_CodeSniffer_File $file, int $position)
 	{
 		$tokens = $file->getTokens();
 		$openingBracePosition = $tokens[$position]['scope_opener'];
@@ -68,11 +66,7 @@ class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSniff
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 */
-	private function processClose(PHP_CodeSniffer_File $file, $position)
+	private function processClose(PHP_CodeSniffer_File $file, int $position)
 	{
 		$tokens = $file->getTokens();
 		$closeBracePosition = $tokens[$position]['scope_closer'];
@@ -90,12 +84,7 @@ class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSniff
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @return array
-	 */
-	private function getEmptyLinesBeforeClosingBrace(PHP_CodeSniffer_File $file, $position)
+	private function getEmptyLinesBeforeClosingBrace(PHP_CodeSniffer_File $file, int $position) : int
 	{
 		$tokens = $file->getTokens();
 		$prevContent = $file->findPrevious(T_WHITESPACE, ($position - 1), NULL, TRUE);
@@ -103,12 +92,7 @@ class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSniff
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @return int
-	 */
-	private function getEmptyLinesAfterOpeningBrace(PHP_CodeSniffer_File $file, $position)
+	private function getEmptyLinesAfterOpeningBrace(PHP_CodeSniffer_File $file, int $position) : int
 	{
 		$tokens = $file->getTokens();
 		$nextContent = $file->findNext(T_WHITESPACE, ($position + 1), NULL, TRUE);

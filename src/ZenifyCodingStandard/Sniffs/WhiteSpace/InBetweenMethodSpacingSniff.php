@@ -1,6 +1,8 @@
 <?php
 
-/**
+declare(strict_types = 1);
+
+/*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
  */
@@ -19,7 +21,7 @@ use Squiz_Sniffs_WhiteSpace_FunctionSpacingSniff;
  * - Method is the first in the class, preceded by open bracket.
  * - Method is the last in the class, followed by close bracket.
  */
-class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_FunctionSpacingSniff
+final class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_FunctionSpacingSniff
 {
 
 	/**
@@ -78,10 +80,7 @@ class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_FunctionSpacin
 	}
 
 
-	/**
-	 * @return int
-	 */
-	private function getBlankLineCountAfterFunction()
+	private function getBlankLineCountAfterFunction() : int
 	{
 		$closer = $this->getScopeCloser();
 		$nextLineToken = $this->getNextLineTokenByScopeCloser($closer);
@@ -99,10 +98,7 @@ class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_FunctionSpacin
 	}
 
 
-	/**
-	 * @return bool
-	 */
-	private function isLastMethod()
+	private function isLastMethod() : bool
 	{
 		$closer = $this->getScopeCloser();
 		$nextLineToken = $this->getNextLineTokenByScopeCloser($closer);
@@ -121,18 +117,16 @@ class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_FunctionSpacin
 		if (isset($this->tokens[$this->position]['scope_closer']) === FALSE) {
 			// Must be an interface method, so the closer is the semi-colon.
 			return $this->file->findNext(T_SEMICOLON, $this->position);
-
-		} else {
-			return $this->tokens[$this->position]['scope_closer'];
 		}
+
+		return $this->tokens[$this->position]['scope_closer'];
 	}
 
 
 	/**
-	 * @param int $closer
 	 * @return int|NULL
 	 */
-	private function getNextLineTokenByScopeCloser($closer)
+	private function getNextLineTokenByScopeCloser(int $closer)
 	{
 		$nextLineToken = NULL;
 		for ($i = $closer; $i < $this->file->numTokens; $i++) {
@@ -153,10 +147,9 @@ class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_FunctionSpacin
 
 
 	/**
-	 * @param int $nextLineToken
 	 * @return bool|int
 	 */
-	private function getNextLineContent($nextLineToken)
+	private function getNextLineContent(int $nextLineToken)
 	{
 		if ($nextLineToken !== NULL) {
 			return $this->file->findNext(T_WHITESPACE, ($nextLineToken + 1), NULL, TRUE);

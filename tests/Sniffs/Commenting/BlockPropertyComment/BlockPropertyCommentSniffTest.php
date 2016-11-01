@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\Commenting\BlockPropertyComment;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\Commenting\BlockPropertyCommentSniff
+ * @covers \ZenifyCodingStandard\Sniffs\Commenting\BlockPropertyCommentSniff
  */
-final class BlockPropertyCommentSniffTest extends PHPUnit_Framework_TestCase
+final class BlockPropertyCommentSniffTest extends TestCase
 {
 
 	public function testDetection()

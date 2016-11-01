@@ -1,6 +1,8 @@
 <?php
 
-/**
+declare(strict_types = 1);
+
+/*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
  */
@@ -53,12 +55,7 @@ final class MethodCommentSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @return bool
-	 */
-	private function hasMethodDocblock(PHP_CodeSniffer_File $file, $position)
+	private function hasMethodDocblock(PHP_CodeSniffer_File $file, int $position) : bool
 	{
 		$tokens = $file->getTokens();
 		$currentToken = $tokens[$position];
@@ -77,10 +74,7 @@ final class MethodCommentSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @return int
-	 */
-	private function countParametersWithTypehint(array $parameters)
+	private function countParametersWithTypehint(array $parameters) : int
 	{
 		$parameterWithTypehintCount = 0;
 		foreach ($parameters as $parameter) {

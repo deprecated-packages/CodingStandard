@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\WhiteSpace\InBetweenMethodSpacing;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\WhiteSpace\InBetweenMethodSpacingSniff
+ * @covers \ZenifyCodingStandard\Sniffs\WhiteSpace\InBetweenMethodSpacingSniff
  */
-final class InBetweenMethodSpacingSniffTest extends PHPUnit_Framework_TestCase
+final class InBetweenMethodSpacingSniffTest extends TestCase
 {
 
 	public function testDetection()

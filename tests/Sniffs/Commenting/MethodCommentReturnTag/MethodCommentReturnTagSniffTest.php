@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\Commenting\MethodCommentReturnTag;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\Commenting\MethodCommentReturnTagSniff
+ * @covers \ZenifyCodingStandard\Sniffs\Commenting\MethodCommentReturnTagSniff
  */
-final class MethodCommentReturnTagSniffTest extends PHPUnit_Framework_TestCase
+final class MethodCommentReturnTagSniffTest extends TestCase
 {
 
 	public function testDetection()

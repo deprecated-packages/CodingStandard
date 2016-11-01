@@ -1,6 +1,8 @@
 <?php
 
-/**
+declare(strict_types = 1);
+
+/*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
  */
@@ -39,12 +41,7 @@ final class NewClassSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @return bool
-	 */
-	private function hasEmptyParentheses(PHP_CodeSniffer_File $file, $position)
+	private function hasEmptyParentheses(PHP_CodeSniffer_File $file, int $position) : bool
 	{
 		$tokens = $file->getTokens();
 		$nextPosition = $position;
@@ -63,12 +60,7 @@ final class NewClassSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @param string $content
-	 * @param string[] $chars
-	 * @return bool
-	 */
-	private function doesContentContains($content, array $chars)
+	private function doesContentContains(string $content, array $chars) : bool
 	{
 		foreach ($chars as $char) {
 			if ($content === $char) {

@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Zenify\CodingStandard\Tests\Sniffs\Commenting\ComponentFactoryComment;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers ZenifyCodingStandard\Sniffs\Commenting\ComponentFactoryCommentSniff
+ * @covers \ZenifyCodingStandard\Sniffs\Commenting\ComponentFactoryCommentSniff
  */
-final class ComponentFactoryCommentSniffTest extends PHPUnit_Framework_TestCase
+final class ComponentFactoryCommentSniffTest extends TestCase
 {
 
 	public function testDetection()

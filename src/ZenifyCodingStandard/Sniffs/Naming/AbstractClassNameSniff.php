@@ -1,6 +1,8 @@
 <?php
 
-/**
+declare(strict_types = 1);
+
+/*
  * This file is part of Zenify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
  */
@@ -58,10 +60,7 @@ final class AbstractClassNameSniff implements PHP_CodeSniffer_Sniff
 	}
 
 
-	/**
-	 * @return bool
-	 */
-	private function isClassAbstract()
+	private function isClassAbstract() : bool
 	{
 		$classProperties = $this->file->getClassProperties($this->position);
 		return $classProperties['is_abstract'];
