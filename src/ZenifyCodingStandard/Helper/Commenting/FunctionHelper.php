@@ -59,7 +59,7 @@ final class FunctionHelper
 	public static function isAbstract(PHP_CodeSniffer_File $codeSnifferFile, int $functionPointer): bool
 	{
 		if ( ! isset($codeSnifferFile->getTokens()[$functionPointer]['scope_opener'])) {
-			return FALSE;
+			return TRUE;
 		}
 
 		if ($codeSnifferFile->getTokens()[$functionPointer]['scope_opener'] >= 39) {

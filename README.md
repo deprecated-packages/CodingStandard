@@ -73,7 +73,7 @@ We would be happy to merge your feature then!
 
 ---
 
-## Zenify Rules Overview
+## Rules Overview
 
 Rules uses default numeric parameters (some can be changed to match your needs).
 
