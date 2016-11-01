@@ -565,7 +565,6 @@ interface Some
 ### MethodScopeSniff
 
 - Function should have scope modifier
-- Interface function should not have scope modifier
 
 *Correct*
 

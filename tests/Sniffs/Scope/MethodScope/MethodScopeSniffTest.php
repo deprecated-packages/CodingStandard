@@ -19,7 +19,6 @@ final class MethodScopeSniffTest extends TestCase
 		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.Scope.MethodScope');
 
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
-		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong2.php'));
 		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct.php'));
 		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct2.php'));
 	}
