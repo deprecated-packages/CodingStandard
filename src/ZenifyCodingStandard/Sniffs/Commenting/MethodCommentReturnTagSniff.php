@@ -11,6 +11,7 @@ namespace ZenifyCodingStandard\Sniffs\Commenting;
 
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
+use ZenifyCodingStandard\Helper\Commenting\FunctionHelper;
 use ZenifyCodingStandard\Helper\Commenting\MethodDocBlock;
 
 
@@ -27,10 +28,7 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
 	private $getterMethodPrefixes = ['get', 'is', 'has', 'will', 'should'];
 
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function register()
+	public function register() : array
 	{
 		return [T_FUNCTION];
 	}
@@ -47,22 +45,17 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
 			return;
 		}
 
-		if (MethodDocBlock::hasMethodDocBlock($file, $position) === FALSE) {
-			$file->addError('Getters should have docblock.', $position);
+		$returnTypeHint = FunctionHelper::findReturnTypeHint($file, $position);
+		if ($returnTypeHint) {
 			return;
 		}
 
 		$commentString = MethodDocBlock::getMethodDocBlock($file, $position);
-
-		if (strpos($commentString, '{@inheritdoc}') !== FALSE) {
-			return;
-		}
-
 		if (strpos($commentString, '@return') !== FALSE) {
 			return;
 		}
 
-		$file->addError('Getters should have @return tag (except {@inheritdoc}).', $position);
+		$file->addError('Getters should have @return tag or return typehint', $position);
 	}
 
 

@@ -106,8 +106,13 @@ final class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_Switch
 	}
 
 
-	private function checkIfKeywordIsIndented(PHP_CodeSniffer_File $file, int $position, array $tokens, string $type, int $caseAlignment)
-	{
+	private function checkIfKeywordIsIndented(
+		PHP_CodeSniffer_File $file,
+		int $position,
+		array $tokens,
+		string $type,
+		int $caseAlignment
+	) {
 		if ($tokens[$position]['column'] !== $caseAlignment) {
 			$error = strtoupper($type) . ' keyword must be indented ' . $this->indent . ' spaces from SWITCH keyword';
 			$file->addError($error, $position, $type . 'Indent');
@@ -174,8 +179,13 @@ final class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_Switch
 	}
 
 
-	private function processSwitchStructureToken(int $nextBreak, int $nextCase, int $caseAlignment, string $type, int $opener)
-	{
+	private function processSwitchStructureToken(
+		int $nextBreak,
+		int $nextCase,
+		int $caseAlignment,
+		string $type,
+		int $opener
+	) {
 		if ($this->tokens[$nextBreak]['scope_condition'] === $nextCase) {
 			$this->ensureCaseIndention($nextBreak, $caseAlignment);
 
