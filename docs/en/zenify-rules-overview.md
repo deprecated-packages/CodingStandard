@@ -10,7 +10,6 @@ Rules uses default numeric parameters (some can be changed to match your needs).
 - [4 Debug](#4-debug) 
 - [5 Namespaces](#5-namespaces) 
 - [6 Naming](#6-naming) 
-- [7 WhiteSpace](#7-whitespace) 
 
 ---
 
@@ -665,28 +664,4 @@ class SomeClass
 	}
 
 }
-```
-
-
-### OperatorSpacingSniff
-
-- Operator should be surrounded by spaces or on new line
-- Exceptions: Function's defaults, ?:, +=, &$var and similar
-
-*Correct*
-
-```php
-$result = 5 && 3 || 2;
-
-$output = $tooLonLine
-	+ $anotherLongLine;
-```
-
-*Wrong*
-
-```php
-$result = 5 &&3|| 2;
-
-$car = 'wheels' +
-	'engine';
 ```
