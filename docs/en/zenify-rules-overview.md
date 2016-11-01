@@ -470,47 +470,6 @@ class SomeClass
 
 ## 6 Naming
 
-
-### BoolSniff
-
-- Bool operator should be spelled "bool"
-
-
-*Correct*
-
-```php
-/** @var bool */
-public $someProperty;
-```
-
-*Wrong*
-
-```php
-/** @var boolean */
-public $someProperty;
-```
-
-
-### IntSniff
-
-- Int operator should be spelled "int"
-
-
-*Correct*
-
-```php
-/** @var int */
-public $someProperty;
-```
-
-*Wrong*
-
-```php
-/** @var integer */
-public $someProperty;
-```
-
-
 ### AbstractClassNameSniff
 
 - Abstract class should have prefix "Abstract"
