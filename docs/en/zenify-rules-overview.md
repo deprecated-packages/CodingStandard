@@ -10,8 +10,7 @@ Rules uses default numeric parameters (some can be changed to match your needs).
 - [4 Debug](#4-debug) 
 - [5 Namespaces](#5-namespaces) 
 - [6 Naming](#6-naming) 
-- [7 Scope](#7-scope) 
-- [8 WhiteSpace](#8-whitespace) 
+- [7 WhiteSpace](#7-whitespace) 
 
 ---
 
@@ -518,63 +517,7 @@ interface Some
 ```
 
 
-## 7 Scope
-
-
-### MethodScopeSniff
-
-- Function should have scope modifier
-
-*Correct*
-
-```php
-class SomeClass
-{
-
-	public function run()
-	{
-	}
-
-}
-```
-
-or
-
-```php
-interface SomeInterface
-{
-
-	function run();
-
-}
-```
-
-*Wrong*
-
-```php
-class SomeClass
-{
-
-	function run()
-	{
-	}
-
-}
-```
-
-or 
-
-```php
-interface SomeInterface
-{
-
-	public function run();
-
-}
-```
-
-
-## 8 WhiteSpace
+## 7 WhiteSpace
  
 
 ### DocBlockSniff
