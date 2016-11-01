@@ -243,22 +243,6 @@ class SomeClass
 ```
 
 
-```php
-class SomeClass
-{
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getResult()
-	{
-		// ...
-	}
-
-}
-```
-
-
 *Wrong*
 
 ```php
