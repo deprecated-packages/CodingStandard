@@ -23,6 +23,6 @@
 		}
 	},
 	"scripts": {
-		"check-cs": "vendor/bin/phpcs src tests -p --standard=src/ZenifyCodingStandard/ruleset.xml --ignore=wrong,correct"
+		"check-cs": "vendor/bin/phpcs src tests -p -sw --standard=src/ZenifyCodingStandard/ruleset.xml --ignore=wrong,correct"
 	}
 }
