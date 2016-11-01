@@ -11,6 +11,7 @@ namespace ZenifyCodingStandard\Sniffs\Commenting;
 
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
+use ZenifyCodingStandard\Helper\Commenting\FunctionHelper;
 
 
 /**
@@ -38,17 +39,15 @@ final class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 	private $tokens;
 
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function register()
+	public function register() : array
 	{
 		return [T_FUNCTION];
 	}
 
 
 	/**
-	 * {@inheritdoc}
+	 * @param PHP_CodeSniffer_File $file
+	 * @param int $position
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
@@ -60,9 +59,14 @@ final class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 			return;
 		}
 
+		$returnTypeHint = FunctionHelper::findReturnTypeHint($file, $position);
+		if ($returnTypeHint) {
+			return;
+		}
+
 		$commentEnd = $this->getCommentEnd();
 		if ( ! $this->hasMethodComment($commentEnd)) {
-			$file->addError('CreateComponent* method should have a doc comment', $position);
+			$file->addError('createComponent<name> method should have a doc comment or return type.', $position);
 			return;
 		}
 

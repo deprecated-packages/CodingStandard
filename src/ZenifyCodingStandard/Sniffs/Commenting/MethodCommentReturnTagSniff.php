@@ -17,7 +17,7 @@ use ZenifyCodingStandard\Helper\Commenting\MethodDocBlock;
 
 /**
  * Rules:
- * - Getters should have @return tag (except for {@inheritdoc}).
+ * - Getters should have @return tag or return type.
  */
 final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
 {
@@ -35,7 +35,8 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
-	 * {@inheritdoc}
+	 * @param PHP_CodeSniffer_File $file
+	 * @param int $position
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
@@ -55,7 +56,7 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
 			return;
 		}
 
-		$file->addError('Getters should have @return tag or return typehint', $position);
+		$file->addError('Getters should have @return tag or return type.', $position);
 	}
 
 
