@@ -48,11 +48,7 @@ final class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSn
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 */
-	private function processOpen(PHP_CodeSniffer_File $file, $position)
+	private function processOpen(PHP_CodeSniffer_File $file, int $position)
 	{
 		$tokens = $file->getTokens();
 		$openingBracePosition = $tokens[$position]['scope_opener'];
@@ -70,11 +66,7 @@ final class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSn
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 */
-	private function processClose(PHP_CodeSniffer_File $file, $position)
+	private function processClose(PHP_CodeSniffer_File $file, int $position)
 	{
 		$tokens = $file->getTokens();
 		$closeBracePosition = $tokens[$position]['scope_closer'];
@@ -92,12 +84,7 @@ final class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSn
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @return array
-	 */
-	private function getEmptyLinesBeforeClosingBrace(PHP_CodeSniffer_File $file, $position)
+	private function getEmptyLinesBeforeClosingBrace(PHP_CodeSniffer_File $file, int $position) : int
 	{
 		$tokens = $file->getTokens();
 		$prevContent = $file->findPrevious(T_WHITESPACE, ($position - 1), NULL, TRUE);
@@ -105,12 +92,7 @@ final class ClassDeclarationSniff extends PEAR_Sniffs_Classes_ClassDeclarationSn
 	}
 
 
-	/**
-	 * @param PHP_CodeSniffer_File $file
-	 * @param int $position
-	 * @return int
-	 */
-	private function getEmptyLinesAfterOpeningBrace(PHP_CodeSniffer_File $file, $position)
+	private function getEmptyLinesAfterOpeningBrace(PHP_CodeSniffer_File $file, int $position) : int
 	{
 		$tokens = $file->getTokens();
 		$nextContent = $file->findNext(T_WHITESPACE, ($position + 1), NULL, TRUE);
