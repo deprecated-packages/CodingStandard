@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<ruleset name="Zenify">
+	<description>The Zenify coding standard.</description>
+
+	<!-- Classes -->
+	<rule ref="ZenifyCodingStandard.Classes.ClassDeclaration" />
+	<rule ref="ZenifyCodingStandard.Classes.OneClassPerFileApartExceptions" />
+
+	<!-- Commenting -->
+	<rule ref="ZenifyCodingStandard.Commenting.BlockPropertyComment" />
+	<rule ref="ZenifyCodingStandard.Commenting.ComponentFactoryComment" />
+
+	<!-- Control Structures -->
+	<rule ref="ZenifyCodingStandard.ControlStructures.NewClass" />
+	<rule ref="ZenifyCodingStandard.ControlStructures.SwitchDeclaration" />
+	<rule ref="ZenifyCodingStandard.ControlStructures.YodaCondition" />
+	<rule ref="ZenifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation" />
+
+	<!-- Debug -->
+	<rule ref="ZenifyCodingStandard.Debug.DebugFunctionCall" />
+
+	<!-- Namespace -->
+	<rule ref="ZenifyCodingStandard.Namespaces.NamespaceDeclaration" />
+	<rule ref="ZenifyCodingStandard.Namespaces.UseDeclaration">
+		<properties>
+			<property name="blankLinesAfterUseStatement" value="2" />
+		</properties>
+	</rule>
+	<rule ref="ZenifyCodingStandard.Namespaces.UseInAlphabeticalOrder" />
+
+	<!-- Naming -->
+	<rule ref="ZenifyCodingStandard.Naming.Bool">
+		<properties>
+			<property name="preferedName" value="bool" />
+		</properties>
+	</rule>
+
+	<!-- Php -->
+	<rule ref="ZenifyCodingStandard.Php.ShortArraySyntax" />
+
+	<!-- Scope -->
+	<rule ref="ZenifyCodingStandard.Scope.MethodScope" />
+
+	<!--Whitespace -->
+	<rule ref="ZenifyCodingStandard.Whitespace.ConcatOperator" />
+	<rule ref="ZenifyCodingStandard.Whitespace.ExclamationMark" />
+	<rule ref="ZenifyCodingStandard.Whitespace.IfElseTryCatchFinally" />
+	<rule ref="ZenifyCodingStandard.Whitespace.InBetweenMethodSpacing">
+		<properties>
+			<property name="blankLinesBetweenMethods" value="2" />
+		</properties>
+	</rule>
+	<rule ref="ZenifyCodingStandard.Whitespace.InBetweenExceptionSpacing">
+		<properties>
+			<property name="blankLinesBetweenExceptions" value="2" />
+		</properties>
+	</rule>
+	<rule ref="ZenifyCodingStandard.Whitespace.OperatorSpacing" />
+	<rule ref="ZenifyCodingStandard.Whitespace.PropertiesMethodsMutualSpacing">
+		<properties>
+			<property name="blankLinesInBetween" value="2" />
+		</properties>
+	</rule>
+</ruleset>
