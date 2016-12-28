@@ -23,6 +23,11 @@ final class UseDeclarationSniff extends PSR2_Sniffs_Namespaces_UseDeclarationSni
 {
 
 	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.Namespaces.UseDeclaration';
+
+	/**
 	 * @var int
 	 */
 	public $blankLinesAfterUseStatement = 2;

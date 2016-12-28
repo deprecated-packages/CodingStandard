@@ -6,17 +6,15 @@ namespace Zenify\CodingStandard\Tests\Sniffs\Commenting\ComponentFactoryComment;
 
 use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
+use ZenifyCodingStandard\Sniffs\Commenting\ComponentFactoryCommentSniff;
 
 
-/**
- * @covers \ZenifyCodingStandard\Sniffs\Commenting\ComponentFactoryCommentSniff
- */
 final class ComponentFactoryCommentSniffTest extends TestCase
 {
 
 	public function testDetection()
 	{
-		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.Commenting.ComponentFactoryComment');
+		$codeSnifferRunner = new CodeSnifferRunner(ComponentFactoryCommentSniff::NAME);
 
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong2.php'));

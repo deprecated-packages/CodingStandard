@@ -6,17 +6,15 @@ namespace Zenify\CodingStandard\Tests\Sniffs\WhiteSpace\ExclamationMark;
 
 use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
+use ZenifyCodingStandard\Sniffs\WhiteSpace\ExclamationMarkSniff;
 
 
-/**
- * @covers \ZenifyCodingStandard\Sniffs\WhiteSpace\ExclamationMarkSniff
- */
 final class ExclamationMarkSniffTest extends TestCase
 {
 
 	public function testDetection()
 	{
-		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.WhiteSpace.ExclamationMark');
+		$codeSnifferRunner = new CodeSnifferRunner(ExclamationMarkSniff::NAME);
 
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong2.php'));

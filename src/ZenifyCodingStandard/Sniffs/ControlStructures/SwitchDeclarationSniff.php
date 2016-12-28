@@ -18,6 +18,11 @@ final class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_Switch
 {
 
 	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.ControlStructures.SwitchDeclaration';
+
+	/**
 	 * The number of spaces code should be indented.
 	 *
 	 * @var int

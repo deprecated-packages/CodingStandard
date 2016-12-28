@@ -23,6 +23,11 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.Commenting.MethodCommentReturnTag';
+
+	/**
 	 * @var string[]
 	 */
 	private $getterMethodPrefixes = ['get', 'is', 'has', 'will', 'should'];

@@ -21,6 +21,11 @@ final class ClassNamesWithoutPreSlashSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.Namespaces.ClassNamesWithoutPreSlash';
+
+	/**
 	 * @var string[]
 	 */
 	private $excludedClassNames = [

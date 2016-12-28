@@ -21,6 +21,11 @@ final class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.Namespaces.NamespaceDeclaration';
+
+	/**
 	 * @var int
 	 */
 	public $emptyLinesAfterNamespace = 2;

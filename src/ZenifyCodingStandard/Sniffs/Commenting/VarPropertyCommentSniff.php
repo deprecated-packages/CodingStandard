@@ -24,6 +24,11 @@ final class VarPropertyCommentSniff extends PHP_CodeSniffer_Standards_AbstractVa
 {
 
 	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.Commenting.VarPropertyComment';
+
+	/**
 	 * @param PHP_CodeSniffer_File $file
 	 * @param int $position
 	 */

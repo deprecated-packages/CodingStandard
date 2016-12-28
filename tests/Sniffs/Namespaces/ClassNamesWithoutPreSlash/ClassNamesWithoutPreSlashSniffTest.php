@@ -6,17 +6,15 @@ namespace Zenify\CodingStandard\Tests\Sniffs\Namespaces\ClassNamesWithoutPreSlas
 
 use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
+use ZenifyCodingStandard\Sniffs\Namespaces\ClassNamesWithoutPreSlashSniff;
 
 
-/**
- * @covers \ZenifyCodingStandard\Sniffs\Namespaces\ClassNamesWithoutPreSlashSniff
- */
 final class ClassNamesWithoutPreSlashSniffTest extends TestCase
 {
 
 	public function testDetection()
 	{
-		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.Namespaces.ClassNamesWithoutPreSlash');
+		$codeSnifferRunner = new CodeSnifferRunner(ClassNamesWithoutPreSlashSniff::NAME);
 
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
 		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct.php'));

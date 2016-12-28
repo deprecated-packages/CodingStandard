@@ -6,17 +6,15 @@ namespace Zenify\CodingStandard\Tests\Sniffs\Commenting\MethodCommentReturnTag;
 
 use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
+use ZenifyCodingStandard\Sniffs\Commenting\MethodCommentReturnTagSniff;
 
 
-/**
- * @covers \ZenifyCodingStandard\Sniffs\Commenting\MethodCommentReturnTagSniff
- */
 final class MethodCommentReturnTagSniffTest extends TestCase
 {
 
 	public function testDetection()
 	{
-		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.Commenting.MethodCommentReturnTag');
+		$codeSnifferRunner = new CodeSnifferRunner(MethodCommentReturnTagSniff::NAME);
 
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong2.php'));

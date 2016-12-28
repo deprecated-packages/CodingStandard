@@ -6,17 +6,15 @@ namespace Zenify\CodingStandard\Tests\Sniffs\Namespaces\NamespaceDeclaration;
 
 use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
+use ZenifyCodingStandard\Sniffs\Namespaces\NamespaceDeclarationSniff;
 
 
-/**
- * @covers \ZenifyCodingStandard\Sniffs\Namespaces\NamespaceDeclarationSniff
- */
 final class NamespaceDeclarationSniffTest extends TestCase
 {
 
 	public function testDetection()
 	{
-		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.Namespaces.NamespaceDeclaration');
+		$codeSnifferRunner = new CodeSnifferRunner(NamespaceDeclarationSniff::NAME);
 
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong2.php'));

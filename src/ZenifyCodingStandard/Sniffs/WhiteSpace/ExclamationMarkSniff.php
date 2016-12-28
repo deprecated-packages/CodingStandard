@@ -21,6 +21,11 @@ final class ExclamationMarkSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.WhiteSpace.ExclamationMark';
+
+	/**
 	 * @return int[]
 	 */
 	public function register() : array

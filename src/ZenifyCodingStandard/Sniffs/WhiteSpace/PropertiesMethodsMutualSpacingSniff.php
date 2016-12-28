@@ -21,6 +21,11 @@ final class PropertiesMethodsMutualSpacingSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.WhiteSpace.PropertiesMethodsMutualSpacing';
+
+	/**
 	 * @var int
 	 */
 	public $blankLinesInBetween = 2;

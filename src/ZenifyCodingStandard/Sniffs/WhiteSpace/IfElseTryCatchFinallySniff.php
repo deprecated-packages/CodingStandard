@@ -7,7 +7,7 @@ declare(strict_types = 1);
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
  */
 
-namespace ZenifyCodingStandard\Sniffs\Whitespace;
+namespace ZenifyCodingStandard\Sniffs\WhiteSpace;
 
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
@@ -19,6 +19,11 @@ use PHP_CodeSniffer_Sniff;
  */
 final class IfElseTryCatchFinallySniff implements PHP_CodeSniffer_Sniff
 {
+
+	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.WhiteSpace.IfElseTryCatchFinally';
 
 	/**
 	 * @var int

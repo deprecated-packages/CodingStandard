@@ -23,6 +23,11 @@ final class YodaConditionSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * @var string
 	 */
+	const NAME = 'ZenifyCodingStandard.ControlStructures.YodaCondition';
+
+	/**
+	 * @var string
+	 */
 	const MESSAGE_ERROR = 'Yoda condition should not be used; switch expression order';
 
 	/**

@@ -6,17 +6,15 @@ namespace Zenify\CodingStandard\Tests\Sniffs\Commenting\VarPropertyComment;
 
 use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
+use ZenifyCodingStandard\Sniffs\Commenting\VarPropertyCommentSniff;
 
 
-/**
- * @covers \ZenifyCodingStandard\Sniffs\Commenting\VarPropertyCommentSniff
- */
 final class VarPropertyCommentSniffTest extends TestCase
 {
 
 	public function testDetection()
 	{
-		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.Commenting.VarPropertyComment');
+		$codeSnifferRunner = new CodeSnifferRunner(VarPropertyCommentSniff::NAME);
 
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong2.php'));

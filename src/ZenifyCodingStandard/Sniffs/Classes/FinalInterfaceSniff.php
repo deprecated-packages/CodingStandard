@@ -25,6 +25,11 @@ final class FinalInterfaceSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.Classes.FinalInterface';
+
+	/**
 	 * @var PHP_CodeSniffer_File
 	 */
 	private $file;

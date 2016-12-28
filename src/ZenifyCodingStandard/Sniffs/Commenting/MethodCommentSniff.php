@@ -21,6 +21,11 @@ final class MethodCommentSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.Commenting.MethodComment';
+
+	/**
 	 * @return int[]
 	 */
 	public function register() : array

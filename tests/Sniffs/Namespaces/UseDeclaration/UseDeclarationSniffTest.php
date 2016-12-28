@@ -6,17 +6,15 @@ namespace Zenify\CodingStandard\Tests\Sniffs\Namespaces\UseDeclaration;
 
 use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
+use ZenifyCodingStandard\Sniffs\Namespaces\UseDeclarationSniff;
 
 
-/**
- * @covers \ZenifyCodingStandard\Sniffs\Namespaces\UseDeclarationSniff
- */
 final class UseDeclarationSniffTest extends TestCase
 {
 
 	public function testDetection()
 	{
-		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.Namespaces.UseDeclaration');
+		$codeSnifferRunner = new CodeSnifferRunner(UseDeclarationSniff::NAME);
 
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong2.php'));

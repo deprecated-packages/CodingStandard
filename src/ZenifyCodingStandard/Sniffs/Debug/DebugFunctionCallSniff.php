@@ -22,6 +22,11 @@ final class DebugFunctionCallSniff extends Generic_Sniffs_PHP_ForbiddenFunctions
 {
 
 	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.Debug.DebugFunctionCall';
+
+	/**
 	 * A list of forbidden functions with their alternatives.
 	 *
 	 * The value is NULL if no alternative exists. IE, the

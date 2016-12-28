@@ -21,6 +21,11 @@ final class DocBlockSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.WhiteSpace.DocBlock';
+
+	/**
 	 * @var PHP_CodeSniffer_File
 	 */
 	private $file;

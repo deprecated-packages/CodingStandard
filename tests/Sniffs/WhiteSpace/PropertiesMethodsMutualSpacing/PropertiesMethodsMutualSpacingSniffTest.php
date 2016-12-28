@@ -6,17 +6,15 @@ namespace Zenify\CodingStandard\Tests\Sniffs\WhiteSpace\PropertiesMethodsMutualS
 
 use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
+use ZenifyCodingStandard\Sniffs\WhiteSpace\PropertiesMethodsMutualSpacingSniff;
 
 
-/**
- * @covers \ZenifyCodingStandard\Sniffs\WhiteSpace\PropertiesMethodsMutualSpacingSniff
- */
 final class PropertiesMethodsMutualSpacingSniffTest extends TestCase
 {
 
 	public function testDetection()
 	{
-		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.WhiteSpace.PropertiesMethodsMutualSpacing');
+		$codeSnifferRunner = new CodeSnifferRunner(PropertiesMethodsMutualSpacingSniff::NAME);
 
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong2.php'));

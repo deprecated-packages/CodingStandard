@@ -24,6 +24,11 @@ final class ComponentFactoryCommentSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.Commenting.ComponentFactoryComment';
+
+	/**
 	 * @var int
 	 */
 	private $position;

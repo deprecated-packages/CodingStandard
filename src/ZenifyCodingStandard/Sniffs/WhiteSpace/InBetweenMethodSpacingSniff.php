@@ -7,7 +7,7 @@ declare(strict_types = 1);
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
  */
 
-namespace ZenifyCodingStandard\Sniffs\Whitespace;
+namespace ZenifyCodingStandard\Sniffs\WhiteSpace;
 
 use PHP_CodeSniffer_File;
 use Squiz_Sniffs_WhiteSpace_FunctionSpacingSniff;
@@ -23,6 +23,11 @@ use Squiz_Sniffs_WhiteSpace_FunctionSpacingSniff;
  */
 final class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_FunctionSpacingSniff
 {
+
+	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.WhiteSpace.InBetweenMethodSpacing';
 
 	/**
 	 * @var int

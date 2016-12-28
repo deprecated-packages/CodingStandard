@@ -21,6 +21,11 @@ final class NewClassSniff implements PHP_CodeSniffer_Sniff
 {
 
 	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.ControlStructures.NewClass';
+
+	/**
 	 * @return int[]
 	 */
 	public function register() : array

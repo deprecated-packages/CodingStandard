@@ -6,17 +6,15 @@ namespace Zenify\CodingStandard\Tests\Sniffs\Classes\ClassDeclaration;
 
 use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
+use ZenifyCodingStandard\Sniffs\Classes\FinalInterfaceSniff;
 
 
-/**
- * @covers \ZenifyCodingStandard\Sniffs\Classes\FinalInterfaceSniff
- */
 final class FinalInterfaceSniffTest extends TestCase
 {
 
 	public function testDetection()
 	{
-		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.Classes.FinalInterface');
+		$codeSnifferRunner = new CodeSnifferRunner(FinalInterfaceSniff::NAME);
 
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
 		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct.php'));

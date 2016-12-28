@@ -6,17 +6,15 @@ namespace Zenify\CodingStandard\Tests\Sniffs\Naming\InterfaceName;
 
 use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;
+use ZenifyCodingStandard\Sniffs\Naming\InterfaceNameSniff;
 
 
-/**
- * @covers \ZenifyCodingStandard\Sniffs\Naming\InterfaceNameSniff
- */
 final class InterfaceNameSniffTest extends TestCase
 {
 
 	public function testDetection()
 	{
-		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.Naming.InterfaceName');
+		$codeSnifferRunner = new CodeSnifferRunner(InterfaceNameSniff::NAME);
 
 		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct.php'));
 		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct2.php'));
