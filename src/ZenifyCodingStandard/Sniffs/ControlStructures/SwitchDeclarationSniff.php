@@ -46,7 +46,8 @@ final class SwitchDeclarationSniff extends Squiz_Sniffs_ControlStructures_Switch
 
 
 	/**
-	 * {@inheritdoc}
+	 * @param PHP_CodeSniffer_File $file
+	 * @param int $position
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{

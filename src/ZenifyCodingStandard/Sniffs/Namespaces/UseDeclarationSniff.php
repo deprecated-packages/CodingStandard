@@ -29,16 +29,17 @@ final class UseDeclarationSniff extends PSR2_Sniffs_Namespaces_UseDeclarationSni
 
 
 	/**
-	 * {@inheritdoc}
+	 * @return int[]
 	 */
-	public function register()
+	public function register() : array
 	{
 		return [T_USE];
 	}
 
 
 	/**
-	 * {@inheritdoc}
+	 * @param PHP_CodeSniffer_File $file
+	 * @param int $position
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{

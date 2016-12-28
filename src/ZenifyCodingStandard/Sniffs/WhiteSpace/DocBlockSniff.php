@@ -37,16 +37,17 @@ final class DocBlockSniff implements PHP_CodeSniffer_Sniff
 
 
 	/**
-	 * {@inheritdoc}
+	 * @return int[]
 	 */
-	public function register()
+	public function register() : array
 	{
 		return [T_DOC_COMMENT_STAR, T_DOC_COMMENT_CLOSE_TAG];
 	}
 
 
 	/**
-	 * {@inheritdoc}
+	 * @param PHP_CodeSniffer_File $file
+	 * @param int $position
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
