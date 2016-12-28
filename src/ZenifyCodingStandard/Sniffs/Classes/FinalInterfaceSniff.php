@@ -70,10 +70,11 @@ final class FinalInterfaceSniff implements PHP_CodeSniffer_Sniff
 			return;
 		}
 
-		$file->addError(
-			'Non-abstract class that implements interface should be final.',
-			$position
-		);
+		$fix = $file->addFixableError('Non-abstract class that implements interface should be final.', $position);
+
+		if ($fix) {
+			$this->addFinalToClass($position);
+		}
 	}
 
 
@@ -118,6 +119,12 @@ final class FinalInterfaceSniff implements PHP_CodeSniffer_Sniff
 		} while ($docCommentPosition = $this->file->findNext(T_DOC_COMMENT_TAG, $seekPosition, $this->position));
 
 		return FALSE;
+	}
+
+
+	public function addFinalToClass(int $position)
+	{
+		$this->file->fixer->addContentBefore($position, 'final ');
 	}
 
 }
