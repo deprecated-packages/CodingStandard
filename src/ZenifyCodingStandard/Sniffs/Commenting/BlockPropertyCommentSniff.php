@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 namespace ZenifyCodingStandard\Sniffs\Commenting;
 
+use Nette\Utils\Strings;
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
@@ -19,6 +20,11 @@ use PHP_CodeSniffer_Sniff;
  */
 final class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 {
+
+	/**
+	 * @var string
+	 */
+	const NAME = 'ZenifyCodingStandard.Commenting.BlockPropertyComment';
 
 	/**
 	 * @var PHP_CodeSniffer_File
@@ -57,8 +63,11 @@ final class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 			return;
 		}
 
-		$error = 'Block comment should be used instead of one liner';
-		$file->addError($error, $position);
+		$fix = $file->addFixableError('Block comment should be used instead of one liner', $position);
+
+		if ($fix) {
+			$this->changeSingleLineDocToDocBlock($position);
+		}
 	}
 
 
@@ -100,6 +109,25 @@ final class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 			}
 		}
 		return FALSE;
+	}
+
+	private function changeSingleLineDocToDocBlock(int $position)
+	{
+		$commentEndPosition = $this->tokens[$position]['comment_closer'];
+
+		$empty = [T_DOC_COMMENT_WHITESPACE, T_DOC_COMMENT_STAR];
+		$shortPosition = $this->file->findNext($empty, $position + 1, $commentEndPosition, TRUE);
+
+		// indent content after /** to indented new line
+		$this->file->fixer->addContentBefore($shortPosition, PHP_EOL . "\t" . ' * ');
+
+		// remove spaces
+		$this->file->fixer->replaceToken($position + 1, '');
+		$spacelessContent = trim($this->tokens[$commentEndPosition - 1]['content']);
+		$this->file->fixer->replaceToken($commentEndPosition - 1, $spacelessContent);
+
+		// indent end to indented newline
+		$this->file->fixer->replaceToken($commentEndPosition, PHP_EOL . "\t" . ' */');
 	}
 
 }

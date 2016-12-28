@@ -34,15 +34,23 @@ final class CodeSnifferRunner
 	}
 
 
-	/**
-	 * @return int
-	 */
 	public function getErrorCountInFile(string $source) : int
 	{
 		$this->ensureFileExists($source);
 
 		$file = $this->codeSniffer->processFile($source);
 		return $file->getErrorCount();
+	}
+
+
+	public function getFixedContent(string $source) : string
+	{
+		$this->ensureFileExists($source);
+
+		$file = $this->codeSniffer->processFile($source);
+		$file->fixer->fixFile();
+
+		return $file->fixer->getContents();
 	}
 
 
