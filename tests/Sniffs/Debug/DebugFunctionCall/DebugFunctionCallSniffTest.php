@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace ZenifyTests\MikulasCodeSniffs\Sniffs\Debug\DebugFunctionCall;
+namespace Zenify\CodingStandard\Tests\Sniffs\Debug\DebugFunctionCall;
 
 use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;

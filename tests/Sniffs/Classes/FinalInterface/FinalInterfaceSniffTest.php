@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Zenify\CodingStandard\Tests\Sniffs\Classes\ClassDeclaration;
+namespace Zenify\CodingStandard\Tests\Sniffs\Classes\FinalInterface;
 
 use PHPUnit\Framework\TestCase;
 use Zenify\CodingStandard\Tests\CodeSnifferRunner;

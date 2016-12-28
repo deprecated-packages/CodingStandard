@@ -9,7 +9,6 @@ declare(strict_types = 1);
 
 namespace ZenifyCodingStandard\Sniffs\Commenting;
 
-use Nette\Utils\Strings;
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
@@ -110,6 +109,7 @@ final class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
 		}
 		return FALSE;
 	}
+
 
 	private function changeSingleLineDocToDocBlock(int $position)
 	{

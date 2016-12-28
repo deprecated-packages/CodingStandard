@@ -24,6 +24,7 @@ final class BlockPropertyCommentSniffTest extends TestCase
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
 	}
 
+
 	public function testFixing()
 	{
 		$codeSnifferRunner = new CodeSnifferRunner('ZenifyCodingStandard.Commenting.BlockPropertyComment');
