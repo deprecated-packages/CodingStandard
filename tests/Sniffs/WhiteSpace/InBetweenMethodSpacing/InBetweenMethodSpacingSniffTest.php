@@ -21,4 +21,16 @@ final class InBetweenMethodSpacingSniffTest extends TestCase
 		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct.php'));
 	}
 
+
+	public function testFixing()
+	{
+		$codeSnifferRunner = new CodeSnifferRunner(InBetweenMethodSpacingSniff::NAME);
+
+		$fixedContent = $codeSnifferRunner->getFixedContent(__DIR__ . '/wrong.php');
+		$this->assertSame(file_get_contents(__DIR__ . '/wrong-fixed.php'), $fixedContent);
+
+		$fixedContent = $codeSnifferRunner->getFixedContent(__DIR__ . '/wrong2.php');
+		$this->assertSame(file_get_contents(__DIR__ . '/wrong-fixed.php'), $fixedContent);
+	}
+
 }

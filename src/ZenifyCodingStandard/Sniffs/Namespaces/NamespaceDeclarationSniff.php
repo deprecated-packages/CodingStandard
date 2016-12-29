@@ -57,6 +57,7 @@ final class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 	 */
 	private $classMetrics;
 
+
 	/**
 	 * @return int[]
 	 */
@@ -72,7 +73,7 @@ final class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
-		$classPosition = $file->findNext(T_CLASS, $position);
+		$classPosition = $file->findNext([T_CLASS, T_TRAIT, T_INTERFACE], $position);
 		if (!$classPosition) {
 			// there is no class, nothing to see here
 			return;
@@ -137,7 +138,7 @@ final class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 		$linesToNextClass = $this->classMetrics->getLineDistanceBetweenClassAndLastUseStatement();
 		if ($linesToNextClass !== $this->emptyLinesAfterNamespace) {
 			$errorMessage = sprintf(
-				'There should be %s empty line(s) between last use na class; %s found',
+				'There should be %s empty line(s) between last use and class; %s found',
 				$this->emptyLinesAfterNamespace,
 				$linesToNextClass
 			);

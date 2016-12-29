@@ -11,6 +11,7 @@ namespace ZenifyCodingStandard\Sniffs\WhiteSpace;
 
 use PHP_CodeSniffer_File;
 use Squiz_Sniffs_WhiteSpace_FunctionSpacingSniff;
+use ZenifyCodingStandard\Helper\Whitespace\EmptyLinesResizer;
 
 
 /**
@@ -78,9 +79,15 @@ final class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_Function
 				return;
 
 			} else {
-				$error = 'Method should have %s empty line(s) after itself, %s found.';
-				$data = [$this->blankLinesBetweenMethods, $blankLinesCountAfterFunction];
-				$this->file->addError($error, $position, '', $data);
+				$error = sprintf(
+					'Method should have %s empty line(s) after itself, %s found.',
+					$this->blankLinesBetweenMethods,
+					$blankLinesCountAfterFunction
+				);
+				$fix = $file->addFixableError($error, $position);
+				if ($fix) {
+					$this->fixSpacingAfterMethod($blankLinesCountAfterFunction);
+				}
 			}
 		}
 	}
@@ -153,7 +160,7 @@ final class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_Function
 
 
 	/**
-	 * @return bool|int
+	 * @return FALSE|int
 	 */
 	private function getNextLineContent(int $nextLineToken)
 	{
@@ -161,6 +168,17 @@ final class InBetweenMethodSpacingSniff extends Squiz_Sniffs_WhiteSpace_Function
 			return $this->file->findNext(T_WHITESPACE, ($nextLineToken + 1), NULL, TRUE);
 		}
 		return FALSE;
+	}
+
+
+	private function fixSpacingAfterMethod(int $blankLinesCountAfterFunction)
+	{
+		EmptyLinesResizer::resizeLines(
+			$this->file,
+			$this->getScopeCloser() + 1,
+			$blankLinesCountAfterFunction,
+			$this->blankLinesBetweenMethods
+		);
 	}
 
 }

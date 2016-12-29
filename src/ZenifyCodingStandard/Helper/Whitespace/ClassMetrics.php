@@ -48,7 +48,10 @@ final class ClassMetrics
 			return FALSE;
 		}
 
-		return (int) $this->tokens[$this->classPosition]['line'] - $this->tokens[$lastUseStatementPosition]['line'] - 1;
+		return (int)
+			$this->tokens[$this->getClassPositionIncludingComment()]['line']
+			- $this->tokens[$lastUseStatementPosition]['line']
+			- 1;
 	}
 
 
@@ -92,16 +95,20 @@ final class ClassMetrics
 			return FALSE;
 		}
 
-		// include comments into distance!
-		$classStartPosition = $this->file->findNext(
-			[T_CLASS, T_INTERFACE, T_TRAIT, T_DOC_COMMENT_OPEN_TAG], $namespacePosition, NULL
-		);
-
-		if ($this->tokens[$classStartPosition]['line'] === 1) {
-			return FALSE;
-		}
+		$classStartPosition = $this->getClassPositionIncludingComment();
 
 		return $this->tokens[$classStartPosition]['line'] - $this->tokens[$namespacePosition]['line'] - 1;
+	}
+
+
+	private function getClassPositionIncludingComment()
+	{
+		$classStartPosition = $this->file->findPrevious(T_DOC_COMMENT_OPEN_TAG, $this->classPosition);
+		if ($classStartPosition) {
+			return $classStartPosition;
+		}
+
+		return $this->classPosition;
 	}
 
 

@@ -11,6 +11,7 @@ namespace ZenifyCodingStandard\Sniffs\WhiteSpace;
 
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
+use ZenifyCodingStandard\Helper\Whitespace\EmptyLinesResizer;
 
 
 /**
@@ -28,7 +29,22 @@ final class IfElseTryCatchFinallySniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * @var int
 	 */
-	private $blankLinesBeforeStatement = 1;
+	private $requiredEmptyLineCountBeforeStatement = 1;
+
+	/**
+	 * @var PHP_CodeSniffer_File
+	 */
+	private $file;
+
+	/**
+	 * @var int
+	 */
+	private $position;
+
+	/**
+	 * @var array
+	 */
+	private $tokens;
 
 
 	/**
@@ -46,35 +62,58 @@ final class IfElseTryCatchFinallySniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
-		// Fix type
-		$this->blankLinesBeforeStatement = (int) $this->blankLinesBeforeStatement;
+		$this->file = $file;
+		$this->position = $position;
+		$this->tokens = $file->getTokens();
 
-		$diff = $this->getEmptyLinesCountBefore($file, $position);
-		if ($diff === $this->blankLinesBeforeStatement) {
+		// Fix type
+		$this->requiredEmptyLineCountBeforeStatement = (int) $this->requiredEmptyLineCountBeforeStatement;
+
+		$emptyLineCountBeforeStatement = $this->getEmptyLinesCountBefore();
+		if ($emptyLineCountBeforeStatement === $this->requiredEmptyLineCountBeforeStatement) {
 			return;
 		}
 
-		$error = '%s statement should be preceded by %s empty line(s); %s found';
-		$tokens = $file->getTokens();
-		$data = [
-			ucfirst($tokens[$position]['content']),
-			$this->blankLinesBeforeStatement,
-			$diff
-		];
-		$file->addError($error, $position, '', $data);
+		$error = sprintf(
+			'%s statement should be preceded by %s empty line(s); %s found',
+			ucfirst($this->tokens[$position]['content']),
+			$this->requiredEmptyLineCountBeforeStatement,
+			$emptyLineCountBeforeStatement
+		);
+		$fix = $file->addFixableError($error, $position);
+		if ($fix) {
+			EmptyLinesResizer::resizeLines(
+				$file,
+				$this->findFirstPositionInCurrentLine($position),
+				$emptyLineCountBeforeStatement,
+				$this->requiredEmptyLineCountBeforeStatement
+			);
+		}
 	}
 
 
-	private function getEmptyLinesCountBefore(PHP_CodeSniffer_File $file, int $position) : int
+	private function getEmptyLinesCountBefore() : int
 	{
-		$tokens = $file->getTokens();
-		$currentLine = $tokens[$position]['line'];
-		$previousPosition = $position;
+		$currentLine = $this->tokens[$this->position]['line'];
+		$previousPosition = $this->position;
+
 		do {
 			$previousPosition--;
-		} while ($currentLine === $tokens[$previousPosition]['line'] || $tokens[$previousPosition]['code'] === T_WHITESPACE);
+		} while ($currentLine === $this->tokens[$previousPosition]['line'] || $this->tokens[$previousPosition]['code'] === T_WHITESPACE);
 
-		return $tokens[$position]['line'] - $tokens[$previousPosition]['line'] - 1;
+		return $this->tokens[$this->position]['line'] - $this->tokens[$previousPosition]['line'] - 1;
+	}
+
+
+	private function findFirstPositionInCurrentLine(int $position) : int
+	{
+		$currentPosition = $position;
+		$line = $this->tokens[$position]['line'];
+		while ($this->tokens[$currentPosition]['line'] === $line) {
+			$currentPosition--;
+		}
+
+		return $currentPosition;
 	}
 
 }
