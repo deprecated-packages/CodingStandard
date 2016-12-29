@@ -33,8 +33,6 @@ final class NamespaceDeclarationSniffTest extends TestCase
 
 	public function testFixing()
 	{
-		return;
-
 		$codeSnifferRunner = new CodeSnifferRunner(NamespaceDeclarationSniff::NAME);
 
 		$fixedContent = $codeSnifferRunner->getFixedContent(__DIR__ . '/wrong.php');
