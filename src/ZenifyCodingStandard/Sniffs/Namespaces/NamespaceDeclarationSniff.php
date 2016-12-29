@@ -11,6 +11,8 @@ namespace ZenifyCodingStandard\Sniffs\Namespaces;
 
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
+use ZenifyCodingStandard\Helper\Whitespace\ClassMetrics;
+use ZenifyCodingStandard\Helper\Whitespace\WhitespaceFinder;
 
 
 /**
@@ -33,7 +35,7 @@ final class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * @var int
 	 */
-	private $emptyLinesBeforeUseStatement;
+	private $emptyLinesBeforeUseStatement = 1;
 
 	/**
 	 * @var PHP_CodeSniffer_File
@@ -45,6 +47,15 @@ final class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 	 */
 	private $position;
 
+	/**
+	 * @var array[]
+	 */
+	private $tokens;
+
+	/**
+	 * @var ClassMetrics
+	 */
+	private $classMetrics;
 
 	/**
 	 * @return int[]
@@ -61,81 +72,133 @@ final class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
+		$classPosition = $file->findNext(T_CLASS, $position);
+		if (!$classPosition) {
+			// there is no class, nothing to see here
+			return;
+		}
+
 		$this->file = $file;
 		$this->position = $position;
+		$this->tokens = $file->getTokens();
 
 		// Fix type
 		$this->emptyLinesAfterNamespace = (int) $this->emptyLinesAfterNamespace;
-		$this->emptyLinesBeforeUseStatement = (int) $this->emptyLinesAfterNamespace - 1;
+		$this->emptyLinesBeforeUseStatement = (int) $this->emptyLinesBeforeUseStatement;
 
-		$linesToNextUse = $this->getLinesToNextUse();
-		$linesToNextClass = $this->getLinesToNextClass();
+		// prepare class metrics class
+		$this->classMetrics = new ClassMetrics($file, $classPosition);
 
-		if ($linesToNextUse) {
-			if ($linesToNextUse !== $this->emptyLinesBeforeUseStatement) {
-				$error = 'There should be %s empty line(s) from namespace to use statement; %s found';
-				$data = [
-					$this->emptyLinesBeforeUseStatement,
-					$linesToNextUse
-				];
-				$file->addError($error, $position, 'BlankLineAfter', $data);
-			}
+		$lineDistanceBetweenNamespaceAndFirstUseStatement = $this->classMetrics->getLineDistanceBetweenNamespaceAndFirstUseStatement();
+		$lineDistanceBetweenClassAndNamespace = $this->classMetrics->getLineDistanceBetweenClassAndNamespace();
 
-		} elseif ($linesToNextClass) {
+		if ($lineDistanceBetweenNamespaceAndFirstUseStatement) {
+			$this->processWithUseStatement($lineDistanceBetweenNamespaceAndFirstUseStatement);
+		} else {
+			$this->processWithoutUseStatement($lineDistanceBetweenClassAndNamespace);
+		}
+	}
+
+
+	private function processWithoutUseStatement(int $linesToNextClass)
+	{
+		if ($linesToNextClass) {
 			if ($linesToNextClass !== $this->emptyLinesAfterNamespace) {
-				$error = 'There should be %s empty line(s) after the namespace declaration; %s found';
-				$data = [
+				$errorMessage = sprintf(
+					'There should be %s empty line(s) after the namespace declaration; %s found',
 					$this->emptyLinesAfterNamespace,
 					$linesToNextClass
-				];
-				$file->addError($error, $position, 'BlankLineAfter', $data);
+				);
+
+				$fix = $this->file->addFixableError($errorMessage, $this->position);
+				if ($fix) {
+					$this->fixSpacesFromNamespaceToClass($this->position, $linesToNextClass);
+				}
 			}
 		}
 	}
 
 
-	/**
-	 * @return bool|int
-	 */
-	private function getLinesToNextUse()
+	private function processWithUseStatement(int $linesToNextUse)
 	{
-		$tokens = $this->file->getTokens();
-		$nextUse = $this->file->findNext(T_USE, $this->position, NULL, FALSE);
+		if ($linesToNextUse !== $this->emptyLinesBeforeUseStatement) {
+			$errorMessage = sprintf(
+				'There should be %s empty line(s) from namespace to use statement; %s found',
+				$this->emptyLinesBeforeUseStatement,
+				$linesToNextUse
+			);
 
-		if ($tokens[$nextUse]['line'] === 1 || $this->isInsideClass($nextUse)) {
-			return FALSE;
+			$fix = $this->file->addFixableError($errorMessage, $this->position);
+			if ($fix) {
+				$this->fixSpacesFromNamespaceToUseStatements($this->position, $linesToNextUse);
+			}
+		}
 
-		} else {
-			return $tokens[$nextUse]['line'] - $tokens[$this->position]['line'] - 1;
+		$linesToNextClass = $this->classMetrics->getLineDistanceBetweenClassAndLastUseStatement();
+		if ($linesToNextClass !== $this->emptyLinesAfterNamespace) {
+			$errorMessage = sprintf(
+				'There should be %s empty line(s) between last use na class; %s found',
+				$this->emptyLinesAfterNamespace,
+				$linesToNextClass
+			);
+
+			$fix = $this->file->addFixableError($errorMessage, $this->position);
+			if ($fix) {
+				$this->fixSpacesFromUseStatementToClass(
+					$this->classMetrics->getLastUseStatementPosition(),
+					$linesToNextClass
+				);
+			}
 		}
 	}
 
 
-	/**
-	 * @return bool|int
-	 */
-	private function getLinesToNextClass()
+	private function fixSpacesFromNamespaceToUseStatements(int $position, int $linesToNextUse)
 	{
-		$tokens = $this->file->getTokens();
-		$nextClass = $this->file->findNext(
-			[T_CLASS, T_INTERFACE, T_TRAIT, T_DOC_COMMENT_OPEN_TAG], $this->position, NULL, FALSE
-		);
-		if ($tokens[$nextClass]['line'] === 1) {
-			return FALSE;
+		$nextLinePosition = WhitespaceFinder::findNextEmptyLinePosition($this->file, $position);
 
+		if ($linesToNextUse < $this->emptyLinesBeforeUseStatement) {
+			for ($i = $linesToNextUse; $i < $this->emptyLinesBeforeUseStatement; $i++) {
+				$this->file->fixer->addContent($nextLinePosition, PHP_EOL);
+			}
 		} else {
-			return $tokens[$nextClass]['line'] - $tokens[$this->position]['line'] - 1;
+			for ($i = $linesToNextUse; $i > $this->emptyLinesBeforeUseStatement; $i--) {
+				$this->file->fixer->replaceToken($nextLinePosition, '');
+				$nextLinePosition = WhitespaceFinder::findNextEmptyLinePosition($this->file, $nextLinePosition);
+			}
 		}
 	}
 
 
-	private function isInsideClass(int $position) : bool
+	private function fixSpacesFromNamespaceToClass(int $position, int $linesToClass)
 	{
-		$prevClassPosition = $this->file->findPrevious(T_CLASS, $position, NULL, FALSE);
-		if ($prevClassPosition) {
-			return TRUE;
+		$nextLinePosition = WhitespaceFinder::findNextEmptyLinePosition($this->file, $position);
+		if ($linesToClass < $this->emptyLinesAfterNamespace) {
+			for ($i = $linesToClass; $i < $this->emptyLinesAfterNamespace; $i++) {
+				$this->file->fixer->addContent($nextLinePosition, PHP_EOL);
+			}
+		} else {
+			for ($i = $linesToClass; $i > $this->emptyLinesAfterNamespace; $i--) {
+				$this->file->fixer->replaceToken($nextLinePosition, '');
+				$nextLinePosition = WhitespaceFinder::findNextEmptyLinePosition($this->file, $nextLinePosition);
+			}
 		}
-		return FALSE;
+	}
+
+
+	private function fixSpacesFromUseStatementToClass(int $position, int $linesToClass)
+	{
+		if ($linesToClass < $this->emptyLinesAfterNamespace) {
+			for ($i = $linesToClass; $i < $this->emptyLinesAfterNamespace; $i++) {
+				$this->file->fixer->addContent($position, PHP_EOL);
+			}
+		} else {
+			$nextLinePosition = WhitespaceFinder::findNextEmptyLinePosition($this->file, $position);
+			for ($i = $linesToClass; $i > $this->emptyLinesAfterNamespace; $i--) {
+				$this->file->fixer->replaceToken($nextLinePosition, '');
+				$nextLinePosition = WhitespaceFinder::findNextEmptyLinePosition($this->file, $nextLinePosition);
+			}
+		}
 	}
 
 }

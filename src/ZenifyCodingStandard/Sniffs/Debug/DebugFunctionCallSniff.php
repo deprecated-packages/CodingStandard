@@ -15,8 +15,6 @@ use Generic_Sniffs_PHP_ForbiddenFunctionsSniff;
 /**
  * Rules:
  * - Debug functions should not be left in the code
- *
- * @author Mikulas Dite <mikulas@dite.pro>
  */
 final class DebugFunctionCallSniff extends Generic_Sniffs_PHP_ForbiddenFunctionsSniff
 {

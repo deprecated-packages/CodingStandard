@@ -26,11 +26,6 @@ final class YodaConditionSniff implements PHP_CodeSniffer_Sniff
 	const NAME = 'ZenifyCodingStandard.ControlStructures.YodaCondition';
 
 	/**
-	 * @var string
-	 */
-	const MESSAGE_ERROR = 'Yoda condition should not be used; switch expression order';
-
-	/**
 	 * @var int
 	 */
 	private $position;
@@ -70,11 +65,15 @@ final class YodaConditionSniff implements PHP_CodeSniffer_Sniff
 
 		$previousNonEmptyToken = $this->getPreviousNonEmptyToken();
 
-		if ($previousNonEmptyToken) {
-			if ($this->isExpressionToken($previousNonEmptyToken)) {
-				$file->addError(self::MESSAGE_ERROR, $position);
-			}
+		if ( ! $previousNonEmptyToken) {
+			return;
 		}
+
+		if ( ! $this->isExpressionToken($previousNonEmptyToken)) {
+			return;
+		}
+
+		$file->addError('Yoda condition should not be used; switch expression order', $position);
 	}
 
 
@@ -88,16 +87,14 @@ final class YodaConditionSniff implements PHP_CodeSniffer_Sniff
 		if ($leftTokenPosition) {
 			return $tokens[$leftTokenPosition];
 		}
+
 		return FALSE;
 	}
 
 
 	private function isExpressionToken(array $token) : bool
 	{
-		if (in_array($token['code'], [T_MINUS, T_NULL, T_FALSE, T_TRUE, T_LNUMBER, T_CONSTANT_ENCAPSED_STRING])) {
-			return TRUE;
-		}
-		return FALSE;
+		return in_array($token['code'], [T_MINUS, T_NULL, T_FALSE, T_TRUE, T_LNUMBER, T_CONSTANT_ENCAPSED_STRING]);
 	}
 
 }
