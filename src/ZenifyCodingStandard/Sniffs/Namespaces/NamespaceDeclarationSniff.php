@@ -90,8 +90,10 @@ final class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 		// prepare class metrics class
 		$this->classMetrics = new ClassMetrics($file, $classPosition);
 
-		$lineDistanceBetweenNamespaceAndFirstUseStatement = $this->classMetrics->getLineDistanceBetweenNamespaceAndFirstUseStatement();
-		$lineDistanceBetweenClassAndNamespace = $this->classMetrics->getLineDistanceBetweenClassAndNamespace();
+		$lineDistanceBetweenNamespaceAndFirstUseStatement =
+			$this->classMetrics->getLineDistanceBetweenNamespaceAndFirstUseStatement();
+		$lineDistanceBetweenClassAndNamespace =
+			$this->classMetrics->getLineDistanceBetweenClassAndNamespace();
 
 		if ($lineDistanceBetweenNamespaceAndFirstUseStatement) {
 			$this->processWithUseStatement($lineDistanceBetweenNamespaceAndFirstUseStatement);

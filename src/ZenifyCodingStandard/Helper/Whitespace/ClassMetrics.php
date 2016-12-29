@@ -48,8 +48,7 @@ final class ClassMetrics
 			return FALSE;
 		}
 
-		return (int)
-			$this->tokens[$this->getClassPositionIncludingComment()]['line']
+		return (int) $this->tokens[$this->getClassPositionIncludingComment()]['line']
 			- $this->tokens[$lastUseStatementPosition]['line']
 			- 1;
 	}
@@ -101,6 +100,9 @@ final class ClassMetrics
 	}
 
 
+	/**
+	 * @return FALSE|int
+	 */
 	private function getClassPositionIncludingComment()
 	{
 		$classStartPosition = $this->file->findPrevious(T_DOC_COMMENT_OPEN_TAG, $this->classPosition);

@@ -99,7 +99,10 @@ final class IfElseTryCatchFinallySniff implements PHP_CodeSniffer_Sniff
 
 		do {
 			$previousPosition--;
-		} while ($currentLine === $this->tokens[$previousPosition]['line'] || $this->tokens[$previousPosition]['code'] === T_WHITESPACE);
+		} while (
+			$currentLine === $this->tokens[$previousPosition]['line']
+			|| $this->tokens[$previousPosition]['code'] === T_WHITESPACE
+		);
 
 		return $this->tokens[$this->position]['line'] - $this->tokens[$previousPosition]['line'] - 1;
 	}
