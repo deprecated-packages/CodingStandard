@@ -20,4 +20,13 @@ final class NewClassSniffTest extends TestCase
 		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct.php'));
 	}
 
+
+	public function testFixing()
+	{
+		$codeSnifferRunner = new CodeSnifferRunner(NewClassSniff::NAME);
+
+		$fixedContent = $codeSnifferRunner->getFixedContent(__DIR__ . '/wrong.php');
+		$this->assertSame(file_get_contents(__DIR__ . '/wrong-fixed.php'), $fixedContent);
+	}
+
 }

@@ -26,6 +26,22 @@ final class NewClassSniff implements PHP_CodeSniffer_Sniff
 	const NAME = 'ZenifyCodingStandard.ControlStructures.NewClass';
 
 	/**
+	 * @var PHP_CodeSniffer_File
+	 */
+	private $file;
+
+	/**
+	 * @var int
+	 */
+	private $position;
+
+	/**
+	 * @var int
+	 */
+	private $openParenthesisPosition;
+
+
+	/**
 	 * @return int[]
 	 */
 	public function register() : array
@@ -40,17 +56,24 @@ final class NewClassSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
-		if ($this->hasEmptyParentheses($file, $position)) {
-			$error = 'New class statement should not have empty parentheses';
-			$file->addError($error, $position);
+		$this->file = $file;
+		$this->position = $position;
+
+		if ( ! $this->hasEmptyParentheses()) {
+			return;
+		}
+
+		$fix = $file->addFixableError('New class statement should not have empty parentheses', $position);
+		if ($fix) {
+			$this->removeParenthesesFromClassStatement($position);
 		}
 	}
 
 
-	private function hasEmptyParentheses(PHP_CodeSniffer_File $file, int $position) : bool
+	private function hasEmptyParentheses() : bool
 	{
-		$tokens = $file->getTokens();
-		$nextPosition = $position;
+		$tokens = $this->file->getTokens();
+		$nextPosition = $this->position;
 
 		do {
 			$nextPosition++;
@@ -58,6 +81,7 @@ final class NewClassSniff implements PHP_CodeSniffer_Sniff
 
 		if ($tokens[$nextPosition]['content'] === '(') {
 			if ($tokens[$nextPosition + 1]['content'] === ')') {
+				$this->openParenthesisPosition = $nextPosition;
 				return TRUE;
 			}
 		}
@@ -74,6 +98,13 @@ final class NewClassSniff implements PHP_CodeSniffer_Sniff
 			}
 		}
 		return FALSE;
+	}
+
+
+	private function removeParenthesesFromClassStatement(int $position)
+	{
+		$this->file->fixer->replaceToken($this->openParenthesisPosition, '');
+		$this->file->fixer->replaceToken($this->openParenthesisPosition + 1, '');
 	}
 
 }
