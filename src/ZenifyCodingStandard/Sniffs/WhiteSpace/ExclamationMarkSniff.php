@@ -26,6 +26,12 @@ final class ExclamationMarkSniff implements PHP_CodeSniffer_Sniff
 	const NAME = 'ZenifyCodingStandard.WhiteSpace.ExclamationMark';
 
 	/**
+	 * @var PHP_CodeSniffer_File
+	 */
+	private $file;
+
+
+	/**
 	 * @return int[]
 	 */
 	public function register() : array
@@ -40,10 +46,30 @@ final class ExclamationMarkSniff implements PHP_CodeSniffer_Sniff
 	 */
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
+		$this->file = $file;
+
 		$tokens = $file->getTokens();
-		if ($tokens[$position - 1]['code'] !== T_WHITESPACE || $tokens[$position + 1]['code'] !== T_WHITESPACE) {
+		$hasSpaceBefore = $tokens[$position - 1]['code'] === T_WHITESPACE;
+		$hasSpaceAfter = $tokens[$position + 1]['code'] === T_WHITESPACE;
+
+		if ( ! $hasSpaceBefore || ! $hasSpaceAfter) {
 			$error = 'Not operator (!) should be surrounded by spaces.';
-			$file->addError($error, $position);
+			$fix = $file->addFixableError($error, $position);
+			if ($fix) {
+				$this->fixSpacesAroundExclamationMark($position, $hasSpaceBefore, $hasSpaceAfter);
+			}
+		}
+	}
+
+
+	private function fixSpacesAroundExclamationMark(int $position, bool $isSpaceBefore, bool $isSpaceAfter)
+	{
+		if ( ! $isSpaceBefore) {
+			$this->file->fixer->addContentBefore($position, ' ');
+		}
+
+		if ( ! $isSpaceAfter) {
+			$this->file->fixer->addContentBefore($position + 1, ' ');
 		}
 	}
 
