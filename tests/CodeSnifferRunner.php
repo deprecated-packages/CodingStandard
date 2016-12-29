@@ -43,7 +43,8 @@ final class CodeSnifferRunner
 	}
 
 
-	public function getFixedContent(string $source) : string
+	public function
+	getFixedContent(string $source) : string
 	{
 		$this->ensureFileExists($source);
 
