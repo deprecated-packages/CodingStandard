@@ -29,6 +29,7 @@ final class EmptyLinesResizer
 		}
 	}
 
+
 	private static function reduceBlankLines(PHP_CodeSniffer_File $file, int $position, int $from, int $to)
 	{
 		for ($i = $from; $i > $to; $i--) {

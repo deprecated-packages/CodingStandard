@@ -74,7 +74,7 @@ final class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 	public function process(PHP_CodeSniffer_File $file, $position)
 	{
 		$classPosition = $file->findNext([T_CLASS, T_TRAIT, T_INTERFACE], $position);
-		if (!$classPosition) {
+		if ( ! $classPosition) {
 			// there is no class, nothing to see here
 			return;
 		}
@@ -97,6 +97,7 @@ final class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 
 		if ($lineDistanceBetweenNamespaceAndFirstUseStatement) {
 			$this->processWithUseStatement($lineDistanceBetweenNamespaceAndFirstUseStatement);
+
 		} else {
 			$this->processWithoutUseStatement($lineDistanceBetweenClassAndNamespace);
 		}
@@ -164,6 +165,7 @@ final class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 			for ($i = $linesToNextUse; $i < $this->emptyLinesBeforeUseStatement; $i++) {
 				$this->file->fixer->addContent($nextLinePosition, PHP_EOL);
 			}
+
 		} else {
 			for ($i = $linesToNextUse; $i > $this->emptyLinesBeforeUseStatement; $i--) {
 				$this->file->fixer->replaceToken($nextLinePosition, '');
@@ -180,6 +182,7 @@ final class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 			for ($i = $linesToClass; $i < $this->emptyLinesAfterNamespace; $i++) {
 				$this->file->fixer->addContent($nextLinePosition, PHP_EOL);
 			}
+
 		} else {
 			for ($i = $linesToClass; $i > $this->emptyLinesAfterNamespace; $i--) {
 				$this->file->fixer->replaceToken($nextLinePosition, '');
@@ -195,6 +198,7 @@ final class NamespaceDeclarationSniff implements PHP_CodeSniffer_Sniff
 			for ($i = $linesToClass; $i < $this->emptyLinesAfterNamespace; $i++) {
 				$this->file->fixer->addContent($position, PHP_EOL);
 			}
+
 		} else {
 			$nextLinePosition = WhitespaceFinder::findNextEmptyLinePosition($this->file, $position);
 			for ($i = $linesToClass; $i > $this->emptyLinesAfterNamespace; $i--) {

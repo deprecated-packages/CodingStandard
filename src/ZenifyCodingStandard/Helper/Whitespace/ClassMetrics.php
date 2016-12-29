@@ -38,6 +38,7 @@ final class ClassMetrics
 		$this->tokens = $file->getTokens();
 	}
 
+
 	/**
 	 * @return FALSE|int
 	 */
@@ -71,7 +72,7 @@ final class ClassMetrics
 		$namespacePosition = $this->file->findPrevious(T_NAMESPACE, $this->classPosition);
 
 		$nextUseStatementPosition = $this->file->findNext(T_USE, $namespacePosition);
-		if (!$nextUseStatementPosition) {
+		if ( ! $nextUseStatementPosition) {
 			return FALSE;
 		}
 
@@ -90,7 +91,7 @@ final class ClassMetrics
 	{
 		$namespacePosition = $this->file->findPrevious(T_NAMESPACE, $this->classPosition);
 
-		if (!$namespacePosition) {
+		if ( ! $namespacePosition) {
 			return FALSE;
 		}
 
