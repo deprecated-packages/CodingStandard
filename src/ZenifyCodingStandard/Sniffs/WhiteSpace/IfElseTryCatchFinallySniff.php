@@ -11,6 +11,7 @@ namespace ZenifyCodingStandard\Sniffs\WhiteSpace;
 
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
+use ZenifyCodingStandard\Helper\PositionFinder;
 use ZenifyCodingStandard\Helper\Whitespace\EmptyLinesResizer;
 
 
@@ -84,7 +85,7 @@ final class IfElseTryCatchFinallySniff implements PHP_CodeSniffer_Sniff
 		if ($fix) {
 			EmptyLinesResizer::resizeLines(
 				$file,
-				$this->findFirstPositionInCurrentLine($position),
+				PositionFinder::findFirstPositionInCurrentLine($this->file, $position),
 				$emptyLineCountBeforeStatement,
 				$this->requiredEmptyLineCountBeforeStatement
 			);
@@ -105,18 +106,6 @@ final class IfElseTryCatchFinallySniff implements PHP_CodeSniffer_Sniff
 		);
 
 		return $this->tokens[$this->position]['line'] - $this->tokens[$previousPosition]['line'] - 1;
-	}
-
-
-	private function findFirstPositionInCurrentLine(int $position) : int
-	{
-		$currentPosition = $position;
-		$line = $this->tokens[$position]['line'];
-		while ($this->tokens[$currentPosition]['line'] === $line) {
-			$currentPosition--;
-		}
-
-		return $currentPosition;
 	}
 
 }

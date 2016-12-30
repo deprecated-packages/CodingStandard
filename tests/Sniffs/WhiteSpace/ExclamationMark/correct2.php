@@ -1,5 +1,3 @@
 <?php
 
-if ( ! $s) {
-	return $s;
-}
+$a !== $b;
