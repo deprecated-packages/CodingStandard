@@ -14,7 +14,8 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Zenify\\CodingStandard\\": "src"
+			"Zenify\\CodingStandard\\": "src",
+			"ZenifyCodingStandard\\": "src/ZenifyCodingStandard"
 		}
 	},
 	"autoload-dev": {
